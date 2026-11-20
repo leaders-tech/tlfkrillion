@@ -1,0 +1,155 @@
+/*
+This file animates the coastal sky, waves and fish shared by the menu and dive.
+Edit it to change how the scenery moves. Copy its stepped animations for another pixel sprite.
+*/
+
+.pixel-shoreline,
+.pixel-reef,
+.pixel-water,
+.pixel-sky,
+.ocean-wildlife {
+  position: absolute;
+  inset-inline: 0;
+  display: block;
+  width: 100%;
+  image-rendering: pixelated;
+}
+.pixel-shoreline {
+  bottom: 0;
+  height: 170px;
+}
+.pixel-reef,
+.pixel-water,
+.pixel-sky,
+.ocean-wildlife {
+  top: 0;
+  height: 100%;
+}
+
+.sky-clouds { position: absolute; inset: 0; }
+.sky-wind {
+  position: absolute;
+  bottom: 112px;
+  left: 3%;
+  width: 22px;
+  height: 2px;
+  background: #f9eed075;
+  box-shadow: 25vw -48px #f9eed067, 55vw 16px #f9eed09c, 78vw -7px #f9eed05c;
+  animation: coastal-wind 8s steps(24) infinite;
+}
+@keyframes coastal-wind {
+  from { transform: translateX(-28px); opacity: 0; }
+  28%, 68% { opacity: .85; }
+  to { transform: translateX(114px); opacity: 0; }
+}
+
+.pixel-cloud {
+  position: absolute;
+  width: clamp(70px, 15vw, 210px);
+  height: 32px;
+  background: linear-gradient(#f9edda 0 70%, #d6e1d8 70% 88%, #aacaD4 88%);
+  clip-path: polygon(0 69%, 12% 69%, 12% 44%, 25% 44%, 25% 22%, 41% 22%, 41% 0, 58% 0, 58% 28%, 72% 28%, 72% 54%, 91% 54%, 91% 72%, 100% 72%, 100% 100%, 0 100%);
+  animation: cloud-drift 19s steps(18) infinite alternate;
+}
+.cloud-one { bottom: 176px; left: 11%; }
+.cloud-two { bottom: 140px; right: 17%; scale: .78; animation-delay: -11s; }
+.cloud-three { bottom: 80px; right: 4%; scale: .53; opacity: .65; animation-delay: -5s; }
+@keyframes cloud-drift {
+  to { translate: 56px 0; }
+}
+
+.sky-birds {
+  position: absolute;
+  bottom: 135px;
+  left: 22%;
+  width: 73px;
+  height: 40px;
+  animation: gull-flight 16s steps(38) infinite alternate;
+}
+.sky-birds i {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 17px;
+  height: 7px;
+  background: #f6f3d6;
+  clip-path: polygon(0 0, 22% 0, 22% 29%, 40% 29%, 40% 57%, 60% 57%, 60% 29%, 78% 29%, 78% 0, 100% 0, 100% 43%, 78% 43%, 78% 72%, 60% 72%, 60% 100%, 40% 100%, 40% 72%, 22% 72%, 22% 43%, 0 43%);
+  animation: gull-flap .68s steps(1) infinite;
+}
+.sky-birds i:nth-child(2) { top: 17px; left: 27px; animation-delay: -.13s; }
+.sky-birds i:nth-child(3) { top: 6px; left: 53px; scale: .75; animation-delay: -.25s; }
+@keyframes gull-flight {
+  to { transform: translate(38vw, -27px); }
+}
+@keyframes gull-flap {
+  50% { scale: 1 -.65; }
+}
+
+.survey-boat {
+  position: absolute;
+  left: 42%;
+  bottom: -3px;
+  width: 79px;
+  height: 69px;
+  animation: boat-bob 2.6s steps(5) infinite alternate;
+}
+.survey-boat::before {
+  position: absolute;
+  inset: auto 0 0;
+  height: 17px;
+  clip-path: polygon(0 0, 100% 0, 100% 25%, 91% 25%, 91% 53%, 79% 53%, 79% 80%, 69% 80%, 69% 100%, 15% 100%, 15% 75%, 8% 75%, 8% 50%, 0 50%);
+  background: linear-gradient(#fff2ce 0 28%, #c78367 28% 62%, #713e50 62%);
+  content: "";
+}
+.survey-boat i {
+  position: absolute;
+  bottom: 16px;
+  left: 42px;
+  width: 4px;
+  height: 50px;
+  background: #654b4a;
+  box-shadow: 4px 0 #ecd3a3;
+}
+.survey-boat b {
+  position: absolute;
+  left: 2px;
+  bottom: 18px;
+  width: 39px;
+  height: 47px;
+  background: linear-gradient(90deg, #ffd795 0 55%, #fff0bb 55%);
+  clip-path: polygon(90% 0, 100% 0, 100% 100%, 0 100%, 0 86%, 15% 86%, 15% 73%, 29% 73%, 29% 57%, 45% 57%, 45% 44%, 61% 44%, 61% 30%, 75% 30%, 75% 14%, 90% 14%);
+}
+@keyframes boat-bob {
+  to { transform: translate(14px, -5px) rotate(3deg); }
+}
+
+.descent-waterline {
+  position: relative;
+  height: 12px;
+  background: #278fab;
+  box-shadow: 0 4px #69d1c777;
+}
+.descent-waterline::before,
+.descent-waterline::after {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(90deg, #d5f6df 0 17px, transparent 17px 54px, #9ee1d7 54px 73px, transparent 73px 96px);
+  background-size: 96px 4px;
+  background-repeat: repeat-x;
+  animation: foam-travel 2.8s steps(16) infinite;
+  content: "";
+}
+.descent-waterline::after {
+  top: 6px;
+  opacity: .6;
+  animation-direction: reverse;
+  animation-duration: 4.1s;
+}
+@keyframes foam-travel {
+  to { background-position-x: 96px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pixel-cloud, .sky-wind, .sky-birds, .sky-birds i, .survey-boat,
+  .descent-waterline::before, .descent-waterline::after { animation: none; }
+}

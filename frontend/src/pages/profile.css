@@ -1,0 +1,35 @@
+/* Style the rank badge and selectable skin collection. */
+.rank-badge { display: inline-block; padding: .3em .6em; border: 1px solid currentColor; background: #0a1425; }
+.rank-badge[data-rank="1800"] {
+  border-color: #ffe682;
+  background: linear-gradient(115deg, #ffe682 15%, #fff6c7 44%, #e4c1ff 66%, #ffe682 90%);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.rank-badge[data-rank="50000"] { border-color: #c094ef; }
+.rank-badge[data-rank="50000"],
+.admin-rank-text {
+  background: linear-gradient(110deg, #79eaff 12%, #baa1ff 30%, #fff3ce 46%, #ffffff 51%, #ffa7de 59%, #79eaff 82%);
+  background-size: 240% 100%;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: admin-rank-shine 5s linear infinite;
+}
+@keyframes admin-rank-shine {
+  from { background-position: 100% 0; }
+  to { background-position: -135% 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rank-badge[data-rank="50000"],
+  .admin-rank-text { animation: none; background-position: 50% 0; }
+}
+.krill-name .rank-badge[data-rank="50000"] { display: block; margin-top: 3px; font-size: .53rem; }
+.krill-name:has([data-rank="50000"]) { width: max-content; max-width: 140px; text-align: center; }
+.skin-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 168px), 1fr)); gap: 12px; }
+.skin-card { display: grid; align-content: start; justify-items: start; gap: 8px; padding: 14px; border: 2px solid #456481; background: #101e33; }
+.skin-card[data-locked="true"] { border-color: #31435a; }
+.skin-card .krill-skin { width: 74px; height: 66px; }
+.skin-card .krill-skin img { width: 66px; }
+.skin-card h4, .skin-card p { margin: 0; }
+.skin-card p, .skin-card small { color: #b5c6db; font-size: .84rem; }
+.skin-card progress { width: 100%; accent-color: #80e1d4; }

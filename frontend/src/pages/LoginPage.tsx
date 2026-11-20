@@ -17,7 +17,7 @@ export function LoginPage() {
   const [error, loginAction, busy] = useActionState(async () => {
     try {
       await login(username, password);
-      navigate("/dashboard");
+      navigate("/");
       return "";
     } catch (submitError) {
       return submitError instanceof Error ? submitError.message : "Login failed.";
@@ -25,13 +25,13 @@ export function LoginPage() {
   }, "");
 
   if (user) {
-    return <Navigate to="/dashboard" replace />;
+    return <Navigate to="/" replace />;
   }
 
   return (
-    <section className="mx-auto max-w-md rounded-3xl border border-slate-200/80 bg-white/85 p-8 shadow-lg shadow-slate-200/70">
+    <section className="login-panel mx-auto max-w-md rounded-3xl border border-slate-200/80 bg-white/85 p-8 shadow-lg shadow-slate-200/70">
       <h2 className="text-2xl font-semibold text-slate-900">Login</h2>
-      <p className="mt-2 text-sm text-slate-600">In dev mode, example users are shown on the home page. Enter them here yourself if you want to test login.</p>
+      <p className="mt-2 text-sm text-slate-600">Sign in with your account to create a room or join your friends.</p>
       <form className="mt-6 space-y-4" action={loginAction}>
         <label className="block">
           <span className="mb-2 block text-sm font-medium text-slate-700">Username</span>

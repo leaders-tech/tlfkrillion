@@ -11,8 +11,13 @@
 
 ## Current ownership
 
-- Remaining template: the entire repository, including demo login/admin accounts, notes, pages, branding, PWA assets, migrations, tests, development helpers, and deployment examples.
-- User application: none yet. Dependency maintenance and template instruction updates do not turn the starter into a user application.
+- User application: Krillion-style solo and multiplayer game, including popup navigation and a player profile in `frontend/src/app/App.tsx` and `frontend/src/pages/ProfilePage.tsx`, Cairopixel typography, the coastal menu and room-code lobby in `frontend/src/pages/SurfaceMenu.tsx`, animated scenery in `frontend/src/pages/PixelScenery.tsx`, the default pixel krill sprite in `frontend/public/krill.png`, dives and ocean results in `frontend/src/pages/DiveScene.tsx`, seven timed prompts, rarity scoring, question editing and AI verification, player accounts, room WebSockets, and cookie-based auth and room resume.
+- Question bank: packs in `backend/db/data` cover 11 categories including Mathematics. Playable prompts require at least 15 distinct accepted answers. The editor can assign and filter categories, and the live prompt shows its category.
+- Players can start a seven-prompt dive or an Endless solo dive. All results include an expandable rarity table for each prompt played.
+- The home menu lets players choose all categories or one category for solo, Endless, and hosted room dives.
+- Online play includes Casual group matchmaking, Ranked 1v1, persistent Elo, and achievement skins in the player profile.
+- Reused foundation: signed-in user/admin accounts, session cookies, aiohttp/React routing, deployment setup, and PWA shell.
+- Remaining starter material: the historical notes-table migration, which stays to preserve existing database migration history, and template-oriented development examples.
 
 ## Working defaults
 
@@ -107,7 +112,8 @@
   - `COOKIE_SECRET` — a long random string (32+ characters);
   - `ADMIN_PASSWORD` — the password of user `admin` (12+ characters). The backend creates `admin` on startup and resets
     its password when this secret changes.
-  The backend refuses to start in prod without good values. Never print, log, or commit secret values.
+  The backend refuses to start in prod without good required secret values. Never print, log, or commit secret values.
+- `OPENAI_API_KEY` is optional. Add it to enable web checks for answers missing from the question bank.
 - Where to look when a deploy fails: the deploy log on the dashboard, runtime logs at https://logs.tlfedu.tech, and
   read-only files (including the SQLite file) at https://files.tlfedu.tech.
 - Platform rules for Docker files: https://deploy.tlfedu.tech/guides/docker/agents and `docs/tlfpaas-autodeploy.md`.

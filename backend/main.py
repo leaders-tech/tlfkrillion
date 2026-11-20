@@ -10,12 +10,13 @@ import logging
 
 from aiohttp import web
 
-from backend.app_keys import DB, SETTINGS, WS_HUB
+from backend.app_keys import DB, GAME_ROOMS, SETTINGS, WS_HUB
 from backend.auth.routes import setup_auth_routes
 from backend.config import Settings, load_settings, validate_settings
 from backend.db.connection import open_db
 from backend.db.migrations import run_migrations
-from backend.db.seed import ensure_admin, seed_dev_data
+from backend.db.seed import ensure_admin, seed_startup_data
+from backend.game.rooms import GameRooms
 from backend.http.middleware import cors_middleware, error_middleware, request_logging_middleware
 from backend.http.routes import setup_api_routes
 from backend.logging_config import configure_logging
@@ -43,11 +44,15 @@ async def on_startup(app: web.Application) -> None:
     await ensure_admin(app[DB], settings)
     if settings.mode == "dev":
         LOGGER.info("Seeding dev users if they are missing.")
-    await seed_dev_data(app[DB], settings)
+    await seed_startup_data(app[DB], settings)
+    app[GAME_ROOMS] = GameRooms(app[WS_HUB], app[DB], settings.db_path, settings.openai_api_key)
     LOGGER.info("Backend startup finished.")
 
 
 async def on_cleanup(app: web.Application) -> None:
+    game_rooms = app.get(GAME_ROOMS)
+    if game_rooms is not None:
+        await game_rooms.close()
     db = app.get(DB)
     if db is not None:
         await db.close()

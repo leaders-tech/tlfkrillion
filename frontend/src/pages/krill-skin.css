@@ -1,0 +1,5 @@
+/* Keep the krill sprites sharp at their profile and in-game sizes. */
+.krill-skin { display: inline-grid; place-items: center; width: 100%; }
+.krill-skin img { display: block; image-rendering: pixelated; }
+.krill-skin img,
+.surface-krill { filter: drop-shadow(1px 3px 3px #07172b85); }

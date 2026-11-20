@@ -15,7 +15,7 @@ from backend.auth.passwords import hash_password, verify_password
 from backend.auth.tokens import build_access_token
 from backend.config import DEFAULT_COOKIE_SECRET, Settings
 from backend.db.refresh_sessions import count_sessions
-from backend.db.seed import seed_dev_data
+from backend.db.seed import seed_startup_data
 from backend.db.users import list_users
 from backend.main import create_app, on_cleanup, on_startup
 from backend.tests.conftest import login
@@ -50,7 +50,7 @@ async def test_login_invalid_credentials(client, create_user, auth_headers) -> N
 
 @pytest.mark.asyncio
 async def test_requires_auth(client) -> None:
-    response = await client.post("/api/notes/list", json={})
+    response = await client.post("/api/admin/users/list", json={})
     assert response.status == 401
 
 
@@ -107,11 +107,11 @@ async def test_admin_forbidden_for_normal_user(client, create_user, auth_headers
 
 @pytest.mark.asyncio
 async def test_non_json_write_request_returns_400(client, create_user, auth_headers) -> None:
-    await create_user("user", "user")
-    await login(client, "user", "user", auth_headers)
+    await create_user("admin", "admin", True)
+    await login(client, "admin", "admin", auth_headers)
 
     response = await client.post(
-        "/api/notes/save",
+        "/api/game/questions/save",
         data="text=bad",
         headers={"Origin": "http://127.0.0.1:5101", "Content-Type": "application/x-www-form-urlencoded"},
     )
@@ -216,7 +216,7 @@ async def test_dev_seed_only_creates_missing_users(tmp_path, monkeypatch) -> Non
     try:
         await on_startup(app)
         assert calls == ["admin", "user"]
-        await seed_dev_data(app[DB], settings)
+        await seed_startup_data(app[DB], settings)
         users = await list_users(app[DB])
         assert [user["username"] for user in users] == ["admin", "user"]
         assert calls == ["admin", "user"]

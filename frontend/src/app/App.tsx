@@ -9,18 +9,23 @@ import { useState } from "react";
 import { useAuth } from "./auth";
 import { HomePage } from "../pages/HomePage";
 import { LoginPage } from "../pages/LoginPage";
-import { DashboardPage } from "../pages/DashboardPage";
 import { AdminPage } from "../pages/AdminPage";
 import { NotFoundPage } from "../pages/NotFoundPage";
+import { clearSavedRoomCode } from "../shared/gameSession";
+import type { SocketStatus } from "../shared/socket";
+import { ProfilePage } from "../pages/ProfilePage";
+import "./navigation.css";
 
-function Layout({ children }: { children: React.ReactNode }) {
+function Layout({ children, status }: { children: React.ReactNode; status: SocketStatus }) {
   const { user, logout } = useAuth();
   const [error, setError] = useState("");
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const onLogout = async () => {
     setError("");
     try {
       await logout();
+      clearSavedRoomCode();
     } catch (logoutError) {
       setError(logoutError instanceof Error ? logoutError.message : "Could not log out. Please try again.");
     }
@@ -28,38 +33,35 @@ function Layout({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="min-h-screen">
-      <header className="border-b border-slate-200/70 bg-white/70 backdrop-blur">
-        <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-4 py-4">
-          <div>
-            <h1 className="text-xl font-semibold text-slate-900">Template PWA</h1>
-            <p className="text-sm text-slate-600">Simple starter for school projects.</p>
-          </div>
-          <nav className="flex items-center gap-3 text-sm font-medium text-slate-700">
-            <NavLink className="rounded-full px-3 py-2 hover:bg-slate-100" to="/">
-              Home
-            </NavLink>
+      <div className="navigation-rail">
+        <button className="navigation-trigger" type="button" aria-label="Menu" aria-expanded={menuOpen} aria-controls="main-menu" onClick={() => setMenuOpen(!menuOpen)}>
+          <span aria-hidden="true">☰</span>
+        </button>
+        {user && <NavLink className="navigation-trigger profile-trigger" aria-label="Profile" to="/profile" onClick={() => setMenuOpen(false)}><span aria-hidden="true">◉</span></NavLink>}
+        {menuOpen && (
+          <nav id="main-menu" className="navigation-menu" aria-label="Main menu">
+            <p className="navigation-title">Krillion</p>
+            {user && <p className={`menu-status ${status}`}><i />{status === "connected" ? "Connected" : status === "idle" ? "Not connected" : status}</p>}
+            <NavLink to="/" onClick={() => setMenuOpen(false)}>{user ? "Dive" : "Home"}</NavLink>
             {user ? (
               <>
-                <NavLink className="rounded-full px-3 py-2 hover:bg-slate-100" to="/dashboard">
-                  Dashboard
-                </NavLink>
                 {user.is_admin && (
-                  <NavLink className="rounded-full px-3 py-2 hover:bg-slate-100" to="/admin">
-                    Admin
+                  <NavLink to="/admin" onClick={() => setMenuOpen(false)}>
+                    Questions
                   </NavLink>
                 )}
-                <button className="rounded-full bg-slate-900 px-4 py-2 text-white" onClick={() => void onLogout()}>
+                <button onClick={() => void onLogout()}>
                   Logout
                 </button>
               </>
             ) : (
-              <NavLink className="rounded-full bg-slate-900 px-4 py-2 text-white" to="/login">
+              <NavLink to="/login" onClick={() => setMenuOpen(false)}>
                 Login
               </NavLink>
             )}
           </nav>
-        </div>
-      </header>
+        )}
+      </div>
       <main className="mx-auto max-w-5xl px-4 py-8">
         {error ? (
           <p role="alert" className="mb-4 rounded-2xl bg-rose-50 px-4 py-3 text-rose-700">
@@ -72,17 +74,6 @@ function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 
-function RequireAuth({ children }: { children: React.ReactNode }) {
-  const { user, loading } = useAuth();
-  if (loading) {
-    return <p className="text-slate-600">Loading session...</p>;
-  }
-  if (!user) {
-    return <Navigate to="/login" replace />;
-  }
-  return <>{children}</>;
-}
-
 function RequireAdmin({ children }: { children: React.ReactNode }) {
   const { user, loading } = useAuth();
   if (loading) {
@@ -92,25 +83,19 @@ function RequireAdmin({ children }: { children: React.ReactNode }) {
     return <Navigate to="/login" replace />;
   }
   if (!user.is_admin) {
-    return <Navigate to="/dashboard" replace />;
+    return <Navigate to="/" replace />;
   }
   return <>{children}</>;
 }
 
 export function App() {
+  const [status, setStatus] = useState<SocketStatus>("idle");
   return (
-    <Layout>
+    <Layout status={status}>
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<HomePage onConnectionStatus={setStatus} />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route
-          path="/dashboard"
-          element={
-            <RequireAuth>
-              <DashboardPage />
-            </RequireAuth>
-          }
-        />
+        <Route path="/profile" element={<ProfilePage />} />
         <Route
           path="/admin"
           element={

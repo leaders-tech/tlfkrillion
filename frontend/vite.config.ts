@@ -38,11 +38,11 @@ export default defineConfig(({ mode }) => {
           navigateFallbackDenylist: [/^\/api(?:\/|$)/, /^\/ws(?:\/|$)/],
         },
         manifest: {
-          name: "Template PWA",
-          short_name: "TemplatePWA",
-          description: "Small starter app for school projects.",
-          theme_color: "#0e1a2b",
-          background_color: "#eff6ff",
+          name: "Krillion · The Deep Dive",
+          short_name: "Krillion",
+          description: "A multiplayer rare-answer dive game.",
+          theme_color: "#061827",
+          background_color: "#061827",
           display: "standalone",
           start_url: "/",
           // These PNG files come from public/icon.svg. Run `npm run icons` after changing the SVG (see icon/AGENTS.md).

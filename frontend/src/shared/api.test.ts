@@ -25,11 +25,11 @@ describe("shared api helper", () => {
     vi.stubGlobal("fetch", fetchMock);
 
     const { postJson } = await import("./api");
-    const data = await postJson<{ saved: boolean }>("/notes/list");
+    const data = await postJson<{ saved: boolean }>("/game/questions/list");
 
     expect(data).toEqual({ saved: true });
     expect(fetchMock).toHaveBeenCalledWith(
-      "/api/notes/list",
+      "/api/game/questions/list",
       expect.objectContaining({
         method: "POST",
         credentials: "include",
@@ -49,8 +49,8 @@ describe("shared api helper", () => {
   it("turns connection failures into a readable ApiError", async () => {
     vi.stubGlobal("fetch", vi.fn().mockRejectedValue(new TypeError("Failed to fetch")));
     const { postJson, ApiError } = await import("./api");
-    await expect(postJson("/notes/list")).rejects.toBeInstanceOf(ApiError);
-    await expect(postJson("/notes/list")).rejects.toMatchObject({
+    await expect(postJson("/game/questions/list")).rejects.toBeInstanceOf(ApiError);
+    await expect(postJson("/game/questions/list")).rejects.toMatchObject({
       status: 0,
       code: "network_error",
       message: "Could not reach the server. Please try again.",
@@ -63,7 +63,7 @@ describe("shared api helper", () => {
   ])("reports invalid server responses without a JSON parsing crash", async (body, code) => {
     vi.stubGlobal("fetch", vi.fn().mockResolvedValue(new Response(body, { status: 502 })));
     const { postJson } = await import("./api");
-    await expect(postJson("/notes/list")).rejects.toMatchObject({ status: 502, code });
+    await expect(postJson("/game/questions/list")).rejects.toMatchObject({ status: 502, code });
   });
 
   it("refreshes the login cookie once and repeats a request that got 401", async () => {
@@ -73,12 +73,12 @@ describe("shared api helper", () => {
       .fn()
       .mockResolvedValueOnce(jsonResponse(401, { ok: false, error: { code: "not_authenticated", message: "Login is required." } }))
       .mockResolvedValueOnce(jsonResponse(200, { ok: true, data: { user: { id: 1 } } }))
-      .mockResolvedValueOnce(jsonResponse(200, { ok: true, data: { notes: [] } }));
+      .mockResolvedValueOnce(jsonResponse(200, { ok: true, data: { questions: [] } }));
     vi.stubGlobal("fetch", fetchMock);
 
     const { postJson } = await import("./api");
-    await expect(postJson("/notes/list")).resolves.toEqual({ notes: [] });
-    expect(fetchMock.mock.calls.map(([url]) => url)).toEqual(["/api/notes/list", "/api/auth/refresh", "/api/notes/list"]);
+    await expect(postJson("/game/questions/list")).resolves.toEqual({ questions: [] });
+    expect(fetchMock.mock.calls.map(([url]) => url)).toEqual(["/api/game/questions/list", "/api/auth/refresh", "/api/game/questions/list"]);
   });
 
   it("does not try to refresh after a 401 from an auth endpoint", async () => {
@@ -101,7 +101,7 @@ describe("shared api helper", () => {
     vi.stubGlobal("fetch", fetchMock);
 
     const { postJson } = await import("./api");
-    await expect(postJson("/notes/list")).rejects.toMatchObject({ status: 401, message: "Login is required." });
+    await expect(postJson("/game/questions/list")).rejects.toMatchObject({ status: 401, message: "Login is required." });
     expect(fetchMock).toHaveBeenCalledTimes(2);
   });
 });

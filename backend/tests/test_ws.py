@@ -77,7 +77,7 @@ async def test_hub_skips_broken_socket_and_still_sends_to_others() -> None:
     hub.add(1, broken)
     hub.add(1, good)
 
-    await hub.send_to_user(1, {"type": "notes.changed"})
+    await hub.send_to_user(1, {"type": "game.room"})
 
-    assert good.messages == [{"type": "notes.changed"}]
+    assert good.messages == [{"type": "game.room"}]
     assert hub.count_for_user(1) == 1

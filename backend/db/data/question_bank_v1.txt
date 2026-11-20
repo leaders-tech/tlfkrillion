@@ -1,0 +1,368 @@
+# Built-in question pack. Add future releases in a new file and migration.
+# Each prompt is followed by six groups: plankton | too clever | schooler | rare | deep cut | krillion.
+# Separate answers with commas and give aliases with =. Empty groups are fine. ! means AI is off by default.
+# Tier choices reflect likely recall in English. Too Clever is for technically correct edge cases.
+
+[Space]
+Name a moon of Jupiter.
+Io, Europa, Ganymede | | Callisto | Amalthea, Himalia, Thebe | Carme, Elara, Metis, Adrastea, Pasiphae, Sinope, Lysithea, Ananke, Leda | Themisto, Callirrhoe, Megaclite, Taygete, Chaldene, Harpalyke, Kalyke, Iocaste, Erinome, Isonoe, Praxidike, Autonoe, Thyone, Hermippe, Euanthe, Eurydome, Sponde, Pasithee, Aitne, Kale, Orthosie, Euarche, Kallichore, Helike, Carpo, Eukelade, Cyllene, Kore
+
+!Name a planet in our solar system.
+Earth, Mars, Jupiter, Saturn, Venus | | Mercury, Neptune, Uranus | | |
+
+Name a moon of Saturn.
+Titan | | Enceladus, Mimas, Rhea | Iapetus, Dione, Tethys, Hyperion, Phoebe | Janus, Epimetheus, Prometheus, Pandora, Pan, Atlas, Helene, Telesto, Calypso | Methone, Pallene, Polydeuces, Daphnis, Anthe, Aegaeon, Ymir, Paaliaq, Siarnaq, Kiviuq, Ijiraq, Albiorix, Tarvos, Erriapus
+
+Name a moon of Uranus.
+Titania, Oberon | | Miranda, Ariel, Umbriel | Puck, Portia, Juliet, Cordelia, Ophelia | Bianca, Desdemona, Cressida, Rosalind, Belinda, Caliban, Sycorax | Cupid, Mab, Perdita, Stephano, Prospero, Setebos, Trinculo, Francisco, Margaret, Ferdinand
+
+Name a moon of Neptune.
+Triton | | Nereid, Proteus | Larissa, Galatea, Naiad, Thalassa, Despina | Halimede, Sao, Laomedeia, Psamathe, Neso | Hippocamp
+
+Name a constellation represented by an animal, real or mythical.
+Leo, Taurus, Pisces, Scorpius=Scorpio, Aries, Cancer | Draco, Phoenix, Pegasus, Hydra | Ursa Major=Great Bear, Ursa Minor=Little Bear, Cygnus, Aquila, Lupus, Cetus, Capricornus=Capricorn, Canis Major, Canis Minor | Delphinus, Corvus, Lepus, Lynx, Camelopardalis, Grus, Pavo, Tucana, Columba | Vulpecula, Chamaeleon, Lacerta, Apus, Dorado, Volans, Musca, Monoceros, Equuleus, Hydrus, Serpens, Piscis Austrinus | Leo Minor, Canes Venatici
+
+Name a star visible to the naked eye from Earth.
+Sirius, Polaris=North Star, Betelgeuse | Sun=The Sun=Sol | Vega, Rigel, Altair, Arcturus, Alpha Centauri=Rigil Kentaurus, Antares, Canopus, Deneb | Aldebaran, Procyon, Capella, Regulus, Spica, Castor, Pollux, Fomalhaut, Achernar, Bellatrix, Alnitak, Alnilam, Mintaka | Sadr, Mirach, Algol, Dubhe, Mizar, Alcor, Kochab, Alpheratz, Hamal, Merak | Menkalinan, Zubenelgenubi, Zubeneschamali, Unukalhai, Kaus Australis
+
+Name a person who walked on the Moon.
+Neil Armstrong=Armstrong, Buzz Aldrin=Aldrin | | Alan Shepard=Shepard, Pete Conrad=Charles Conrad, Gene Cernan=Eugene Cernan | Alan Bean, Edgar Mitchell, David Scott, John Young, Harrison Schmitt | Charles Duke=Charlie Duke, James Irwin=Jim Irwin |
+
+Name one of NASA's Space Shuttle orbiters.
+Discovery, Challenger, Columbia | Enterprise=Space Shuttle Enterprise | Endeavour=Endeavor, Atlantis | | |
+
+Name a spacecraft that landed on Mars.
+Perseverance=Mars 2020, Curiosity=Mars Science Laboratory, Opportunity=MER-B, Spirit=MER-A | Ingenuity=Mars Helicopter | Sojourner, Mars Pathfinder=Pathfinder, InSight=Mars InSight, Phoenix=Mars Phoenix | Viking 1, Viking 2, Zhurong, Mars 3 | Beagle 2, Tianwen-1 lander=Tianwen 1 |
+
+Name a space telescope.
+Hubble=Hubble Space Telescope=HST, James Webb Space Telescope=James Webb=Webb=JWST | | Kepler=Kepler Space Telescope, Spitzer=Spitzer Space Telescope, Chandra=Chandra X-ray Observatory, TESS=Transiting Exoplanet Survey Satellite | Euclid, Gaia, Herschel=Herschel Space Observatory, Planck, WISE=NEOWISE, XMM-Newton, Fermi Gamma-ray Space Telescope=Fermi | Hipparcos, Compton Gamma Ray Observatory=Compton, Swift=Neil Gehrels Swift Observatory, NuSTAR, CHEOPS, IRAS | Akari, Uhuru, ISO=Infrared Space Observatory, ROSAT, MOST, AstroSat
+
+Name a constellation in the zodiac, including the one outside the traditional twelve.
+Leo, Virgo, Scorpio=Scorpius, Aries, Taurus, Gemini | | Cancer, Libra, Sagittarius, Capricorn=Capricornus, Aquarius, Pisces | Ophiuchus | |
+
+Name a robotic mission that flew past or orbited Jupiter.
+Voyager 1, Voyager 2, Galileo=Galileo spacecraft, Juno | | New Horizons, Cassini=Cassini-Huygens | Pioneer 10, Pioneer 11, Ulysses | |
+
+[Geography]
+!Name a country that borders Germany.
+France, Poland, Austria | | Netherlands=The Netherlands=Holland, Switzerland, Belgium, Czechia=Czech Republic, Denmark | Luxembourg | |
+
+Name a country with a coastline on the Mediterranean Sea.
+Italy, Spain, Greece, France | United Kingdom=UK=Britain | Turkey=Türkiye, Croatia, Egypt, Morocco, Cyprus, Israel, Tunisia | Algeria, Libya, Lebanon, Syria, Malta, Albania, Slovenia, Montenegro | Monaco, Bosnia and Herzegovina=Bosnia & Herzegovina=Bosnia, Palestine=State of Palestine |
+
+Name a country crossed by the equator, including through its territorial waters.
+Ecuador, Brazil, Kenya | | Indonesia, Colombia, Uganda, Democratic Republic of the Congo=DR Congo=DRC=Congo-Kinshasa | Somalia, Gabon, Republic of the Congo=Congo-Brazzaville, São Tomé and Príncipe=Sao Tome and Principe | Maldives, Kiribati |
+
+!Name a state that borders Texas.
+New Mexico, Oklahoma, Louisiana | | Arkansas | | |
+
+!Name one of the five North American Great Lakes.
+Lake Michigan=Michigan, Lake Superior=Superior | | Lake Erie=Erie, Lake Ontario=Ontario, Lake Huron=Huron | | |
+
+!Name a country that shares a land border with China.
+India, Russia, Mongolia, North Korea=DPRK | | Nepal, Pakistan, Vietnam, Myanmar=Burma, Kazakhstan | Bhutan, Laos, Afghanistan | Kyrgyzstan, Tajikistan |
+
+!Name a country on the mainland of South America.
+Brazil, Argentina, Chile, Peru | | Colombia, Venezuela, Ecuador, Bolivia, Uruguay, Paraguay | Guyana, Suriname | |
+
+Name a landlocked country in Africa.
+Ethiopia, Uganda, Rwanda, Chad | | Mali, Niger, Burkina Faso, Zambia, Zimbabwe, Botswana, South Sudan | Burundi, Malawi, Lesotho, Central African Republic=CAR, Eswatini=Swaziland | |
+
+!Name a country through which the Danube flows or forms a border.
+Germany, Austria, Hungary | | Slovakia, Romania, Serbia, Bulgaria | Croatia, Ukraine | Moldova |
+
+Name a national capital city in Africa.
+Cairo, Nairobi, Pretoria, Cape Town | Bloemfontein | Addis Ababa, Accra, Abuja, Rabat, Tunis, Algiers, Dakar, Kampala, Kigali, Kinshasa, Mogadishu, Tripoli, Harare, Luanda, Antananarivo | Lusaka, Maputo, Windhoek, Gaborone, Bamako, Niamey, Freetown, Monrovia, Yaoundé, Khartoum, Juba, Asmara, Djibouti, Brazzaville | Ouagadougou, N'Djamena=Ndjamena, Libreville, Banjul, Nouakchott, Conakry, Bissau, Lilongwe, Dodoma, Porto-Novo=Porto Novo, Lomé, Yamoussoukro, Maseru, Mbabane, Port Louis, Victoria, Moroni, Praia, São Tomé, Ciudad de la Paz | Lobamba, Gitega
+
+!Name a province or territory of Canada.
+Ontario, Quebec, British Columbia=BC, Alberta | | Manitoba, Saskatchewan, Nova Scotia, New Brunswick, Newfoundland and Labrador=Newfoundland & Labrador, Yukon=Yukon Territory | Prince Edward Island=PEI, Northwest Territories=NWT, Nunavut | |
+
+!Name a country that uses the Australian dollar as its official currency.
+Australia | | | Nauru, Tuvalu | Kiribati |
+
+[Food & drink]
+Name a type of pasta.
+Spaghetti, Penne, Macaroni, Linguine, Fettuccine=Fettucine, Lasagne=Lasagna, Fusilli, Ravioli | Gnocchi | Rigatoni, Farfalle=Bow ties=Bow tie pasta, Tortellini, Tagliatelle, Cannelloni, Orzo=Risoni, Vermicelli, Cavatappi | Orecchiette, Bucatini, Pappardelle, Capellini=Angel hair, Conchiglie=Pasta shells, Rotini, Ditalini, Ziti, Manicotti, Paccheri, Gemelli, Agnolotti | Trofie, Cavatelli, Garganelli, Strozzapreti, Mafaldine=Reginette, Malloreddus, Pici, Fregola=Fregula, Culurgiones, Pizzoccheri | Busiate, Lorighittas, Corzetti, Testaroli, Casunziei, Fileja
+
+Name a type of cheese.
+Cheddar, Mozzarella, Parmesan, Brie, Gouda, Feta, Swiss cheese | Cream cheese, Cottage cheese | Camembert, Stilton, Blue cheese=Bleu cheese, Gruyère, Ricotta, Provolone, Halloumi, Monterey Jack, Emmental=Emmentaler | Manchego, Pecorino Romano=Pecorino, Gorgonzola, Roquefort, Mascarpone, Havarti, Burrata, Paneer, Edam, Wensleydale, Jarlsberg | Taleggio, Comté, Raclette, Reblochon, Cotija, Oaxaca cheese=Queso Oaxaca, Mimolette, Queso fresco, Red Leicester | Époisses, Cabrales, Casu marzu, Västerbottensost, Brunost, Tête de Moine
+
+Name a variety of apple.
+Granny Smith, Gala, Fuji, Pink Lady=Cripps Pink, Honeycrisp | Crabapple | Red Delicious, Golden Delicious, Braeburn, McIntosh, Jonagold, Jazz=Scifresh, Ambrosia | Cox's Orange Pippin=Cox, Empire, Rome Beauty, Cortland, Envy=Scilate, Cosmic Crisp, Kanzi, Elstar | Ashmead's Kernel, Newtown Pippin, Northern Spy, Winesap, Gravenstein, Mutsu=Crispin, Opal | Calville Blanc d'Hiver, Esopus Spitzenburg, Knobbed Russet, Belle de Boskoop
+
+Name an edible mushroom.
+Button mushroom=White mushroom=Champignon, Portobello=Portabella, Shiitake=Shitake | Cremini=Crimini=Baby bella | Oyster mushroom=Oyster, Enoki=Enokitake, Morel, Chanterelle, Porcini=Cep=Penny bun, Truffle | Lion's mane, Maitake=Hen of the woods, King oyster=King trumpet, Wood ear, Shimeji, Matsutake | Hedgehog mushroom, Chicken of the woods, Black trumpet, Nameko, Paddy straw mushroom, Giant puffball | Wine cap, Cauliflower mushroom, Saffron milk cap
+
+Name a fruit used to make pies.
+Apple, Cherry, Blueberry, Peach | Pumpkin, Rhubarb, Lemon, Lime=Key lime, Banana, Coconut | Strawberry, Blackberry, Raspberry, Pear, Plum | Apricot, Gooseberry, Boysenberry, Cranberry, Mango, Pineapple | Mulberry, Quince, Huckleberry, Serviceberry=Saskatoon berry |
+
+Name a kind of bread.
+Sourdough, Baguette, Brioche, Naan, Pita, Whole wheat bread=Wholemeal bread, Rye bread | Tortilla, Crumpet | Focaccia, Ciabatta, Bagel, Challah, Pumpernickel, Soda bread, Cornbread, Lavash, Roti=Chapati, Potato bread | Injera, Paratha, Arepa, Matzo=Matzah, Milk bread=Shokupan, Bannock, Pão de queijo, Pretzel, English muffin, Damper | Barbari, Sangak, Laffa, Bialy, Mantou, Khobz, Parotta | Rieska, Borodinsky bread, Knäckebröd, Bazlama
+
+Name a dish made with rice as a main ingredient.
+Fried rice, Risotto, Paella, Sushi | Rice pudding, Rice paper rolls | Biryani, Jambalaya, Arroz con pollo, Pilaf=Pilau, Congee=Jook, Bibimbap, Onigiri, Rice and beans | Nasi goreng, Jollof rice, Khao pad, Dolma=Dolmades, Omurice, Zongzi, Nasi lemak, Hainanese chicken rice, Arancini | Kabsa, Tahdig, Tehri, Waakye, Mujadara, Koshari, Loco moco | Xôi, Bisi bele bath, Suman
+
+Name a bean or another edible legume.
+Black bean, Kidney bean, Chickpea=Garbanzo bean, Pea, Lentil | Peanut=Groundnut, Green bean=String bean | Soybean=Soya bean=Edamame, Pinto bean, Lima bean=Butter bean, Black-eyed pea, Fava bean=Broad bean, Navy bean, Cannellini bean | Mung bean, Adzuki bean=Azuki bean, Pigeon pea, Lupin bean=Lupini bean, Fayot bean=Flageolet, Urad bean=Black gram | Tepary bean, Bambara groundnut, Horse gram, Moth bean, Winged bean | Kersting's groundnut, Tarwi
+
+Name a spice made from seeds or fruits.
+Black pepper=Peppercorn, Cumin, Mustard seed, Paprika | Chili flakes=Chilli flakes, Vanilla | Coriander seed, Fennel seed, Nutmeg, Cardamom, Chili powder=Chilli powder, Anise, Star anise, Allspice | Caraway, Fenugreek, Juniper berry=Juniper berries, Celery seed, Dill seed, Poppy seed, Sesame seed, Sumac, Sichuan pepper=Szechuan pepper | Grains of paradise, Ajwain=Carom, Nigella=Kalonji, Mace, Annatto=Achiote | Tasmanian pepperberry, Cubeb, Mahleb, Voatsiperifery
+
+Name a type of tea made from Camellia sinensis.
+Green tea, Black tea, Matcha, Earl Grey | Jasmine tea | Oolong, White tea, Darjeeling, Assam, English breakfast, Sencha, Pu-erh=Puerh, Ceylon tea, Masala chai=Chai | Genmaicha, Hōjicha, Gyokuro, Lapsang souchong, Gunpowder tea, Longjing=Dragon Well, Irish breakfast, Silver Needle | Tieguanyin=Tie Guan Yin, Da Hong Pao, Keemun, Kabusecha, Bancha, Kukicha, Dianhong | Liu Bao, Junshan Yinzhen, Taiping Houkui
+
+Name a dessert traditionally made with eggs.
+Custard, Cake, Brownies=Brownie, Crème brûlée, Flan=Crème caramel, Meringue | Pavlova | Tiramisu, Cheesecake, Soufflé, Éclair, Macaron, Lemon meringue pie, Trifle, Bread pudding, Crêpes=Crepes, Sponge cake | Zabaglione=Sabayon, Floating island=Île flottante, Clafoutis, Egg tart=Pastel de nata, Canelé, Boston cream pie, Crème anglaise | Quindim, Pão de ló, Kogel mogel, Tocino de cielo | Xuixo, Ovos moles
+
+Name an ingredient used to make dairy-free milk alternatives.
+Oat=Oats, Soy=Soybean, Almond=Almonds, Coconut | Water | Rice, Cashew=Cashews, Pea=Peas, Hemp=Hemp seed, Macadamia | Hazelnut, Walnut, Pistachio, Flaxseed=Flax seed, Sunflower seed, Sesame | Tiger nut=Tigernut=Chufa, Quinoa, Barley, Buckwheat | Pili nut
+
+[Animals]
+Name a bird that cannot fly.
+Penguin=Pengiun, Ostrich, Emu, Kiwi, Dodo | | Cassowary, Rhea, Kakapo=Kākāpō | Takahē, Weka, Moa, Flightless cormorant=Galapagos cormorant, Great auk, Inaccessible Island rail | Flightless steamer duck, Fuegian steamer duck, Falkland steamer duck, Lord Howe woodhen, Auckland Island teal, Campbell Island teal, Guam rail, Elephant bird | Junin grebe, Titicaca grebe, Henderson crake, Chatham rail, New Caledonian rail
+
+Name a living marsupial.
+Kangaroo, Koala, Wombat | | Wallaby, Opossum, Possum, Tasmanian devil, Sugar glider, Quokka | Tree kangaroo, Bandicoot, Bilby, Numbat, Cuscus, Pademelon, Quoll, Wallaroo | Bettong, Potoroo=Potoroos, Antechinus, Dibbler, Dunnart, Greater glider, Feathertail glider | Kowari, Kultarr, Mulgara, Monito del monte, Marsupial mole
+
+Name a dog breed.
+Labrador Retriever=Labrador=Lab, Golden Retriever, German Shepherd=Alsatian, Poodle, Bulldog=English Bulldog, Beagle, Chihuahua, Pug, Dachshund=Sausage dog | | Siberian Husky=Husky, Shiba Inu=Shiba, Border Collie, Boxer, Rottweiler, Dalmatian, French Bulldog=Frenchie, Doberman=Dobermann, Great Dane, Corgi=Pembroke Welsh Corgi, Yorkshire Terrier=Yorkie, Basset Hound, Greyhound, Australian Shepherd, Pomeranian | Akita, Saluki, Basenji, Samoyed, Weimaraner, Papillon, Vizsla, Whippet, Bernese Mountain Dog, Afghan Hound, Rhodesian Ridgeback, Bloodhound, Borzoi, Newfoundland, St Bernard=Saint Bernard, Schnauzer | Komondor, Puli, Bedlington Terrier, Keeshond, Finnish Spitz, Schipperke, Löwchen, Briard, Beauceron | Xoloitzcuintli=Xolo=Mexican Hairless, Azawakh, Otterhound, Norwegian Lundehund, Lagotto Romagnolo
+
+Name a cat breed.
+Persian, Siamese, Maine Coon, Bengal, Sphynx | | Ragdoll, British Shorthair, Scottish Fold, Russian Blue, Abyssinian, Burmese, American Shorthair | Birman, Norwegian Forest Cat, Devon Rex, Cornish Rex, British Longhair, Savanna cat=Savannah, Oriental Shorthair, Manx, Siberian, Turkish Angora | Turkish Van, Egyptian Mau, Korat, Tonkinese, Ocicat, Chartreux, Japanese Bobtail, American Curl, Bombay | Sokoke, Singapura, LaPerm, Burmilla, Peterbald, Kurilian Bobtail
+
+Name a living species of great ape.
+Human=Humans=Homo sapiens, Chimpanzee=Common chimpanzee=Chimp | | Bonobo=Pygmy chimpanzee, Western gorilla, Eastern gorilla | Bornean orangutan, Sumatran orangutan | Tapanuli orangutan |
+
+Name a kind of shark.
+Great white shark=Great white=White shark, Hammerhead shark=Hammerhead, Tiger shark, Whale shark | | Bull shark, Basking shark, Mako shark=Mako, Greenland shark, Nurse shark, Blue shark, Goblin shark | Lemon shark, Thresher shark=Thresher, Sand tiger shark=Ragged-tooth shark, Reef shark, Leopard shark, Megamouth shark, Porbeagle, Oceanic whitetip shark | Frilled shark, Horn shark, Zebra shark, Cookiecutter shark, Wobbegong, Epaulette shark, Bonnethead, Spiny dogfish, Sawshark | Velvet belly lanternshark, Bramble shark, Pocket shark, Daggernose shark, Speartooth shark
+
+Name a living member of the crocodilian group.
+Crocodile, Alligator | | Caiman, Gharial=Gavial, Saltwater crocodile=Saltie, Nile crocodile, American alligator | American crocodile, Chinese alligator, Black caiman, Spectacled caiman, False gharial=Tomistoma, Freshwater crocodile=Australian freshwater crocodile | Dwarf crocodile, Cuban crocodile, Orinoco crocodile, Morelet's crocodile, Siamese crocodile, Mugger crocodile, Philippine crocodile | Cuvier's dwarf caiman, Schneider's smooth-fronted caiman, Broad-snouted caiman
+
+Name a penguin species.
+Emperor penguin, King penguin | | Little penguin=Little blue penguin=Fairy penguin=Blue penguin, Adélie penguin, Gentoo penguin, Rockhopper penguin | Chinstrap penguin, Macaroni penguin, African penguin=Jackass penguin, Humboldt penguin, Magellanic penguin, Galápagos penguin | Yellow-eyed penguin=Hoiho, Royal penguin, Fiordland penguin, Erect-crested penguin | Snares penguin, Northern rockhopper penguin, Southern rockhopper penguin
+
+Name an animal often described as having stripes.
+Zebra, Tiger, Skunk | Clownfish, Bumblebee | Chipmunk, Raccoon, Striped hyena, Okapi, Zebra finch, Coral snake, King snake, Tabby cat | Bongo, Garter snake, Striped bass, Zebra shark, Ring-tailed lemur, Zebra mussel, Striped dolphin | Aardwolf, Numbat, Banded mongoose, Kudu, Ratel=Honey badger | Striped polecat=Zorilla, Banded palm civet, Striped possum
+
+Name a living member of the deer family.
+Deer, Moose, Reindeer=Caribou, Elk=Wapiti | | Red deer, Roe deer, Fallow deer, White-tailed deer, Mule deer | Muntjac, Water deer, Sika deer, Axis deer=Chital, Sambar, Marsh deer | Pudu, Père David's deer=Milu, Hog deer, Rusa deer, Brocket deer | Tufted deer, Calamian deer, Pampas deer, Taruca, Visayan spotted deer
+
+Name a venomous snake.
+Cobra, Rattlesnake, Black mamba, Viper | Garter snake | King cobra, Copperhead, Cottonmouth=Water moccasin, Coral snake, Inland taipan, Eastern brown snake, Boomslang, Sea snake | Puff adder, Gaboon viper, Fer-de-lance, Bushmaster, Krait, Saw-scaled viper, Russell's viper, Death adder, Tiger snake | Rinkhals, Horned viper, Mangrove snake, Red-bellied black snake, Beaked sea snake, Twig snake, King brown snake=Mulga snake | Snouted cobra, Wagler's pit viper, Mamushi, Urutu
+
+Name a dinosaur that walked on four legs as an adult.
+Triceratops, Stegosaurus, Brachiosaurus, Ankylosaurus | | Diplodocus, Apatosaurus, Brontosaurus, Iguanodon, Argentinosaurus | Camarasaurus, Saltasaurus, Euoplocephalus, Styracosaurus, Protoceratops, Edmontonia, Kentrosaurus, Giraffatitan | Amargasaurus, Nigersaurus, Patagotitan, Pinacosaurus, Sauropelta, Centrosaurus, Torosaurus, Chasmosaurus, Shunosaurus | Dicraeosaurus, Rebbachisaurus, Bajadasaurus, Scelidosaurus, Minmi
+
+[Music]
+Name a musical instrument with strings.
+Guitar, Violin, Cello, Harp | Piano, Bass guitar=Electric bass, Harpsichord | Sitar, Mandolin, Banjo, Ukulele=Ukelele, Double bass=Upright bass=Contrabass, Viola, Lute, Electric guitar | Oud, Balalaika, Lyre, Zither, Dulcimer, Koto, Erhu, Guzheng, Shamisen, Bouzouki, Guitarrón | Kora, Pipa, Nyckelharpa, Sarangi, Sarod, Charango, Autoharp, Hardanger fiddle | Morin khuur=Horsehead fiddle, Rebab, Igil, Hurdy-gurdy, Kantele, Theorbo, Vihuela
+
+Name a woodwind instrument.
+Flute, Clarinet, Saxophone=Sax, Recorder | Harmonica | Oboe, Bassoon, Piccolo, English horn=Cor anglais, Bass clarinet, Contrabassoon | Ocarina, Pan flute=Panpipes, Shakuhachi, Tin whistle, Bagpipes, Bass flute, Sopranino saxophone | Duduk, Ney, Dizi, Bansuri, Shawm, Crumhorn, Chalumeau, Suona | Hichiriki, Xun, Kaval, Tarogato
+
+Name a percussion instrument.
+Drum, Tambourine, Triangle, Cymbals=Cymbal, Xylophone | Piano, Castanets, Claves | Snare drum=Snare, Bass drum=Kick drum, Timpani=Kettledrums, Gong, Maracas, Bongo=Bongos, Conga, Cowbell, Woodblock, Marimba, Vibraphone, Glockenspiel | Cajón, Djembe, Steelpan=Steel drum, Tom-tom, Cabasa, Guiro=Güiro, Agogo=Agogô, Talking drum, Bodhrán | Udu, Tabla, Shekere, Crotales, Balafon, Pandeiro, Darbuka=Dumbek, Tamborim | Mridangam, Kanjira, Berimbau, Ghatam, Taiko
+
+Name a brass instrument.
+Trumpet, Trombone, Tuba, French horn=Horn | Didgeridoo, Alphorn=Alpine horn | Cornet, Euphonium, Flugelhorn, Bugle, Sousaphone, Baritone horn | Bass trombone, Piccolo trumpet, Wagner tuba, Mellophone, Sackbut, Bass trumpet, Natural horn | Ophicleide, Serpent, Cornett=Zink, Cimbasso, Helicon | Lur, Buccin, Roman tuba
+
+Name a composer who wrote an opera.
+Mozart=Wolfgang Amadeus Mozart, Verdi=Giuseppe Verdi, Puccini=Giacomo Puccini, Wagner=Richard Wagner | Beethoven=Ludwig van Beethoven | Rossini=Gioachino Rossini, Bizet=Georges Bizet, Handel=George Frideric Handel, Tchaikovsky=Pyotr Ilyich Tchaikovsky, Richard Strauss, Donizetti=Gaetano Donizetti | Bellini=Vincenzo Bellini, Gluck=Christoph Willibald Gluck, Monteverdi=Claudio Monteverdi, Britten=Benjamin Britten, Janáček=Leoš Janáček, Mussorgsky=Modest Mussorgsky, Dvořák=Antonín Dvořák, Kurt Weill | Rameau=Jean-Philippe Rameau, Lully=Jean-Baptiste Lully, Purcell=Henry Purcell, Berg=Alban Berg, Shostakovich=Dmitri Shostakovich, Rimsky-Korsakov=Nikolai Rimsky-Korsakov, Smetana=Bedřich Smetana | Ethel Smyth, Kaija Saariaho, Unsuk Chin, Samuel Barber
+
+Name a vocal part or classical singing voice type.
+Soprano, Alto, Tenor, Bass | Falsetto | Mezzo-soprano=Mezzo soprano, Baritone, Contralto, Countertenor, Treble | Bass-baritone, Coloratura soprano, Lyric soprano, Dramatic soprano, Heldentenor | Basso profundo, Basso buffo, Soubrette, Spinto soprano, Lyric tenor | Baryton-Martin, Contratenor altus
+
+Name a dance with a matching musical style or rhythm.
+Waltz, Tango, Salsa, Samba | Swing, Breakdance=Breaking | Rumba, Foxtrot, Cha-cha=Cha cha cha=Cha-cha-cha, Mambo, Merengue, Polka, Bachata, Jive, Disco | Bolero, Cumbia, Paso doble=Pasodoble, Quickstep, Mazurka, Minuet, Flamenco, Charleston, Lindy Hop, Forró | Danzón, Habanera, Gigue, Gavotte, Sarabande, Courante, Bourrée, Schottische | Cueca, Fandango, Pavane, Zapateado
+
+Name a keyboard instrument.
+Piano, Organ, Synthesizer=Synth | Accordion, Keytar | Harpsichord, Clavichord, Celesta, Electric piano, Harmonium=Reed organ, Keyboard=Electronic keyboard, Digital piano | Mellotron, Rhodes piano=Fender Rhodes, Clavinet, Virginal, Spinet, Wurlitzer electric piano | Ondes Martenot, Hurdy-gurdy, Chamberlin, Clavioline, Fortepiano | Glasschord, Chromelodeon, Orphica
+
+Name a piece of music by Beethoven.
+Für Elise=Fur Elise, Moonlight Sonata, Fifth Symphony=Symphony No. 5=Beethoven's Fifth, Ode to Joy, Ninth Symphony=Symphony No. 9 | | Eroica=Third Symphony=Symphony No. 3, Pastoral Symphony=Sixth Symphony=Symphony No. 6, Seventh Symphony=Symphony No. 7, Pathétique Sonata, Fidelio, Emperor Concerto=Piano Concerto No. 5 | Egmont=Egmont Overture, Kreutzer Sonata, Appassionata, Waldstein Sonata, Violin Concerto, Diabelli Variations, Missa solemnis | Große Fuge, Hammerklavier Sonata, Coriolan Overture, Triple Concerto, Choral Fantasy | Wellington's Victory, Rage Over a Lost Penny, The Ruins of Athens, The Creatures of Prometheus
+
+Name a symbol or marking in staff notation.
+Treble clef, Bass clef, Sharp, Flat, Rest | Repeat sign, Bar line=Barline | Natural sign, Fermata, Tie, Slur, Time signature, Key signature, Accent, Staccato, Crescendo, Decrescendo=Diminuendo | Alto clef, Tenor clef, Trill, Mordent, Turn, Octave sign=Ottava, Double sharp, Double flat, Segno, Coda | Breath mark, Caesura, Trill extension, Marcato, Tenuto | Portato, Arpeggio mark
+
+!Name one of the twelve distinct pitches in Western equal temperament, ignoring octave.
+A, B=C flat=Cb, C=B sharp=B#, D, E=F flat=Fb, F=E sharp=E#, G | | C sharp=C#=D flat=Db, F sharp=F#=G flat=Gb, G sharp=G#=A flat=Ab, A sharp=A#=B flat=Bb, D sharp=D#=E flat=Eb | | |
+
+Name an instrument associated with Irish traditional music.
+Fiddle=Violin, Tin whistle=Penny whistle, Irish harp=Celtic harp=Harp | Guitar | Uilleann pipes=Irish bagpipes, Bodhrán=Bodhran, Irish flute=Wooden flute, Button accordion, Concertina, Tenor banjo | Low whistle, Irish bouzouki, Mandolin, Piano accordion, Harmonica, Bones=Rhythm bones | Fife, Jews harp=Jew's harp=Jaw harp | Melodeon
+
+[Science]
+!Name a chemical element.
+Hydrogen=H, Helium=He, Oxygen=O, Carbon=C, Nitrogen=N, Iron=Fe, Gold=Au, Silver=Ag, Copper=Cu, Sodium=Na, Chlorine=Cl, Calcium=Ca, Potassium=K, Mercury=Hg, Lead=Pb, Uranium=U |  | Lithium=Li, Boron=B, Beryllium=Be, Neon=Ne, Magnesium=Mg, Aluminium=Aluminum=Al, Silicon=Si, Phosphorus=P, Sulfur=Sulphur=S, Fluorine=F, Argon=Ar, Titanium=Ti, Zinc=Zn, Nickel=Ni, Tin=Sn, Platinum=Pt, Tungsten=Wolfram=W, Iodine=I, Bromine=Br | Scandium=Sc, Vanadium=V, Chromium=Cr, Manganese=Mn, Cobalt=Co, Gallium=Ga, Germanium=Ge, Arsenic=As, Selenium=Se, Krypton=Kr, Rubidium=Rb, Strontium=Sr, Yttrium=Y, Zirconium=Zr, Niobium=Nb, Molybdenum=Mo, Palladium=Pd, Cadmium=Cd, Indium=In, Antimony=Sb, Xenon=Xe, Caesium=Cesium=Cs, Barium=Ba, Cerium=Ce, Neodymium=Nd, Bismuth=Bi, Radon=Rn, Radium=Ra, Plutonium=Pu, Americium=Am | Technetium=Tc, Ruthenium=Ru, Rhodium=Rh, Tellurium=Te, Lanthanum=La, Praseodymium=Pr, Samarium=Sm, Europium=Eu, Gadolinium=Gd, Terbium=Tb, Dysprosium=Dy, Holmium=Ho, Erbium=Er, Ytterbium=Yb, Lutetium=Lu, Hafnium=Hf, Tantalum=Ta, Rhenium=Re, Osmium=Os, Iridium=Ir, Thallium=Tl, Polonium=Po, Astatine=At, Francium=Fr, Actinium=Ac, Thorium=Th, Protactinium=Pa, Neptunium=Np, Curium=Cm, Californium=Cf, Einsteinium=Es, Fermium=Fm, Lawrencium=Lawrentium=Lr | Promethium=Pm, Thulium=Tm, Berkelium=Bk, Mendelevium=Md, Nobelium=No, Rutherfordium=Rf, Dubnium=Db, Seaborgium=Sg, Bohrium=Bh, Hassium=Hs, Meitnerium=Mt, Darmstadtium=Ds, Roentgenium=Rg, Copernicium=Cn, Nihonium=Nh, Flerovium=Fl, Moscovium=Mc, Livermorium=Lv, Tennessine=Ts, Oganesson=Og
+
+!Name one of the first twenty chemical elements by atomic number.
+Hydrogen=H, Helium=He, Carbon=C, Nitrogen=N, Oxygen=O, Sodium=Na, Chlorine=Cl | | Lithium=Li, Neon=Ne, Magnesium=Mg, Aluminium=Aluminum=Al, Silicon=Si, Sulfur=Sulphur=S, Argon=Ar, Calcium=Ca, Potassium=K | Beryllium=Be, Boron=B, Fluorine=F, Phosphorus=P | |
+
+!Name an SI base unit.
+Metre=Meter=m, Second=s, Kilogram=kg | | Ampere=Amp=A, Kelvin=K, Mole=mol | Candela=cd | |
+
+Name a human bone.
+Skull=Cranium, Femur=Thigh bone, Tibia, Rib, Humerus, Jaw=Mandible | Patella=Kneecap, Vertebra=Vertebrae | Fibula, Radius, Ulna, Clavicle=Collarbone, Scapula=Shoulder blade, Sternum=Breastbone, Coccyx=Tailbone, Sacrum, Metatarsal, Phalanx=Phalanges | Talus, Calcaneus=Heel bone, Ilium, Ischium, Pubis, Maxilla, Stapes, Incus, Malleus, Metacarpal, Hyoid | Scaphoid, Lunate, Triquetrum, Hamate, Pisiform, Trapezium, Trapezoid, Capitate, Navicular, Cuboid, Sphenoid, Ethmoid, Vomer | Lacrimal bone, Inferior nasal concha, Medial cuneiform, Intermediate cuneiform, Lateral cuneiform
+
+Name a vitamin, using its letter or an accepted chemical name.
+Vitamin A=A=Retinol, Vitamin C=C=Ascorbic acid, Vitamin D=D, Vitamin B12=B12=Cobalamin | D2=Ergocalciferol, D3=Cholecalciferol, K1=Phylloquinone, K2=Menaquinone | Vitamin E=E=Tocopherol, Vitamin K=K, Vitamin B1=B1=Thiamine, Vitamin B2=B2=Riboflavin, Vitamin B3=B3=Niacin, Vitamin B9=B9=Folate=Folic acid | Vitamin B5=B5=Pantothenic acid, Vitamin B6=B6=Pyridoxine, Vitamin B7=B7=Biotin | |
+
+Name a gas found naturally in Earth's atmosphere.
+Oxygen=O2, Nitrogen=N2, Carbon dioxide=CO2 | Water vapor=Water vapour=H2O | Argon=Ar, Ozone=O3, Methane=CH4, Helium=He, Hydrogen=H2, Neon=Ne | Krypton=Kr, Xenon=Xe, Nitrous oxide=N2O, Carbon monoxide=CO, Sulfur dioxide=Sulphur dioxide=SO2 | Radon=Rn, Hydrogen sulfide=Hydrogen sulphide=H2S | Carbonyl sulfide=COS
+
+!Name a planet or dwarf planet officially recognized by the IAU.
+Earth, Mars, Jupiter, Venus, Saturn, Pluto | | Mercury, Neptune, Uranus | Ceres, Eris | Haumea, Makemake |
+
+Name a type of cloud recognized in the ten genera.
+Cumulus, Cirrus, Stratus, Cumulonimbus | | Nimbostratus, Stratocumulus, Altocumulus, Altostratus | Cirrocumulus, Cirrostratus | |
+
+!Name a simple machine from the traditional list of six.
+Lever, Pulley, Wheel and axle=Wheel & axle | | Inclined plane=Ramp, Wedge, Screw | | |
+
+Name a mineral commonly used as a gemstone.
+Diamond, Ruby=Red corundum, Sapphire=Corundum, Emerald=Green beryl, Quartz | Amethyst, Citrine, Rose quartz | Garnet, Topaz, Tourmaline, Aquamarine=Beryl, Peridot=Olivine, Opal, Turquoise, Spinel, Jadeite, Nephrite | Tanzanite=Zoisite, Alexandrite=Chrysoberyl, Moonstone, Labradorite, Zircon, Morganite, Iolite=Cordierite | Andalusite, Kyanite, Sphene=Titanite, Kunzite=Spodumene, Sillimanite, Rhodochrosite | Benitoite, Grandidierite, Taaffeite, Jeremejevite, Painite
+
+Name an insect that pollinates plants.
+Honeybee=Honey bee, Bumblebee=Bumble bee, Butterfly | Mosquito | Moth, Hoverfly=Syrphid fly, Wasp, Beetle, Fly, Ant, Carpenter bee | Leafcutter bee, Mason bee, Sweat bee, Hawkmoth=Hawk moth, Orchid bee, Fig wasp, Blowfly, Weevil | Yucca moth, Thrips, Squash bee, Longhorn beetle | Oil-collecting bee, Chocolate midge=Cacao midge
+
+Name a type of electromagnetic radiation.
+Visible light=Light, Radio waves=Radio, X-rays=X ray=XRays, Ultraviolet=UV | Laser light=Laser | Infrared=IR, Microwaves=Microwave, Gamma rays=Gamma radiation | Terahertz radiation, Extreme ultraviolet=EUV, Far infrared, Near infrared | Millimeter waves=Millimetre waves, Vacuum ultraviolet |
+
+[Books & language]
+Name a Shakespeare play.
+Hamlet, Macbeth, Romeo and Juliet=Romeo & Juliet, Othello, A Midsummer Night's Dream=Midsummer Night's Dream, King Lear | | The Tempest=Tempest, Julius Caesar, Twelfth Night, Much Ado About Nothing, The Taming of the Shrew=Taming of the Shrew, The Merchant of Venice=Merchant of Venice, Richard III, Henry V, Antony and Cleopatra=Anthony and Cleopatra | As You Like It, The Winter's Tale=Winter's Tale, The Comedy of Errors=Comedy of Errors, The Merry Wives of Windsor=Merry Wives of Windsor, Richard II, Henry IV Part 1=1 Henry IV, Henry IV Part 2=2 Henry IV, Titus Andronicus, Measure for Measure | Coriolanus, Cymbeline, Pericles=Pericles Prince of Tyre, King John, Henry VIII, Henry VI Part 1=1 Henry VI, Henry VI Part 2=2 Henry VI, Henry VI Part 3=3 Henry VI, All's Well That Ends Well, Love's Labour's Lost=Love's Labor's Lost, Troilus and Cressida | The Two Gentlemen of Verona=Two Gentlemen of Verona, The Two Noble Kinsmen=Two Noble Kinsmen, Timon of Athens, Cardenio
+
+!Name a letter of the Greek alphabet.
+Alpha=Α, Beta=Β, Gamma=Γ, Delta=Δ, Omega=Ω, Pi=Π | | Epsilon=Ε, Zeta=Ζ, Theta=Θ, Lambda=Λ, Mu=Μ, Sigma=Σ, Phi=Φ, Psi=Ψ | Eta=Η, Iota=Ι, Kappa=Κ, Nu=Ν, Xi=Ξ, Omicron=Ο, Rho=Ρ, Tau=Τ, Upsilon=Υ, Chi=Χ | |
+
+!Name one of the seven Harry Potter novels.
+Harry Potter and the Philosopher's Stone=Philosopher's Stone=Sorcerer's Stone=Harry Potter and the Sorcerer's Stone, Harry Potter and the Chamber of Secrets=Chamber of Secrets, Harry Potter and the Deathly Hallows=Deathly Hallows | | Harry Potter and the Prisoner of Azkaban=Prisoner of Azkaban, Harry Potter and the Goblet of Fire=Goblet of Fire, Harry Potter and the Order of the Phoenix=Order of the Phoenix, Harry Potter and the Half-Blood Prince=Half-Blood Prince=Half Blood Prince | | |
+
+Name a novel by Jane Austen.
+Pride and Prejudice=Pride & Prejudice, Emma, Sense and Sensibility=Sense & Sensibility | Lady Susan, The Watsons, Sanditon | Persuasion, Mansfield Park, Northanger Abbey | | |
+
+Name a novel or novella by Charles Dickens.
+Oliver Twist, Great Expectations, A Tale of Two Cities, David Copperfield | A Christmas Carol, The Mystery of Edwin Drood=Edwin Drood | Bleak House, Hard Times, Nicholas Nickleby, The Pickwick Papers=Pickwick Papers, Little Dorrit | The Old Curiosity Shop=Old Curiosity Shop, Our Mutual Friend, Dombey and Son=Dombey & Son, Barnaby Rudge, Martin Chuzzlewit | The Chimes, The Cricket on the Hearth, The Battle of Life | The Haunted Man and the Ghost's Bargain
+
+Name a story collected by the Brothers Grimm.
+Cinderella, Snow White, Hansel and Gretel, Rapunzel, Little Red Riding Hood=Little Red Cap, Sleeping Beauty=Briar Rose=Little Briar Rose | | Rumpelstiltskin, The Frog Prince=Frog Prince=The Frog King, The Bremen Town Musicians=Bremen Town Musicians, The Fisherman and His Wife, The Elves and the Shoemaker | The Goose Girl=Goose Girl, The Golden Goose=Golden Goose, The Six Swans=Six Swans, The Twelve Brothers=Twelve Brothers, The Valiant Little Tailor, The Wolf and the Seven Young Kids, The Seven Ravens=Seven Ravens | The Juniper Tree, King Thrushbeard, Brother and Sister, Mother Holle=Frau Holle, The White Snake=White Snake, The Three Spinners, Jorinda and Joringel | The Water of Life, The Nixie of the Mill-Pond, The Singing Bone, The Devil with the Three Golden Hairs
+
+Name a language written primarily in Cyrillic today.
+Russian, Ukrainian, Bulgarian, Serbian | Mongolian, Kazakh | Belarusian, Macedonian, Kyrgyz, Tajik | Tatar, Chechen, Bashkir, Ossetian, Yakut=Sakha, Buryat, Chuvash | Abkhaz, Adyghe, Udmurt, Komi, Mari, Tuvan, Ingush, Avar, Kalmyk | Nanai, Evenki, Khakas, Dargwa
+
+Name a punctuation mark used in English.
+Period=Full stop, Comma, Question mark, Exclamation mark=Exclamation point, Apostrophe | Slash=Forward slash, Ellipsis | Colon, Semicolon, Hyphen, Dash, Quotation mark=Quote marks, Parentheses=Parenthesis=Round brackets, Square brackets, Em dash, En dash | Interrobang, Braces=Curly brackets, Asterisk, Bullet point | Dagger, Double dagger, Section sign, Pilcrow | Prime, Guillemets
+
+Name a poetic form or a named type of poem.
+Sonnet, Haiku, Limerick, Ballad, Ode | Free verse, Blank verse | Epic, Elegy, Acrostic, Couplet, Quatrain, Villanelle, Sestina, Pastoral | Ghazal, Tanka, Rondeau, Pantoum, Cinquain, Triolet, Terza rima, Prose poem | Rubai=Rubāʿī, Rhyme royal, Ottava rima, Clerihew, Epigram, Double dactyl | Sijo, Lai, Virelai, Anagrammatic poem
+
+Name a language in the Romance language family.
+Spanish, French, Italian, Portuguese | Latin | Romanian, Catalan, Romansh, Galician, Occitan | Sardinian, Sicilian, Corsican, Asturian, Aragonese, Neapolitan, Venetian | Ladin, Friulian, Ligurian, Piedmontese, Mirandese, Aromanian | Megleno-Romanian, Istro-Romanian, Fala, Gallo
+
+Name a figure of speech.
+Metaphor, Simile, Hyperbole, Personification | Oxymoron, Onomatopoeia | Alliteration, Irony, Euphemism, Understatement, Pun, Paradox, Rhetorical question | Metonymy, Synecdoche, Anaphora, Apostrophe, Antithesis, Chiasmus, Litotes | Zeugma, Hendiadys, Aposiopesis, Epistrophe, Asyndeton, Polysyndeton | Antanaclasis, Anadiplosis, Antimetabole, Hypophora
+
+Name an official language of the United Nations.
+English, French, Spanish | | Arabic, Chinese=Mandarin, Russian | | |
+
+[Sports]
+!Name a country whose men's team won the FIFA World Cup through 2022.
+Brazil, Argentina, Germany=West Germany, France | | Spain, England, Italy | Uruguay | |
+
+Name a city that hosted the Summer Olympics before 2025.
+Paris, London, Tokyo, Beijing, Los Angeles=LA, Athens | Stockholm | Melbourne, Atlanta, Sydney, Rio de Janeiro=Rio, Barcelona, Seoul, Rome, Berlin, Mexico City, Moscow, Munich | Montreal, Helsinki, Amsterdam, Antwerp, St Louis=Saint Louis | |
+
+Name a city or place that hosted the Winter Olympics before 2025.
+Sochi, Beijing, Vancouver, Salt Lake City | Squaw Valley=Olympic Valley=Palisades Tahoe | Pyeongchang, Torino=Turin, Nagano, Lillehammer, Calgary, Lake Placid, Innsbruck, Chamonix, Sapporo | Albertville, Grenoble, Sarajevo, Cortina d'Ampezzo, St Moritz=Saint Moritz, Oslo | Garmisch-Partenkirchen, Lake Tahoe |
+
+Name a track or field event contested at the 2024 Summer Olympics.
+100 metres=100 meters=100m, Marathon, Long jump, High jump | Decathlon, Heptathlon | 200 metres=200 meters=200m, 400 metres=400 meters=400m, 800 metres=800 meters=800m, 1500 metres=1500 meters=1500m, 5000 metres=5000 meters=5000m, 10000 metres=10000 meters=10000m, Pole vault, Shot put, Discus=Discus throw, Javelin=Javelin throw, Triple jump, Hammer throw | 100 m hurdles=100m hurdles, 110 m hurdles=110m hurdles, 400 m hurdles=400m hurdles, 3000 m steeplechase=Steeplechase, 4 × 100 m relay=4x100 relay, 4 × 400 m relay=4x400 relay | 20 km race walk=20km walk, Mixed 4 × 400 m relay=Mixed 4x400 relay, Marathon race walk relay=Mixed marathon race walk relay |
+
+Name a standard position in association football, also called soccer.
+Goalkeeper=Keeper=Goalie=GK, Striker=Centre forward=Center forward, Defender, Midfielder | False nine=False 9 | Centre back=Center back=CB, Full back=Fullback, Left back=LB, Right back=RB, Winger, Defensive midfielder=CDM, Attacking midfielder=CAM, Central midfielder=CM, Wing back=Wingback, Left winger=LW, Right winger=RW | Sweeper=Libero, Second striker=Support striker, Deep-lying playmaker, Box-to-box midfielder | Trequartista, Regista | Raumdeuter
+
+Name a standard swimming stroke or recognized variant.
+Freestyle=Front crawl=Crawl, Breaststroke, Backstroke, Butterfly=Fly | Dog paddle | Sidestroke, Elementary backstroke, Combat sidestroke | Trudgen, Double overarm backstroke | Lifesaving backstroke |
+
+Name a country whose men's team won the Rugby World Cup through 2023.
+New Zealand=All Blacks, South Africa=Springboks | | England, Australia=Wallabies | | |
+
+Name a shot used in tennis.
+Serve, Forehand, Backhand, Volley | Drop shot, Lob | Smash=Overhead smash, Slice, Passing shot, Half volley, Approach shot, Return of serve=Return | Topspin lob, Kick serve, Slice serve, Flat serve, Tweener | Underarm serve=Underhand serve, Drop volley |
+
+Name a throw in judo.
+Hip throw, Shoulder throw, O soto gari=Osoto gari, Seoi nage | Tomoe nage | O goshi=Ogoshi, Ippon seoi nage, Harai goshi, Uchi mata, Sasae tsurikomi ashi, O uchi gari=Ouchi gari, Ko uchi gari=Kouchi gari | Tai otoshi, Yoko otoshi, Koshi guruma, Hiza guruma, De ashi harai, Tani otoshi, Sumi gaeshi, Uki goshi | Ura nage, Hane goshi, Harai makikomi, Yoko guruma, Uki otoshi, Sukui nage, Ashi guruma | Tsubame gaeshi, Daki wakare, Utsuri goshi, Obi otoshi, Hane makikomi
+
+Name a trick in skateboarding.
+Ollie, Kickflip, Heelflip, Manual | Caveman | Shuvit=Shove-it, Pop shuvit=Pop shove-it, 360 flip=Tre flip, Boardslide, Nollie, Fakie ollie, Nose manual, 50-50 grind | Varial kickflip, Hardflip, Impossible=Ollie impossible, Pressure flip, Laser flip, Crooked grind, Smith grind, Feeble grind, Bluntslide | Casper flip, Hospital flip, Dolphin flip, No comply, Boneless, Wallride | Gazelle flip, Sal flip, Barley grind, Darkslide
+
+Name an official Olympic alpine skiing event or discipline.
+Downhill, Slalom | | Giant slalom=GS, Super-G=Super G=Super giant slalom, Alpine combined=Combined | Mixed team parallel=Mixed team event=Parallel team event | Team combined |
+
+[History]
+Name one of the Seven Wonders of the ancient world.
+Great Pyramid of Giza=Pyramid of Giza=Great Pyramid, Hanging Gardens of Babylon=Hanging Gardens | | Lighthouse of Alexandria=Pharos of Alexandria, Colossus of Rhodes, Statue of Zeus at Olympia=Statue of Zeus | Temple of Artemis at Ephesus=Temple of Artemis, Mausoleum at Halicarnassus=Mausoleum of Halicarnassus | |
+
+Name a Roman emperor who ruled before the year 200 CE.
+Augustus=Octavian, Nero, Caligula=Gaius, Marcus Aurelius | | Tiberius, Claudius, Trajan, Hadrian, Vespasian, Titus, Commodus | Domitian, Nerva, Antoninus Pius, Septimius Severus, Galba, Otho, Vitellius | Lucius Verus, Pertinax, Didius Julianus | Clodius Albinus, Pescennius Niger
+
+Name a ruler of ancient Egypt.
+Tutankhamun=King Tut=Tutankhamen, Cleopatra VII=Cleopatra, Ramesses II=Ramses II=Rameses II, Hatshepsut | Alexander the Great=Alexander III of Macedon | Akhenaten=Amenhotep IV, Thutmose III=Thutmosis III, Khufu=Cheops, Khafre=Chephren, Djoser=Zoser, Seti I, Amenhotep III, Ptolemy I=Ptolemy I Soter | Sneferu=Snofru, Menkaure=Mykerinos, Narmer=Menes, Ramesses III=Ramses III, Ahmose I, Pepi II, Psamtik I, Shoshenq I | Sobekneferu, Horemheb, Smenkhkare, Mentuhotep II, Senusret III | Intef II, Neferirkare Kakai, Unas, Nectanebo II
+
+!Name one of the thirteen original American colonies.
+Virginia, Massachusetts, New York, Pennsylvania | | Connecticut, Rhode Island, New Jersey, Maryland, North Carolina, South Carolina, Georgia | New Hampshire, Delaware | |
+
+Name a battle of the Napoleonic Wars.
+Waterloo=Battle of Waterloo, Austerlitz=Battle of Austerlitz, Trafalgar=Battle of Trafalgar | | Borodino=Battle of Borodino, Leipzig=Battle of Leipzig=Battle of the Nations, Jena-Auerstedt=Battle of Jena, Wagram=Battle of Wagram | Ulm=Battle of Ulm, Friedland=Battle of Friedland, Eylau=Battle of Eylau, Salamanca=Battle of Salamanca, Maida=Battle of Maida, Copenhagen=Second Battle of Copenhagen | Ligny=Battle of Ligny, Quatre Bras=Battle of Quatre Bras, Vitoria=Battle of Vitoria, Corunna=Battle of Corunna, Aspern-Essling=Battle of Aspern-Essling, Talavera=Battle of Talavera | Albuera=Battle of Albuera, Bautzen=Battle of Bautzen, Krasnoi=Battle of Krasnoi, Wavre=Battle of Wavre
+
+Name a European dynasty or royal house.
+Tudor=House of Tudor, Windsor=House of Windsor, Bourbon=House of Bourbon, Habsburg=Hapsburg=House of Habsburg | Medici=House of Medici | Stuart=Stewart=House of Stuart, Plantagenet=House of Plantagenet, Romanov=House of Romanov, Hanover=House of Hanover, Hohenzollern=House of Hohenzollern, Savoy=House of Savoy | Capet=House of Capet=Capetian, Valois=House of Valois, Braganza=House of Braganza, Wittelsbach=House of Wittelsbach, Orange-Nassau=House of Orange-Nassau, Grimaldi=House of Grimaldi | Vasa=House of Vasa, Oldenburg=House of Oldenburg, Wettin=House of Wettin, Rurik=Rurikid dynasty, Árpád=House of Arpad, Přemyslid | Piast, Trastámara, Glücksburg, Estridsen
+
+Name a monarch who ruled England or Great Britain before 1800.
+Henry VIII, Elizabeth I, Richard III, William the Conqueror=William I | Lady Jane Grey=Jane Grey | Mary I=Bloody Mary, Anne=Queen Anne, Charles I, Charles II, James I, Henry V, John=King John, Richard I=Richard the Lionheart, George III | Edward I, Edward II, Edward III, Edward IV, Edward V, Edward VI, Henry II, Henry III, Henry IV, Henry VI, Henry VII, Richard II, James II, William III, Mary II, George I, George II | Henry I, Stephen=Stephen of Blois, William II=William Rufus, Harold II=Harold Godwinson, Cnut=Canute, Edward the Confessor | Harthacnut, Harold Harefoot, Æthelred II=Ethelred the Unready, Edmund Ironside, Æthelstan=Athelstan, Eadwig, Eadred
+
+Name a written script or writing system used in the ancient world.
+Egyptian hieroglyphs=Hieroglyphs, Cuneiform, Greek alphabet=Greek, Latin alphabet=Latin | Roman cursive | Phoenician alphabet=Phoenician, Linear B, Demotic, Hieratic, Oracle bone script, Aramaic alphabet=Aramaic, Maya glyphs=Mayan hieroglyphs=Maya script | Linear A, Ugaritic, Cypriot syllabary, Brahmi, Kharosthi, Etruscan alphabet=Etruscan, Elder Futhark=Runes, Paleo-Hebrew alphabet=Paleo-Hebrew | Meroitic, Coptic alphabet=Coptic, Lycian alphabet=Lycian, Lydian alphabet=Lydian, Ge'ez script=Ge'ez, Old South Arabian script | Proto-Elamite, Linear Elamite, Byblos syllabary, Carian alphabet
+
+Name a deity from ancient Greek mythology.
+Zeus, Poseidon, Athena, Hades, Aphrodite, Apollo | Nike | Hera, Ares, Artemis, Hermes, Hephaestus, Demeter, Dionysus, Hestia, Persephone | Pan, Helios, Selene, Hecate, Hypnos, Thanatos, Nemesis, Iris, Asclepius, Gaia=Gaea, Cronus=Kronos | Amphitrite, Triton, Hebe, Tyche, Eris, Eos, Nyx, Rhea, Themis, Phobos | Ananke, Aether, Iapetus, Coeus, Crius, Astraeus, Despoina
+
+Name a city that was at some point a capital of a Roman or Byzantine state.
+Rome, Constantinople=Istanbul=Byzantium | Nicaea=Iznik | Ravenna, Milan=Mediolanum | Trier=Augusta Treverorum, Nicomedia=Izmit, Sirmium, Thessaloniki, Arles | Syracuse |
+
+Name a civilization or people of pre-Columbian Mesoamerica.
+Aztec=Aztecs, Maya=Mayan, Olmec=Olmecs | Mexica | Zapotec=Zapotecs, Mixtec=Mixtecs, Toltec=Toltecs, Teotihuacan=Teotihuacanos | Totonac=Totonacs, Huastec=Huastecs, Purépecha=Tarascan, Tlaxcaltec=Tlaxcaltecs, Otomi | Chichimeca, Cholulteca, Pipil, Zoque, Huave | Matlatzinca, Mazahua
+
+[Everyday life]
+Name something that keeps time.
+Clock, Watch, Stopwatch, Timer, Alarm clock | Phone=Mobile phone=Cell phone, Computer, Microwave | Sundial, Hourglass=Sand timer, Pendulum clock=Grandfather clock, Kitchen timer, Atomic clock, Metronome | Water clock=Clepsydra, Marine chronometer, Quartz clock, Cuckoo clock, Chess clock, Pocket watch | Candle clock, Incense clock, Shepherd's dial, Nocturnal | Merkhet, Elephant clock
+
+Name a piece of clothing worn on the head.
+Hat, Cap=Baseball cap, Beanie, Helmet | Hood, Headband, Headscarf | Beret, Fedora, Top hat, Cowboy hat, Bucket hat, Balaclava, Turban, Hijab, Bandana, Visor, Sombrero | Fez, Bowler=Derby hat, Trilby, Ushanka, Tam o' shanter, Kippah=Yarmulke, Keffiyeh, Fascinator, Bonnet | Boater, Kufi, Flat cap=Newsboy cap, Toque, Homburg, Biretta, Mitre=Miter | Chullo, Phrygian cap, Montera, Kalpak, Shtreimel
+
+Name a kind of boat propelled by paddling or rowing.
+Canoe, Kayak, Rowboat=Dinghy | Stand-up paddleboard=SUP | Raft, Dragon boat, Racing shell, Scull, Dory, Gondola | Coracle, Outrigger canoe, Pirogue, Sampan, Whaleboat, Skiff, Longboat, Whitehall rowboat | Umiak, Baidarka, Bull boat, Currach, Waka | Koryak kayak, Chumash tomol, Dugout mokoro=Mokoro
+
+Name a material used for textile fibers.
+Cotton, Wool, Silk, Polyester, Nylon | Milk fiber, Seaweed fiber | Linen=Flax, Hemp, Rayon=Viscose, Spandex=Elastane=Lycra, Acrylic, Cashmere, Bamboo, Jute | Mohair, Angora, Alpaca, Ramie, Lyocell=Tencel, Modal, Acetate, Coir, Sisal | Abaca=Manila hemp, Kenaf, Piña=Pineapple fiber, Kapok, Cupro, Qiviut, Camel hair, Yak wool | Nettle fiber, Vicuña, Lotus fiber, Banana fiber
+
+Name a handheld tool used for sewing or embroidery.
+Needle=Sewing needle, Scissors=Fabric scissors, Pins=Straight pins, Tape measure=Measuring tape | Thimble, Iron | Seam ripper, Embroidery hoop, Needle threader, Rotary cutter, Tailor's chalk, Pincushion=Pin cushion, Fabric marker | Bodkin, Tracing wheel, Pinking shears, Awl, Point turner, Beeswax, Seam gauge, Tracing paper | Needle minder, Loop turner, Buttonhole chisel, Pressing clapper | Laying tool, Stiletto, Hera marker
+
+Name a woodworking joint.
+Butt joint, Dovetail=Dovetail joint, Mortise and tenon=Mortise & tenon | Pocket hole joint | Lap joint, Miter joint=Mitre joint, Dowel joint, Tongue and groove=Tongue & groove, Dado joint=Dado, Biscuit joint, Rabbet joint=Rebate joint | Finger joint=Box joint, Bridle joint, Half-lap joint, Scarf joint, Spline joint, Half-blind dovetail | Birdsmouth joint, Housed dovetail, Tusk tenon, Drawbored mortise and tenon | Kumiko joint, Kanawa tsugi
+
+Name a type of fastener used to join materials.
+Screw, Nail, Bolt, Staple, Rivet | Zip tie=Cable tie | Nut, Dowel, Pin, Snap fastener=Press stud, Hook and loop=Velcro, Paper clip, Cotter pin=Split pin, Eyelet | Lag screw=Lag bolt, Carriage bolt, Blind rivet=Pop rivet, Threaded insert, C-clamp, Circlip=Snap ring, Clevis pin, Spring pin=Roll pin | Chicago screw=Binding post, Huck bolt, Dzus fastener, E-clip, Cage nut | Tinnerman nut=Speed nut, Taper pin
+
+Name a type of knot.
+Square knot=Reef knot, Bowline, Overhand knot, Slip knot | Shoelace knot=Bow knot | Figure eight knot=Figure 8 knot, Clove hitch, Sheet bend, Fisherman's knot, Double fisherman's knot, Half hitch, Two half hitches, Lark's head=Cow hitch, Taut-line hitch, Trucker's hitch | Prusik knot=Prusik, Alpine butterfly=Butterfly knot, Anchor bend, Rolling hitch, Carrick bend, Constrictor knot, Timber hitch, Water knot | Klemheist, Munter hitch, Zeppelin bend, Blake's hitch, Ashley stopper knot, Buntline hitch | Icicle hitch, Diamond knot, Farrimond friction hitch
+
+Name a type of battery used in electronics or vehicles.
+AA=Double A, AAA=Triple A, 9-volt=9V, Lithium-ion=Li-ion, Alkaline | Power bank, Button cell=Coin cell | C battery=C cell, D battery=D cell, Lead-acid battery=Lead acid, Nickel-metal hydride=NiMH, Lithium polymer=LiPo, Zinc-carbon=Zinc carbon, CR2032 | Nickel-cadmium=NiCd, Silver oxide, Zinc-air=Zinc air, CR2025, CR2016, AAAA, CR123A, 18650 | 21700, LR44, SR626SW, 4LR44, CR2450 | 10440, A23, A27
+
+Name a piece of equipment used in photography.
+Camera, Lens, Tripod, Flash | Smartphone, Lens cap | Memory card=SD card, Light meter, Reflector, Softbox, Polarizing filter=Circular polarizer, Monopod, Remote shutter release=Cable release, Lens hood, Film | Teleconverter, Extension tube, Neutral density filter=ND filter, Gimbal, Flash diffuser, Bellows, Hot shoe adapter, Gray card=Grey card | Graduated ND filter, Intervalometer, Loupe, Flash bracket, Focusing rail, Color checker=Colour checker | Dark slide, Ground glass, Changing bag
+
+Name a garden tool.
+Shovel, Rake, Hoe, Watering can, Spade | Garden gloves, Garden hose | Trowel, Pruning shears=Secateurs=Pruners, Garden fork=Digging fork, Wheelbarrow, Hedge shears, Loppers, Lawn mower, Weed trimmer=String trimmer=Strimmer, Sprinkler | Bulb planter, Weeder, Soil rake, Dibber, Lawn edger, Pruning saw, Bow rake, Cultivator, Transplanting spade | Hori hori, Dutch hoe, Stirrup hoe=Scuffle hoe, Broadfork, Sod cutter, Dandelion digger | Korean hand plow=Homi, CobraHead weeder, Soil blocker

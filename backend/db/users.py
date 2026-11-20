@@ -73,9 +73,9 @@ async def list_users(db: aiosqlite.Connection) -> list[dict[str, Any]]:
     return [row_to_user(row) for row in rows if row is not None]
 
 
-async def create_user_if_missing(db: aiosqlite.Connection, username: str, password_hash: str, is_admin: bool) -> None:
+async def create_user_if_missing(db: aiosqlite.Connection, username: str, password_hash: str, is_admin: bool) -> bool:
     now = utc_now_text()
-    await db.execute(
+    cursor = await db.execute(
         """
         INSERT INTO users (username, password_hash, is_admin, created_at, updated_at)
         VALUES (?, ?, ?, ?, ?)
@@ -84,6 +84,7 @@ async def create_user_if_missing(db: aiosqlite.Connection, username: str, passwo
         (username, password_hash, int(is_admin), now, now),
     )
     await db.commit()
+    return cursor.rowcount > 0
 
 
 async def set_user_password_and_admin(db: aiosqlite.Connection, user_id: int, password_hash: str, is_admin: bool) -> None:

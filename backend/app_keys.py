@@ -12,10 +12,12 @@ import aiosqlite
 from aiohttp import web
 
 from backend.config import Settings
+from backend.game.rooms import GameRooms
 from backend.ws.hub import WebSocketHub
 
 # Use them like `request.app[DB]` instead of `request.app["db"]`. aiohttp then knows the type of each value.
 SETTINGS = web.AppKey("settings", Settings)
 DB = web.AppKey("db", aiosqlite.Connection)
 WS_HUB = web.AppKey("ws_hub", WebSocketHub)
+GAME_ROOMS = web.AppKey("game_rooms", GameRooms)
 CURRENT_USER = web.RequestKey("current_user", dict[str, Any])

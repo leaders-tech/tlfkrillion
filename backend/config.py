@@ -27,6 +27,7 @@ class Settings:
     db_path: Path
     cookie_secret: str
     frontend_origin: str
+    openai_api_key: str = ""
     debug_logs: bool = True
     admin_password: str = DEFAULT_ADMIN_PASSWORD
     access_cookie_name: str = "template_access"
@@ -77,6 +78,7 @@ def load_settings() -> Settings:
         db_path=db_path,
         cookie_secret=cookie_secret,
         frontend_origin=frontend_origin,
+        openai_api_key=os.getenv("OPENAI_API_KEY", "").strip(),
         debug_logs=debug_logs,
         admin_password=admin_password,
     )

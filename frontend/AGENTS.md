@@ -5,8 +5,14 @@
 - This frontend is a starter template. Nothing in its demo pages, features, design, branding, assets, dependencies, or tooling must be preserved for its own sake.
 - Replace or remove starter UI and flows to build what the user requests. The defaults below do not require retaining the template's product or architecture.
 - With every application feature request, update this file and the root `AGENTS.md` in the same change. Identify remaining template pages/features and the parts that now belong to the user's application.
-- Remaining template: all of `frontend/`, including the home/login/dashboard/admin pages, notes panel, auth/socket examples, PWA branding/assets, and tests.
-- User application: none yet.
+- User application: popup navigation and connection status in `src/app/App.tsx`, progression and cosmetics in `src/pages/ProfilePage.tsx`, coastal menu and room-code lobby in `src/pages/SurfaceMenu.tsx`, shared scenery in `src/pages/PixelScenery.tsx` and animated habitats in `src/pages/OceanWildlife.tsx`, solo and multiplayer dives in `src/pages/HomePage.tsx` and `src/pages/DiveScene.tsx`, the default pixel krill sprite in `public/krill.png`, the question and player editor in `src/pages/AdminPage.tsx`, and room resume in `src/shared/gameSession.ts`.
+- The admin question bank has editable categories, a category filter, and a 15-answer minimum. The active question shows its category during a dive. The home menu offers Endless solo play, and `src/pages/AnswerReview.tsx` shows the rarity table for each finished prompt.
+- The home menu selects a category for solo, Endless, or a new multiplayer room.
+- The home screen supports Casual and Ranked queues. Profile shows progression and achievement skins, and the profile and dive scene share a dedicated pixel sprite from `public/skins/<skin-id>.png` for each unlocked cosmetic. Keep skin IDs aligned with the backend reward catalog. Sprites use a 52×40 pixel canvas with a thin outline in each sprite's own dark color and no enclosed transparency. Show the name and artwork for locked secret skins. Keep their answer masked until unlock.
+- Sevenfold Prism rewards a single classic dive with all six scored rarities and one round that expires without a submission.
+- The admin role displays the Abyss Architect rank and grants the Aurora Regent sprite.
+- Reused foundation: login/auth provider with periodic cookie refresh in `src/app/auth.tsx` and shared WebSocket reconnect helper.
+- Remaining starter material: none in active frontend code; the dashboard and notes demo have been removed.
 - When the transition is complete, remove template inventories and all template-specific wording and instructions here. Keep instructions that describe the user's frontend.
 
 ## Working defaults
@@ -39,7 +45,7 @@
 
 ## Forms
 
-- Use the React 19 form pattern from `src/pages/LoginPage.tsx` and `src/features/notes/NotesPanel.tsx`:
+- Use the React 19 form pattern from `src/pages/LoginPage.tsx` and `src/pages/AdminPage.tsx`:
   `useActionState` + `<form action={...}>`. The action returns the error text to show, and the hook gives a `pending`
   flag for disabling the submit button.
 - Keep inputs controlled with `useState` (`value` + `onChange`), so a failed submit keeps what the user typed.
@@ -62,7 +68,7 @@
 ## Real-time updates (WebSocket)
 
 - WebSocket connection logic lives in `src/shared/socket.ts`.
-- `src/pages/DashboardPage.tsx` shows the pattern: call `createUserSocket()` inside a `useEffect` while a user is
+- `src/pages/HomePage.tsx` shows the pattern: call `createUserSocket()` inside a `useEffect` while a user is
   logged in and call `socket.stop()` in the cleanup. The helper reconnects by itself.
 - Check the browser console for WebSocket errors after any auth or routing change.
 
@@ -75,7 +81,7 @@
 - End-to-end tests use Playwright and live in `frontend/tests/e2e/`.
   Run: `cd frontend && npm run test:e2e`
 - Every new page needs at least one unit test.
-- Every new user flow (login, save a note, etc.) needs an e2e test.
+- Every new user flow (login, join a room, edit a question, etc.) needs an e2e test.
 - **Always run `npm test` before calling a task done. Fix broken tests before moving on.**
 - Do not delete a test just to make the suite pass — update it to match the new correct behavior.
 

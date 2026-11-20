@@ -5,8 +5,11 @@
 - This database layer is a starter template. No demo table, query, seed data, migration example, or helper must be kept merely because it came with the template.
 - Replace or remove starter schema and queries as needed for the user's application. Preserve actual user data when changing an application database.
 - With every database feature request, update the ownership inventory here and in the root and backend `AGENTS.md` files. Say which tables and modules are still examples and which now belong to the user's application.
-- Remaining template: all of `backend/db/` and the example `users`, `refresh_sessions`, and `notes` schema in `backend/migrations/`.
-- User application: none yet.
+- User application: `game_questions` table and queries in `backend/db/game_questions.py`, storing prompts, categories, hints, accepted answers with rarity tiers, answers verified during play, and each question's AI-check setting. The `data/question_bank_v*.txt` files store versioned packs. The game draws from prompts with at least 15 distinct accepted answers.
+- Migrations 009 and 010 add `player_progression`, `player_unlocks`, and `match_settlements` for persistent Elo, cosmetics, and recoverable results.
+- Migration 011 initializes existing admins at 50,000 Elo. Admin rank and access to the exclusive skin depend on the account role.
+- Reused foundation: `users` and `refresh_sessions` tables used by signed-in players and admins.
+- Remaining starter material: the historical `notes` migration only. Preserve it so existing databases keep their migration history.
 - When no template parts remain, remove all template inventories, wording, and template-only rules here. Keep only instructions for the application database.
 
 ## Working defaults
@@ -34,7 +37,7 @@
   one SQLite file under `/data` that is easy to back up, download from https://files.tlfedu.tech, and move.
 - Use a separate STRICT table, for example `files (id INTEGER PRIMARY KEY, owner_id INTEGER NOT NULL REFERENCES users(id)
   ON DELETE CASCADE, filename TEXT NOT NULL, content_type TEXT NOT NULL, size INTEGER NOT NULL, data BLOB NOT NULL,
-  created_at TEXT NOT NULL)`. Do not put the BLOB into a busy table like `users` or `notes`; list queries should not
+  created_at TEXT NOT NULL)`. Do not put the BLOB into a busy table like `users` or `game_questions`; list queries should not
   select `data`.
 - Check the size and the content type on the backend before saving. Keep the limit small (a few MB). aiohttp rejects
   request bodies over 1 MiB by default; raise `client_max_size` in `backend/main.py` only as much as needed.

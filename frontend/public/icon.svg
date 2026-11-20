@@ -1,5 +1,12 @@
+<!-- Krillion's pixel krill app icon. Edit when the app symbol changes; copy it only for a separate branded app icon. -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-  <rect width="512" height="512" rx="96" fill="#0e1a2b"/>
-  <circle cx="256" cy="256" r="152" fill="#38bdf8"/>
-  <path d="M186 292h140v38H186zm0-118h140v38H186zm48 59h92v38h-92z" fill="#eff6ff"/>
+  <rect width="512" height="512" rx="96" fill="#061827"/>
+  <circle cx="256" cy="256" r="192" fill="#0b3146"/>
+  <g fill="#ff8965">
+    <path d="M77 190h45v38H77zm37 38h38v38h-38zm-37 38h45v38H77zm65-19h48v38h-48zm0 57h48v38h-48z"/>
+    <path d="M188 174h43v30h-43zm0 30h135v43H188zm-22 43h177v42H166zm33 42h129v35H199zm123-98h65v87h-65z"/>
+    <path d="M214 324h24v42h-24zm56 0h24v50h-24zm50-6h24v44h-24zm-130-18h24v38h-24zm171-106h32v22h-32zm-15 47h28v22h-28z"/>
+  </g>
+  <path d="M356 175l34-43m-17 51 54-34" fill="none" stroke="#ffb07e" stroke-width="12"/>
+  <rect x="373" y="197" width="15" height="15" fill="#082234"/>
 </svg>

@@ -1,0 +1,26 @@
+/*
+This file styles the popup navigation, profile shortcut, and profile page.
+Edit it when the menu or profile layout changes. Copy its pixel corners for other small controls.
+*/
+
+.navigation-rail { position: fixed; z-index: 50; top: 10px; left: 10px; display: grid; gap: 8px; }
+.navigation-trigger { display: grid; width: 42px; height: 42px; place-items: center; border: 2px solid #7199b2; background: #10243d; color: #e8f8ff; box-shadow: 3px 3px 0 #06131f; font-size: 1.15rem; line-height: 1; }
+.navigation-trigger:hover, .navigation-trigger:focus-visible { color: #9af2ef; background: #27465c; }
+.navigation-menu { position: absolute; top: 0; left: 53px; display: grid; width: min(220px, calc(100vw - 75px)); gap: 3px; padding: 9px; border: 2px solid #7199b2; background: #10243df5; box-shadow: 4px 4px 0 #06131f; }
+.navigation-title { margin: 2px 8px 5px; color: #fff3d9; font-size: 1.2rem; }
+.navigation-menu a, .navigation-menu button { display: block; width: 100%; padding: 8px 10px; border: 0; color: #e8f8ff; background: transparent; text-align: left; }
+.navigation-menu a:hover, .navigation-menu button:hover,
+.navigation-menu a:focus-visible, .navigation-menu button:focus-visible {
+  color: #b8f8f0;
+  background: #31566a;
+  clip-path: polygon(4px 0, calc(100% - 4px) 0, calc(100% - 4px) 4px, 100% 4px, 100% calc(100% - 4px), calc(100% - 4px) calc(100% - 4px), calc(100% - 4px) 100%, 4px 100%, 4px calc(100% - 4px), 0 calc(100% - 4px), 0 4px, 4px 4px);
+}
+.menu-status { display: flex; align-items: center; gap: 7px; margin: 2px 8px 7px; color: #bdd7df; font-size: .85rem; text-transform: capitalize; }
+.menu-status i { width: 7px; height: 7px; background: #e4aa61; }
+.menu-status.connected i { background: #52e0a0; }
+.profile-page { max-width: 760px; margin: 60px auto 0; padding: 24px; border: 2px solid #7199b2; background: #10243d; box-shadow: 5px 5px 0 #06131f; }
+.profile-page h2 { margin: 8px 0 20px; color: #fff3d9; font-size: 2rem; }
+.profile-sections { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+.profile-sections article { padding: 14px; border: 1px solid #496c86; background: #0b1c2e; }
+.profile-sections h3 { color: #a6f0e5; font-size: 1.1rem; }
+.profile-sections p { margin-top: 8px; color: #a1b9c5; }

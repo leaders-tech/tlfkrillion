@@ -1,0 +1,196 @@
+# Expanded prompts for migration 007. A line starting with > names the prompt it replaces.
+# Rarity order: plankton | too clever | schooler | rare | deep cut | krillion.
+
+[Mathematics]
+Name a mathematical theory, field, or framework.
+Number theory, Set theory, Probability theory, Geometry, Calculus, Algebra, Statistics | Game theory, Mathematical logic | Graph theory, Group theory, Topology, Combinatorics, Linear algebra, Measure theory, Complex analysis, Real analysis, Differential geometry, Analytic number theory | Galois theory, Category theory, Ring theory, Field theory, Representation theory, Ergodic theory, Model theory, Homotopy theory, Knot theory, Algebraic geometry, Functional analysis, Harmonic analysis, Information theory, Spectral theory, Operator theory, Algebraic number theory, Diophantine geometry, Automata theory, Computability theory, Order theory, Lattice theory, Proof theory, Control theory, Coding theory, Chaos theory | Hodge theory, Iwasawa theory, Morse theory, Scheme theory, Cohomology theory, Teichmüller theory, Lie theory, Class field theory, Descriptive set theory, Ramsey theory, Intersection theory, Topos theory, K-theory=K theory, Martingale theory, Domain theory, Invariant theory, Matroid theory, Quiver representation theory, Geometric measure theory, Geometric group theory | Arakelov theory=Arakelov geometry=Arakelov, Bruhat–Tits theory=Bruhat-Tits theory, Nevanlinna theory, Étale cohomology, Motivic homotopy theory, Crystalline cohomology, Perfectoid theory, Chromatic homotopy theory, Higher topos theory, Geometric Langlands theory, Prismatic cohomology, Rigid analytic geometry
+
+Name a theorem or named result about triangles in Euclidean geometry.
+Pythagorean theorem=Pythagoras=Pythagoras's theorem=Pythagoras theorem, Triangle angle sum theorem=Triangle sum theorem, Triangle inequality, Law of cosines=Cosine rule, Law of sines=Sine rule | Side-angle-side congruence=SAS, Angle bisector theorem, Thales's theorem=Thales theorem=Thales' theorem | Ceva's theorem=Ceva theorem=Ceva, Menelaus's theorem=Menelaus theorem=Menelaus, Stewart's theorem=Stewart theorem, Heron's formula=Heron formula, Nine-point circle theorem=Nine-point circle, Euler's triangle inequality=Euler triangle inequality, Exterior angle theorem, Midsegment theorem=Midpoint theorem | Napoleon's theorem=Napoleon theorem=Napoleon, Morley's trisector theorem=Morley's theorem=Morley theorem, Simson line theorem=Simson's theorem=Simson line, Theorem of the three perpendicular bisectors, Euler line theorem=Euler line, Law of tangents=Tangent rule, Carnot's theorem for triangles, Fermat point theorem=Torricelli's theorem, Pappus's area theorem=Pappus area theorem | Van Aubel's triangle theorem=Van Aubel's theorem for triangles=Van Aubel triangle theorem=Van Aubel's theorem=Van Aubel theorem, Feuerbach's theorem=Feuerbach theorem, Miquel's theorem=Miquel theorem, Nagel's theorem, Pedal triangle area theorem, Routh's theorem=Routh theorem | Steiner–Lehmus theorem=Steiner-Lehmus theorem, Terquem's theorem, Lester's theorem, Conway circle theorem, Kiepert's theorem, Finsler–Hadwiger inequality=Finsler-Hadwiger inequality, Schur's triangle inequality=Schur triangle inequality, Droz-Farny line theorem=Droz–Farny line theorem
+
+Name a triangle center or special point in a triangle.
+Centroid, Circumcenter=Circumcentre, Incenter=Incentre, Orthocenter=Orthocentre | Excenter=Excentre, Vertex | Nine-point center=Nine-point centre=Euler center, Fermat point=Torricelli point=First isogonic center=First isogonic centre, Symmedian point=Lemoine point=Grebe point, Gergonne point, Nagel point | First isodynamic point, Second isodynamic point, Second Fermat point=Second isogonic center=Second isogonic centre, Mittenpunkt, Spieker center=Spieker centre, Bevan point | First Napoleon point, Second Napoleon point, de Longchamps point, Feuerbach point, Clawson point, X(39)=Brocard midpoint | Schiffler point, Kosnita point, Yff center of congruent isoscelizers, Vecten point, Parry reflection point
+
+Name an established theorem in number theory.
+Fundamental theorem of arithmetic, Fermat's last theorem=FLT, Fermat's little theorem, Euclid's theorem on primes=Infinitude of primes | Chinese remainder theorem=CRT | Wilson's theorem, Euler's theorem on modular exponentiation=Euler's totient theorem, Prime number theorem=PNT, Dirichlet's theorem on arithmetic progressions, Quadratic reciprocity, Bézout's identity, Lagrange's four-square theorem | Bertrand's postulate=Chebyshev's theorem on primes, Legendre's three-square theorem, Fermat's theorem on sums of two squares, Gauss's lemma for quadratic residues, Hensel's lemma, Roth's theorem, Lifting the exponent lemma=LTE | Chebotarev density theorem, Skolem–Mahler–Lech theorem=Skolem-Mahler-Lech theorem, Kronecker–Weber theorem=Kronecker-Weber theorem, Minkowski's theorem, Baker's theorem on linear forms in logarithms | Siegel's theorem on integral points, Mordell–Weil theorem=Mordell-Weil theorem, Faltings's theorem=Mordell conjecture, Artin reciprocity, Pólya–Vinogradov inequality=Polya-Vinogradov inequality
+
+Name a theorem or test used in real analysis or calculus.
+Mean value theorem=MVT, Fundamental theorem of calculus=FTC, Rolle's theorem, L'Hôpital's rule=L'Hopital's rule | Squeeze theorem=Sandwich theorem, Intermediate value theorem=IVT | Taylor's theorem, Extreme value theorem=EVT, Ratio test, Root test, Integral test, Comparison test, Alternating series test=Leibniz test, Bolzano–Weierstrass theorem=Bolzano-Weierstrass theorem | Heine–Borel theorem=Heine-Borel theorem, Monotone convergence theorem, Dominated convergence theorem, Fatou's lemma, Arzelà–Ascoli theorem=Arzela-Ascoli theorem, Stone–Weierstrass theorem=Stone-Weierstrass theorem | Lebesgue differentiation theorem, Dini's theorem, Baire category theorem, Vitali covering theorem, Fubini's theorem, Tonelli's theorem, Egorov's theorem | Rademacher's theorem, Dvoretzky–Rogers theorem=Dvoretzky-Rogers theorem, Banach–Steinhaus theorem=Uniform boundedness principle, Carathéodory's extension theorem
+
+Name a standard or named sequence in mathematics.
+Fibonacci sequence=Fibonacci, Prime numbers=Prime sequence, Square numbers=Perfect squares, Triangular numbers | Decimal digits of pi=Digits of pi, Natural numbers=Counting numbers | Lucas numbers=Lucas sequence, Catalan numbers, Pascal's triangle, Pell numbers=Pell sequence, Harmonic sequence, Factorials=Factorial sequence, Powers of two | Bell numbers, Bernoulli numbers, Euler numbers, Jacobsthal numbers, Tribonacci numbers, Motzkin numbers, Mersenne numbers, Fermat numbers, Stirling numbers of the first kind, Stirling numbers of the second kind | Padovan sequence, Perrin sequence, Sylvester sequence, Thue–Morse sequence=Thue-Morse sequence, Rudin–Shapiro sequence=Rudin-Shapiro sequence, Conway's look-and-say sequence=Look and say, Recamán's sequence | Golomb sequence, Kolakoski sequence, Baum–Sweet sequence=Baum-Sweet sequence, Van Eck sequence, Somos-4 sequence
+
+Name a class of graphs or a named graph in graph theory.
+Complete graph, Cycle graph, Path graph, Tree, Bipartite graph | Empty graph=Edgeless graph, Null graph=Empty vertex graph | Planar graph, Directed graph=Digraph, Complete bipartite graph, Regular graph, Star graph, Wheel graph, Hypercube graph, Multigraph, Connected graph | Petersen graph, Möbius ladder, Cayley graph, Line graph, Chordal graph, Interval graph, Grid graph, Tournament graph=Tournament, Eulerian graph, Hamiltonian graph, Threshold graph | Heawood graph, Dürer graph, Frucht graph, Desargues graph, Paley graph, Cayley tree, Johnson graph, Kneser graph | Hoffman–Singleton graph=Hoffman-Singleton graph, Tutte–Coxeter graph=Tutte-Coxeter graph, Clebsch graph, Gewirtz graph, Shrikhande graph
+
+Name a mathematical constant.
+Pi=π, Euler's number=e, Golden ratio=Phi=φ | Zero=0, One=1, Imaginary unit=i | Square root of 2=sqrt(2)=√2=Pythagoras's constant, Square root of 3=sqrt(3)=√3, Euler–Mascheroni constant=Euler-Mascheroni constant, Natural logarithm of 2=ln(2)=ln 2, Apéry's constant=zeta(3) | Catalan's constant, Feigenbaum delta=Feigenbaum constant, Plastic constant=Plastic number, Silver ratio, Glaisher–Kinkelin constant=Glaisher-Kinkelin constant, Omega constant | Khinchin's constant, Champernowne constant, Brun's constant, Copeland–Erdős constant=Copeland-Erdos constant, Landau–Ramanujan constant=Landau-Ramanujan constant, Erdős–Borwein constant=Erdos-Borwein constant | Gauss's constant, Hafner–Sarnak–McCurley constant=Hafner-Sarnak-McCurley constant, Dottie number, Cahen's constant, Viswanath's constant, Komornik–Loreti constant=Komornik-Loreti constant
+
+Name a named polyhedron.
+Cube=Hexahedron, Tetrahedron=Triangular pyramid, Octahedron, Dodecahedron, Icosahedron | Triangular prism, Square pyramid, Rectangular prism=Cuboid | Pentagonal prism, Hexagonal prism, Pentagonal pyramid, Pentagonal bipyramid, Rhombic dodecahedron, Truncated cube, Truncated tetrahedron, Truncated octahedron, Truncated icosahedron, Cuboctahedron, Icosidodecahedron | Snub cube, Snub dodecahedron, Rhombicuboctahedron, Rhombicosidodecahedron, Truncated dodecahedron, Truncated cuboctahedron, Truncated icosidodecahedron, Rhombic triacontahedron, Square antiprism, Triangular bipyramid | Deltoidal icositetrahedron, Deltoidal hexecontahedron, Triakis tetrahedron, Triakis octahedron, Pentakis dodecahedron, Tetrakis hexahedron, Great dodecahedron, Small stellated dodecahedron, Great icosahedron, Great stellated dodecahedron | Disdyakis dodecahedron, Disdyakis triacontahedron, Pentagonal hexecontahedron, Gyroelongated square bipyramid, Elongated pentagonal cupola
+
+Name a type of matrix in linear algebra.
+Identity matrix, Zero matrix=Null matrix, Diagonal matrix, Square matrix | Row matrix=Row vector, Column matrix=Column vector | Symmetric matrix, Skew-symmetric matrix=Antisymmetric matrix, Orthogonal matrix, Unitary matrix, Hermitian matrix=Self-adjoint matrix, Upper triangular matrix, Lower triangular matrix, Invertible matrix=Nonsingular matrix, Singular matrix | Positive definite matrix, Positive semidefinite matrix, Permutation matrix, Projection matrix, Idempotent matrix, Nilpotent matrix, Stochastic matrix, Normal matrix, Block diagonal matrix, Rotation matrix | Toeplitz matrix, Hankel matrix, Vandermonde matrix, Circulant matrix, Hadamard matrix, Companion matrix, Metzler matrix, Jacobi matrix | Cauchy matrix, Hilbert matrix, Sylvester matrix, Hurwitz matrix, Monge matrix, Moore matrix
+
+Name a probability distribution.
+Normal distribution=Gaussian distribution=Normal=Gaussian, Uniform distribution=Uniform, Binomial distribution=Binomial, Poisson distribution=Poisson | Degenerate distribution=Point mass | Bernoulli distribution=Bernoulli, Geometric distribution, Exponential distribution, Hypergeometric distribution, Gamma distribution, Beta distribution, Chi-square distribution=Chi-squared distribution, Student's t distribution=t distribution, Log-normal distribution=Lognormal distribution | Weibull distribution, Cauchy distribution, Laplace distribution, Logistic distribution, Negative binomial distribution, Multinomial distribution, Dirichlet distribution, Pareto distribution, Rayleigh distribution, F distribution | Gumbel distribution, Fréchet distribution, Lévy distribution, Skellam distribution, Zipf distribution, Wishart distribution, Maxwell–Boltzmann distribution=Maxwell-Boltzmann distribution, Kumaraswamy distribution | Hoyt distribution=Nakagami-q distribution, Borel distribution, Delaporte distribution, Conway–Maxwell–Poisson distribution=Conway-Maxwell-Poisson distribution, Gauss–Kuzmin distribution=Gauss-Kuzmin distribution
+
+Name a named inequality in mathematics.
+Triangle inequality, Cauchy–Schwarz inequality=Cauchy-Schwarz=Cauchy Schwarz, AM–GM inequality=AM-GM inequality=AM GM=Arithmetic mean geometric mean inequality | Reverse triangle inequality | Hölder's inequality=Holder inequality, Jensen's inequality=Jensen inequality, Markov's inequality, Chebyshev's inequality, Bernoulli's inequality, Minkowski's inequality | Young's inequality, rearrangement inequality, Hadamard's inequality, Poincaré inequality, Grönwall's inequality, Cramér–Rao inequality=Cramer-Rao bound, Hoeffding's inequality | Sobolev inequality, Wirtinger's inequality, Hardy's inequality, Doob's maximal inequality, Azuma's inequality, Schur's inequality, Bessel's inequality | Khinchin inequality=Khintchine inequality, Prékopa–Leindler inequality=Prekopa-Leindler inequality, Brascamp–Lieb inequality=Brascamp-Lieb inequality, Carleman's inequality, Burkholder–Davis–Gundy inequality=Burkholder-Davis-Gundy inequality
+
+[Geography]
+> Name a country that borders Germany.
+!Name a current member country of the European Union.
+France, Germany, Italy, Spain, Greece | Cyprus, Malta | Portugal, Poland, Netherlands=The Netherlands=Holland, Belgium, Ireland=Republic of Ireland, Austria, Denmark, Sweden, Finland, Romania, Hungary, Croatia, Czechia=Czech Republic | Luxembourg, Slovakia, Slovenia, Bulgaria, Estonia, Latvia, Lithuania | |
+
+> Name a country crossed by the equator, including through its territorial waters.
+Name a country with land south of the equator.
+Australia, Brazil, New Zealand, South Africa, Argentina, Chile | France, United Kingdom=UK=Britain, United States=USA=US | Peru, Uruguay, Paraguay, Bolivia, Ecuador, Kenya, Tanzania, Indonesia, Papua New Guinea=PNG, Madagascar, Mozambique | Angola, Zambia, Zimbabwe, Botswana, Namibia, Malawi, Rwanda, Burundi, Lesotho, Eswatini=Swaziland, Uganda, Somalia, Gabon, Democratic Republic of the Congo=DR Congo=DRC, Republic of the Congo=Congo-Brazzaville | São Tomé and Príncipe=Sao Tome and Principe, Equatorial Guinea, Maldives, Seychelles, Comoros, Mauritius, Fiji, Vanuatu, Solomon Islands, Samoa, Tonga, Tuvalu, Kiribati, Timor-Leste=East Timor | Nauru
+
+> Name a state that borders Texas.
+Name a US state with a land border with another country or a coast on the Gulf of Mexico.
+Texas, California, Florida, Alaska, New York | Vermont, Idaho | Arizona, New Mexico, Michigan, Washington=Washington State, Louisiana, Maine | Minnesota, North Dakota, Montana, Mississippi, Alabama | New Hampshire |
+
+> Name one of the five North American Great Lakes.
+Name a lake that lies at least partly in Canada.
+Lake Superior=Superior, Lake Ontario=Ontario, Lake Erie=Erie, Lake Huron=Huron | Great Slave Lake, Great Bear Lake | Lake Winnipeg, Lake Winnipegosis, Lake Manitoba, Lake of the Woods, Lake Athabasca, Lake Nipigon | Lake Simcoe, Lake Nipissing, Lake Champlain, Lake Memphremagog, Lake Okanagan=Okanagan Lake | Lake Mistassini, Wollaston Lake, Nonacho Lake, Reindeer Lake, Lake Amadjuak | Nettilling Lake, Lac la Martre, Dubawnt Lake, Kasba Lake
+
+> Name a country that shares a land border with China.
+!Name a country in Asia with a coastline on the Indian Ocean or one of its connected seas or gulfs, including the Red Sea.
+India, Pakistan, Thailand, Indonesia | Israel, Jordan | Bangladesh, Sri Lanka, Maldives, Myanmar=Burma, Malaysia, Singapore, Saudi Arabia, Iran, Iraq, United Arab Emirates=UAE, Oman, Yemen | Bahrain, Qatar, Kuwait, Timor-Leste=East Timor | |
+
+> Name a country on the mainland of South America.
+!Name an independent country in Latin America.
+Mexico, Brazil, Argentina, Chile, Peru | Haiti | Colombia, Venezuela, Ecuador, Bolivia, Uruguay, Paraguay, Cuba, Dominican Republic=DR, Costa Rica, Panama | Nicaragua, Guatemala, Honduras, El Salvador | |
+
+> Name a country through which the Danube flows or forms a border.
+!Name an independent country in Asia.
+China, Japan, India, South Korea=Republic of Korea, Indonesia, Thailand | Cyprus, Turkey=Türkiye, Russia | Malaysia, Singapore, Vietnam, Philippines=The Philippines, Pakistan, Nepal, Bangladesh, Sri Lanka, Afghanistan, Iran, Iraq, Israel, Saudi Arabia, United Arab Emirates=UAE, Qatar, Jordan, Lebanon, Syria, North Korea=DPRK, Mongolia | Cambodia, Laos, Myanmar=Burma, Bhutan, Maldives, Kuwait, Bahrain, Oman, Yemen, Kazakhstan, Uzbekistan, Armenia, Georgia, Azerbaijan | Brunei, Timor-Leste=East Timor, Kyrgyzstan, Tajikistan, Turkmenistan, Palestine=State of Palestine |
+
+> Name a province or territory of Canada.
+Name a US state or Canadian province or territory whose name starts with M, N, or O.
+New York, Ohio, New Jersey, Ontario, Maine | Nunavut, Northwest Territories=NWT | Maryland, Massachusetts, Michigan, Minnesota, Nevada, North Carolina, Oregon, Nova Scotia | Missouri, Mississippi, Montana, Nebraska, New Hampshire, New Mexico, North Dakota, Oklahoma, Manitoba, New Brunswick | Newfoundland and Labrador=Newfoundland & Labrador |
+
+> Name a country that uses the Australian dollar as its official currency.
+Name a country whose official currency has the word dollar in its name.
+United States=USA=US, Canada, Australia, New Zealand | Ecuador, El Salvador, Panama | Singapore, Jamaica, Bahamas=The Bahamas, Barbados, Fiji, Namibia, Belize, Trinidad and Tobago=Trinidad & Tobago, Guyana, Liberia | Suriname, Brunei, Antigua and Barbuda=Antigua & Barbuda, Dominica, Grenada, Saint Kitts and Nevis=St Kitts and Nevis, Saint Lucia=St Lucia, Saint Vincent and the Grenadines=St Vincent and the Grenadines | East Timor=Timor-Leste, Palau, Marshall Islands, Federated States of Micronesia=Micronesia, Nauru, Tuvalu, Kiribati |
+
+!Name an independent country in Africa.
+Egypt, South Africa, Kenya, Nigeria, Morocco, Ethiopia, Ghana | | Algeria, Tunisia, Libya, Sudan, Somalia, Senegal, Cameroon, Tanzania, Uganda, Rwanda, Zimbabwe, Zambia, Madagascar, Mozambique, Mali, Chad | Benin, Togo, Burundi, Burkina Faso, Namibia, Botswana, Angola, Niger, Liberia, Sierra Leone, Eritrea, Djibouti, South Sudan, Central African Republic=CAR, Democratic Republic of the Congo=DR Congo=DRC, Republic of the Congo=Congo-Brazzaville, Côte d'Ivoire=Ivory Coast | Mauritania, Guinea, Guinea-Bissau, Gambia=The Gambia, Gabon, Malawi, Lesotho, Eswatini=Swaziland, Seychelles, Mauritius, Equatorial Guinea, Cape Verde=Cabo Verde | São Tomé and Príncipe, Comoros
+
+Name a country with no coastline on an ocean or connected sea.
+Switzerland, Austria, Mongolia, Nepal, Bolivia, Paraguay | Vatican City=Vatican | Czechia=Czech Republic, Hungary, Slovakia, Serbia, Kazakhstan, Belarus, Armenia, Afghanistan, Bhutan, Laos, Luxembourg, Uganda, Rwanda, Ethiopia, Zambia, Zimbabwe, Mali, Niger, Chad | Liechtenstein, Andorra, San Marino, North Macedonia, Moldova, Azerbaijan, Kyrgyzstan, Uzbekistan, Tajikistan, Turkmenistan, Botswana, Malawi, Burkina Faso, South Sudan | Burundi, Central African Republic=CAR, Lesotho, Eswatini=Swaziland |
+
+Name a country whose national flag has a star.
+United States=USA=US, China, Turkey=Türkiye, Vietnam, Australia, New Zealand, Brazil | | Israel, Cuba, Chile, Singapore, Malaysia, Pakistan, North Korea=DPRK, Venezuela, Panama, Morocco, Algeria, Tunisia, Syria, Somalia, Ghana | Honduras, Bosnia and Herzegovina=Bosnia & Herzegovina, Kosovo, Cameroon, Senegal, Togo, Djibouti, Ethiopia, Jordan, Mauritania, Myanmar=Burma, Mozambique, Angola, Zimbabwe, South Sudan, Philippines, Papua New Guinea=PNG, Democratic Republic of the Congo=DR Congo=DRC, Central African Republic=CAR, Burkina Faso, Guinea-Bissau | East Timor=Timor-Leste, Suriname, Burundi, Comoros, São Tomé and Príncipe, Cape Verde=Cabo Verde, Dominica, Grenada, Uzbekistan, Tajikistan, Turkmenistan, Liberia | Marshall Islands, Micronesia=Federated States of Micronesia, Nauru, Solomon Islands, Samoa, Tuvalu, Azerbaijan
+
+Name a country with English as an official language nationally or its primary language of government.
+United Kingdom=UK=Britain, United States=USA=US, Australia, Canada, New Zealand, Ireland | India, Pakistan | South Africa, Nigeria, Kenya, Ghana, Singapore, Philippines, Jamaica, Bahamas=The Bahamas, Malta, Belize, Barbados, Trinidad and Tobago=Trinidad & Tobago | Botswana, Zambia, Zimbabwe, Uganda, Rwanda, Cameroon, Sierra Leone, Liberia, Namibia, Malawi, Lesotho, Eswatini=Swaziland, Seychelles, Mauritius, Fiji, Papua New Guinea=PNG, Guyana | Samoa, Tonga, Vanuatu, Solomon Islands, Palau, Marshall Islands, Federated States of Micronesia=Micronesia, Kiribati, Nauru, Tuvalu | Saint Kitts and Nevis=St Kitts and Nevis, Saint Lucia=St Lucia, Saint Vincent and the Grenadines=St Vincent and the Grenadines, Antigua and Barbuda=Antigua & Barbuda, Dominica, Grenada, South Sudan, Gambia=The Gambia
+
+Name an independent country whose English short name starts with S.
+Spain, Sweden, Switzerland, South Africa, South Korea=Republic of Korea | | Saudi Arabia, Singapore, Somalia, Sudan, Syria, Serbia, Slovakia, Slovenia, Sri Lanka, Senegal | South Sudan, Sierra Leone, Suriname, Seychelles, Samoa, San Marino, Solomon Islands | Saint Lucia=St Lucia, Saint Kitts and Nevis=St Kitts and Nevis, Saint Vincent and the Grenadines=St Vincent and the Grenadines, São Tomé and Príncipe |
+
+Name a country with a coastline on the Caribbean Sea.
+Mexico, Cuba, Jamaica, Colombia, Venezuela | United Kingdom=UK, France, Netherlands=The Netherlands, United States=USA=US | Panama, Costa Rica, Nicaragua, Honduras, Dominican Republic, Haiti, Belize, Guatemala, Trinidad and Tobago=Trinidad & Tobago | Dominica, Saint Lucia=St Lucia, Grenada, Saint Vincent and the Grenadines=St Vincent and the Grenadines | Saint Kitts and Nevis=St Kitts and Nevis, Antigua and Barbuda=Antigua & Barbuda |
+
+Name a country whose national capital starts with B.
+Germany, China, Brazil, Argentina | Switzerland | Iraq, Thailand, Colombia, Hungary, Romania, Belgium, Serbia, Lebanon| Slovakia, Azerbaijan, Kyrgyzstan, Brunei, Mali, Gambia, Guinea-Bissau, Republic of the Congo| Barbados, Belize, Central African Republic, Saint Kitts and Nevis|
+
+[Space]
+> Name a planet in our solar system.
+Name a planet, recognized dwarf planet, or natural moon in our solar system.
+Earth, Mars, Venus, Jupiter, Saturn, Moon=Luna=The Moon, Pluto | Mercury, Neptune, Uranus | Titan, Europa, Io, Ganymede, Callisto, Triton, Ceres, Phobos, Deimos, Enceladus, Eris, Charon | Titania, Miranda, Ariel, Umbriel, Oberon, Haumea, Makemake, Mimas, Dione, Tethys, Iapetus, Rhea | Amalthea, Dysnomia, Hydra, Nix, Styx, Kerberos, Hyperion, Phoebe, Nereid, Proteus, Pan, Puck, Cordelia | Hippocamp, Metis, Adrastea, Hiʻiaka, Namaka, Aegaeon, Perdita, Mab, S/2002 N 5
+
+> Name a moon of Neptune.
+Name a moon of Uranus or Neptune.
+Triton, Titania, Oberon | | Miranda, Ariel, Umbriel, Nereid | Proteus, Puck, Portia, Juliet, Cordelia, Ophelia, Larissa, Galatea, Naiad, Thalassa, Despina | Bianca, Desdemona, Cressida, Rosalind, Belinda, Caliban, Sycorax, Halimede, Sao, Laomedeia, Psamathe, Neso | Hippocamp, Cupid, Mab, Perdita, Stephano, Prospero, Setebos, Trinculo, Francisco, Margaret, Ferdinand
+
+> Name a person who walked on the Moon.
+!Name a person who flew to or around the Moon on an Apollo mission.
+Neil Armstrong=Armstrong, Buzz Aldrin=Aldrin, Jim Lovell=James Lovell=Lovell | Michael Collins=Collins | Alan Shepard=Shepard, Frank Borman, William Anders=Bill Anders, Pete Conrad=Charles Conrad, John Young, Gene Cernan=Eugene Cernan, Jack Swigert, Fred Haise | Alan Bean, Edgar Mitchell, David Scott, Harrison Schmitt, Ken Mattingly=Thomas Mattingly, Stuart Roosa | Charles Duke=Charlie Duke, James Irwin=Jim Irwin, Ronald Evans=Ron Evans, Alfred Worden=Al Worden, Richard Gordon=Dick Gordon, Thomas Stafford=Tom Stafford |
+
+> Name one of NASA's Space Shuttle orbiters.
+Name a spacecraft designed to carry people into space.
+Space Shuttle=Shuttle, Crew Dragon=Dragon 2, Soyuz, Apollo command module=Apollo | Enterprise=Space Shuttle Enterprise | Mercury=Project Mercury, Gemini=Project Gemini, Orion=Orion spacecraft, Shenzhou, Vostok, Discovery, Atlantis, Endeavour=Endeavor, Challenger, Columbia | Starliner=CST-100, Voskhod, Buran, SpaceShipOne, SpaceShipTwo, New Shepard, Apollo lunar module=Lunar module | Kliper, Orel, Gaganyaan, Starship, Dream Chaser crewed concept | Zond=Soyuz 7K-L1, Dyna-Soar, TKS spacecraft
+
+> Name a constellation in the zodiac, including the one outside the traditional twelve.
+Name a modern IAU constellation.
+Orion, Leo, Ursa Major=Great Bear, Ursa Minor=Little Bear, Taurus, Gemini, Virgo, Scorpius=Scorpio, Pisces | Ophiuchus | Aries, Aquarius, Cancer, Capricornus=Capricorn, Sagittarius, Libra, Andromeda, Cassiopeia, Cygnus, Pegasus, Draco, Centaurus, Crux=Southern Cross, Canis Major, Canis Minor, Perseus | Aquila, Auriga, Boötes, Cetus, Corona Borealis, Hercules, Hydra, Lyra, Lupus, Delphinus, Eridanus, Corvus, Lepus, Phoenix, Carina, Vela, Puppis | Antlia, Apus, Caelum, Camelopardalis, Canes Venatici, Chamaeleon, Circinus, Columba, Coma Berenices, Corona Australis, Crater, Dorado, Equuleus, Fornax, Grus, Horologium, Hydrus, Indus, Lacerta, Leo Minor, Lynx, Mensa, Microscopium, Monoceros, Musca, Norma, Octans, Pavo, Pictor, Reticulum, Sagitta, Sculptor, Scutum, Serpens, Sextans, Telescopium, Triangulum, Triangulum Australe, Tucana, Volans, Vulpecula | Pyxis, Piscis Austrinus, Cepheus
+
+> Name a robotic mission that flew past or orbited Jupiter.
+Name a robotic spacecraft mission that flew past, orbited, or landed on a planet other than Earth.
+Voyager 1, Voyager 2, Galileo, Juno, Curiosity, Perseverance, Cassini=Cassini-Huygens | New Horizons | Pioneer 10, Pioneer 11, Ulysses, Mariner 4, Mariner 10, Mars Pathfinder=Pathfinder, Viking 1, Viking 2, Opportunity, Spirit, MESSENGER, Magellan, Venera 7 | Venera 9, Venera 13, Mariner 2, Mariner 6, Mariner 7, Mariner 9, Mars Global Surveyor, Mars Odyssey, Mars Express, Venus Express, Akatsuki, InSight, Phoenix, Mars Reconnaissance Orbiter=MRO | BepiColombo, MAVEN, Tianwen-1, Mars Orbiter Mission=Mangalyaan, Hope probe=Emirates Mars Mission, ExoMars Trace Gas Orbiter=TGO, Zond 1, Vega 1, Vega 2, Mars 2, Mars 3 | Phobos 2, Venera 15, Venera 16
+
+[Animals]
+> Name a living species of great ape.
+Name a living primate.
+Human=Homo sapiens, Chimpanzee=Common chimpanzee=Chimp, Gorilla, Orangutan | Bonobo=Pygmy chimpanzee | Western gorilla, Eastern gorilla, Bornean orangutan, Sumatran orangutan, Baboon, Lemur, Gibbon, Macaque, Capuchin, Spider monkey, Howler monkey, Marmoset | Tarsier, Aye-aye, Ring-tailed lemur, Slow loris, Mandrill, Colobus, Vervet monkey, Gelada, Proboscis monkey, Golden snub-nosed monkey, Japanese macaque, Rhesus macaque, Squirrel monkey, Tamarin | Tapanuli orangutan, Siamang, Indri, Sifaka, Drill, Uakari, Saki monkey, Night monkey=Owl monkey, Pygmy marmoset, Emperor tamarin | Black lion tamarin, Northern muriqui, Lion-tailed macaque, Bald uakari, Mona monkey
+
+[Music]
+> Name one of the twelve distinct pitches in Western equal temperament, ignoring octave.
+Name a named scale or mode in music.
+Major scale=Ionian mode, Minor scale, Pentatonic scale, Chromatic scale | Whole-tone scale=Whole tone scale | Natural minor scale=Aeolian mode, Harmonic minor scale, Melodic minor scale, Blues scale, Dorian mode, Phrygian mode, Lydian mode, Mixolydian mode, Locrian mode | Major pentatonic scale, Minor pentatonic scale, Octatonic scale=Diminished scale, Bebop dominant scale, Double harmonic major scale, Phrygian dominant scale | Hungarian minor scale, Harmonic major scale, Lydian dominant scale, Altered scale=Super Locrian, Enigmatic scale | Prometheus scale, Hirajōshi scale, In sen scale, Persian scale
+
+[Science]
+> Name an SI base unit.
+Name a named unit of measurement used in science.
+Metre=Meter, Second, Kilogram, Litre=Liter, Gram, Watt, Volt | Percent, Radian | Ampere=Amp, Kelvin, Mole, Candela, Newton, Joule, Pascal, Hertz, Ohm, Coulomb, Farad, Tesla, Decibel, Celsius=Degree Celsius | Weber, Henry, Siemens, Steradian, Lumen, Lux, Becquerel, Gray, Sievert, Katal, Electronvolt=eV, Angstrom=Ångström, Torr | Dalton=Unified atomic mass unit, Barn, Gauss, Poise, Stokes, Dyne, Erg, Oersted, Maxwell | Debye, Jansky, Svedberg, Gal=Galileo unit, Curie, Rad, Rem
+
+> Name a planet or dwarf planet officially recognized by the IAU.
+Name a class or type of star.
+Red dwarf, White dwarf, Neutron star, Red giant, Supergiant | Brown dwarf | Blue giant, Yellow dwarf=G-type main-sequence star, Main-sequence star, Black dwarf, Protostar, Pulsar, Magnetar, O-type star, B-type star, A-type star, F-type star, K-type star, M-type star | Wolf–Rayet star=Wolf-Rayet star, Carbon star, Cepheid variable=Cepheid, RR Lyrae star=RR Lyrae variable, Mira variable, T Tauri star, Herbig Ae/Be star, Red clump star | Subdwarf, Blue straggler, Luminous blue variable, S-type star, Technetium star, FU Orionis star, Be star, Barium star | Thorne–Żytkow object=Thorne-Zytkow object, R Coronae Borealis variable, AM Canum Venaticorum star, Gamma Doradus variable
+
+> Name a type of cloud recognized in the ten genera.
+Name a cloud genus or named cloud formation.
+Cumulus, Cirrus, Stratus, Cumulonimbus | Fog, Contrail | Nimbostratus, Stratocumulus, Altocumulus, Altostratus, Cirrocumulus, Cirrostratus, Lenticular cloud=Lenticularis, Mammatus=Mamma | Cumulus humilis, Cumulus congestus, Cirrus uncinus, Cirrus fibratus, Stratus nebulosus, Cumulonimbus incus, Noctilucent cloud, Nacreous cloud, Wall cloud, Shelf cloud=Arcus | Pyrocumulus=Cumulus flammagenitus, Asperitas, Virga, Fallstreak hole=Cavum, Kelvin–Helmholtz cloud=Kelvin-Helmholtz cloud=Fluctus, Roll cloud=Volutus | Pileus, Velum, Flumen, Horseshoe vortex cloud
+
+> Name a simple machine from the traditional list of six.
+Name a simple machine or a device that uses one as its main mechanism.
+Lever, Pulley, Wheel and axle=Wheel & axle, Ramp=Inclined plane, Wedge, Screw | Doorstop, Doorknob | Seesaw=Teeter-totter, Scissors, Axe=Ax, Wheelbarrow, Bottle opener, Corkscrew, Crowbar, Nutcracker, Tweezers, Shovel, Knife | Block and tackle, Archimedes' screw=Archimedean screw, Screw jack, Bench vise=Vice, Gear, Tongs, Staple remover | Lead screw, Capstan, Windlass, Wedge anchor | Taper pin, Worm drive
+
+> Name a type of electromagnetic radiation.
+Name a band or named subdivision of the electromagnetic spectrum.
+Visible light=Light, Radio waves=Radio, X-rays=X ray=XRays, Ultraviolet=UV | Red light, Blue light, Green light | Infrared=IR, Microwaves=Microwave, Gamma rays=Gamma radiation, UVA, UVB, UVC | Terahertz radiation, Extreme ultraviolet=EUV, Far infrared, Near infrared, Millimeter waves=Millimetre waves, Vacuum ultraviolet, Shortwave radio=Shortwave | Very high frequency=VHF, Ultra high frequency=UHF, Extremely low frequency=ELF, Soft X-rays, Hard X-rays, Mid-infrared | L band, S band, C band, Ku band, Ka band, Super high frequency=SHF
+
+[Books & language]
+> Name one of the seven Harry Potter novels.
+Name a novel narrated in the first person.
+The Great Gatsby=Great Gatsby, To Kill a Mockingbird, The Catcher in the Rye=Catcher in the Rye, Jane Eyre | Frankenstein=Frankenstein or The Modern Prometheus | Moby-Dick=Moby Dick, The Adventures of Huckleberry Finn=Huckleberry Finn, The Bell Jar=Bell Jar, The Hunger Games=Hunger Games, The Handmaid's Tale=Handmaid's Tale, The Color Purple=The Colour Purple, Rebecca, The Curious Incident of the Dog in the Night-Time | The Remains of the Day, Never Let Me Go, The Secret History, We Have Always Lived in the Castle, Flowers for Algernon, The Perks of Being a Wallflower, The Murder of Roger Ackroyd, Invisible Man | The Good Soldier, The Turn of the Screw, The Wasp Factory, The Collector, Notes from Underground, The Moonstone, Moll Flanders | The Invention of Morel, The Country of the Pointed Firs, The Blind Owl, The Friends of Eddie Coyle
+
+> Name a novel by Jane Austen.
+Name a novel first published before 1850.
+Pride and Prejudice=Pride & Prejudice, Frankenstein, Jane Eyre, Wuthering Heights, Oliver Twist | Gulliver's Travels, Don Quixote | Emma, Sense and Sensibility, Persuasion, Mansfield Park, Northanger Abbey, Robinson Crusoe, The Count of Monte Cristo, The Three Musketeers, The Hunchback of Notre-Dame, The Last of the Mohicans, The Pickwick Papers | The History of Tom Jones=Tom Jones, Moll Flanders, Clarissa, Pamela, Tristram Shandy, The Castle of Otranto, The Mysteries of Udolpho, The Monk, Vanity Fair, Nicholas Nickleby, The Old Curiosity Shop, Dombey and Son | Humphry Clinker, Evelina, Belinda, Castle Rackrent, The Vicar of Wakefield, Vathek, The Wild Irish Girl, The Rector of Veilbye | The Private Memoirs and Confessions of a Justified Sinner, The Princess of Clèves, The Female Quixote
+
+> Name an official language of the United Nations.
+Name a language with official status at the national level in at least one country.
+English, Spanish, French, Arabic, Chinese=Mandarin, Russian, Italian, German, Japanese | Latin | Portuguese, Korean, Dutch, Greek, Turkish, Hindi, Bengali=Bangla, Urdu, Indonesian, Swahili, Polish, Ukrainian, Swedish, Hebrew, Vietnamese, Thai, Malay, Persian=Farsi | Romanian, Armenian, Georgian, Bulgarian, Finnish, Irish, Icelandic, Albanian, Macedonian, Hungarian, Slovenian, Slovak, Czech, Estonian, Latvian, Lithuanian, Catalan, Filipino, Khmer, Lao, Burmese, Amharic, Somali, Afrikaans, Zulu, Nepali | Kinyarwanda, Kirundi, Tigrinya, Dzongkha, Tetum, Tok Pisin, Sesotho, Tswana=Setswana, Shona, Quechua, Aymara, Guaraní | Nauruan, Tuvaluan, Gilbertese=Kiribati language, Marshallese, Palauan, Hiri Motu
+
+[Sports]
+> Name a country whose men's team won the FIFA World Cup through 2022.
+Name a country that reached a men's FIFA World Cup semifinal through 2022.
+Brazil, Argentina, Germany=West Germany, France, England | United States=USA=US, South Korea=Republic of Korea | Spain, Italy, Uruguay, Netherlands=The Netherlands=Holland, Croatia, Portugal, Belgium, Morocco, Sweden | Hungary, Poland, Bulgaria, Turkey=Türkiye, Austria, Soviet Union=USSR, Yugoslavia, Czechoslovakia, Chile | |
+
+> Name a standard swimming stroke or recognized variant.
+Name a competitive swimming event or distinct named swimming stroke.
+Freestyle=Front crawl=Crawl, Breaststroke, Backstroke, Butterfly=Fly | Dog paddle | Sidestroke, Elementary backstroke, Combat sidestroke, 50 m freestyle=50m freestyle, 100 m freestyle=100m freestyle, 200 m freestyle=200m freestyle, 400 m freestyle=400m freestyle, 800 m freestyle=800m freestyle, 1500 m freestyle=1500m freestyle | 100 m butterfly=100m butterfly, 200 m butterfly=200m butterfly, 100 m backstroke=100m backstroke, 200 m backstroke=200m backstroke, 100 m breaststroke=100m breaststroke, 200 m breaststroke=200m breaststroke, 200 m individual medley=200m IM, 400 m individual medley=400m IM, 10 km open water swim=10km open water | Trudgen, Double overarm backstroke, 4 × 100 m medley relay=4x100 medley relay, 4 × 100 m freestyle relay=4x100 freestyle relay, 4 × 200 m freestyle relay=4x200 freestyle relay | Mixed 4 × 100 m medley relay=Mixed 4x100 medley relay
+
+> Name a country whose men's team won the Rugby World Cup through 2023.
+Name a team that appeared at the men's Rugby World Cup through 2023.
+New Zealand=All Blacks, South Africa=Springboks, England, Australia=Wallabies | | France, Ireland, Wales, Scotland, Italy, Argentina=Pumas, Japan, Fiji, Samoa, Tonga | Georgia, Romania, Canada, United States=USA=US, Uruguay, Namibia, Portugal, Spain | Chile, Russia, Zimbabwe, Ivory Coast=Côte d'Ivoire |
+
+> Name an official Olympic alpine skiing event or discipline.
+Name a discipline or event contested at a Winter Olympics.
+Downhill, Slalom, Ice hockey=Hockey, Figure skating, Ski jumping, Curling, Bobsleigh=Bobsled | Skeleton, Luge | Giant slalom=GS, Super-G=Super G, Alpine combined=Combined, Speed skating, Short track speed skating=Short track, Snowboard halfpipe, Snowboard cross, Biathlon, Cross-country skiing, Nordic combined, Moguls, Freestyle skiing | Aerials, Ski cross, Ski halfpipe, Ski slopestyle, Snowboard slopestyle, Snowboard parallel giant slalom, Snowboard big air, Ski big air, Mixed doubles curling | Mixed team parallel, Team combined, Short track mixed team relay | Military patrol, Men's special figures=Special figures
+
+[History]
+> Name one of the Seven Wonders of the ancient world.
+Name a surviving or lost landmark built in ancient times.
+Great Pyramid of Giza=Great Pyramid, Colosseum, Parthenon, Great Sphinx of Giza=Great Sphinx, Stonehenge | Hanging Gardens of Babylon=Hanging Gardens | Lighthouse of Alexandria=Pharos of Alexandria, Colossus of Rhodes, Statue of Zeus at Olympia=Statue of Zeus, Temple of Artemis at Ephesus=Temple of Artemis, Mausoleum at Halicarnassus=Mausoleum of Halicarnassus, Pantheon, Pompeii, Petra, Abu Simbel, Hadrian's Wall | Temple of Karnak=Karnak, Luxor Temple, Pyramid of Djoser=Step Pyramid, Ishtar Gate, Pont du Gard, Temple of the Sun at Teotihuacan=Pyramid of the Sun, Newgrange, Library of Celsus, Theatre of Epidaurus | Tomb of Cyrus, Lion Gate of Mycenae=Lion Gate, Treasury of Atreus, Ziggurat of Ur, Sanctuary of Apollo at Delphi, Nîmes Arena=Arena of Nimes | Medracen, Nuraghe Su Nuraxi=Su Nuraxi, Poulnabrone dolmen
+
+> Name one of the thirteen original American colonies.
+Name a US state that was admitted to the Union before 1825.
+Virginia, Massachusetts, New York, Pennsylvania | Vermont, Kentucky | Connecticut, Rhode Island, New Jersey, Maryland, North Carolina, South Carolina, Georgia, Tennessee, Ohio | New Hampshire, Delaware, Maine, Louisiana, Indiana, Illinois, Alabama, Mississippi, Missouri | |
+
+> Name a city that was at some point a capital of a Roman or Byzantine state.
+Name a city founded or substantially developed by the ancient Romans.
+Rome, Pompeii, London=Londinium, Paris=Lutetia, Bath=Aquae Sulis | Constantinople=Istanbul=Byzantium | York=Eboracum, Chester=Deva Victrix, Lincoln=Lindum Colonia, Cologne=Colonia Agrippina, Trier=Augusta Treverorum, Verona, Nîmes=Nemausus, Arles=Arelate, Lyon=Lugdunum, Mérida=Emerita Augusta, Tarragona=Tarraco, Córdoba=Corduba | Ravenna, Milan=Mediolanum, Herculaneum, Ostia=Ostia Antica, Pula=Pola, Orange=Arausio, Vienne, Narbonne=Narbo Martius, Barcelona=Barcino, Zaragoza=Caesaraugusta | Timgad=Thamugadi, Djemila=Cuicul, Leptis Magna, Sirmium, Aquileia, Augusta Raurica, Silchester=Calleva Atrebatum, Wroxeter=Viroconium | Volubilis, Thugga=Dougga, Segobriga, Baelo Claudia, Conímbriga

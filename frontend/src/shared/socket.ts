@@ -60,6 +60,13 @@ export function createUserSocket(options: CreateSocketOptions) {
   reconnectTimer = window.setTimeout(connect, 0);
 
   return {
+    send(message: object) {
+      if (ws?.readyState === WebSocket.OPEN) {
+        ws.send(JSON.stringify(message));
+        return true;
+      }
+      return false;
+    },
     sendPing() {
       if (ws?.readyState === WebSocket.OPEN) {
         ws.send(JSON.stringify({ type: "ping" }));

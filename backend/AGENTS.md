@@ -5,8 +5,13 @@
 - This backend is starter template material. None of its code, demo behavior, tables, routes, dependencies, or architecture must be preserved for its own sake.
 - Replace or remove starter parts as the user's requested application takes shape. The defaults below apply until the user needs a different design.
 - With every application feature request, update this file and the root `AGENTS.md` to identify remaining template parts and actual user application parts. Update `backend/db/AGENTS.md` too when database ownership changes.
-- Remaining template: all of `backend/`, including auth, demo users, notes, admin endpoints, WebSocket examples, migrations, and tests.
-- User application: none yet.
+- User application: game question storage with per-question AI checking, admin question/player routes, OpenAI web-based checking and caching with rarity calibration, and in-memory solo and multiplayer rooms carried over authenticated `/ws` with paused timers during model checks.
+- Migrations 006 and 007 install the prompt packs in `db/data`. Playable prompts have at least 15 accepted answers. Use a new migration and pack file for future releases so admin edits survive restarts.
+- `game/rooms.py` runs classic and Endless dives. It sends the answer review only when a run finishes.
+- Room creation accepts an optional category, and only selects playable questions from it.
+- Online progression lives in `game/matchmaking.py`, `game/rewards.py`, and `db/progression.py`. Settlement is idempotent and commits Elo and skins together.
+- Reused foundation: signed-in player/admin accounts, auth routes, SQLite migration runner, and the WebSocket connection hub.
+- Remaining starter material: the historical notes-table migration, retained so existing databases keep their migration history; its API, query code, and tests are removed.
 - When the transition is complete, remove template inventories and all template-specific wording and instructions here; retain only instructions for the user's backend.
 
 ## Working defaults

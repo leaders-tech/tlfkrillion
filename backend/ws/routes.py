@@ -11,7 +11,7 @@ import logging
 
 from aiohttp import WSMsgType, web
 
-from backend.app_keys import WS_HUB
+from backend.app_keys import GAME_ROOMS, WS_HUB
 from backend.auth.access import require_user
 from backend.http.middleware import require_allowed_origin
 
@@ -26,6 +26,8 @@ async def websocket_handler(request: web.Request) -> web.WebSocketResponse:
 
     hub = request.app[WS_HUB]
     hub.add(user["id"], ws)
+    rooms = request.app[GAME_ROOMS]
+    rooms.connected(user["id"])
     LOGGER.info("WebSocket connected user=%s connections=%s", user["id"], hub.count_for_user(user["id"]))
     await ws.send_json({"type": "ws.ready", "user_id": user["id"], "connections": hub.count_for_user(user["id"])})
 
@@ -46,8 +48,14 @@ async def websocket_handler(request: web.Request) -> web.WebSocketResponse:
             message_type = data.get("type")
             if message_type == "ping":
                 await ws.send_json({"type": "pong"})
+            elif isinstance(message_type, str) and message_type.startswith("game."):
+                try:
+                    await request.app[GAME_ROOMS].handle(user, data)
+                except KeyError:
+                    await ws.send_json({"type": "game.error", "code": "not_ready", "message": "Game service is not ready yet."})
     finally:
         hub.remove(user["id"], ws)
+        rooms.disconnected(user["id"])
         LOGGER.info("WebSocket disconnected user=%s connections=%s", user["id"], hub.count_for_user(user["id"]))
 
     return ws
