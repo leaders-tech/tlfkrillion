@@ -14,12 +14,13 @@ describe("HomePage", () => {
   it("shows the dive introduction and sign-in link", () => {
     render(
       <MemoryRouter>
-        <AuthContext.Provider value={{ user: null, loading: false, login: vi.fn(), logout: vi.fn() }}>
+        <AuthContext.Provider value={{ user: null, loading: false, login: vi.fn(), register: vi.fn(), logout: vi.fn() }}>
           <HomePage />
         </AuthContext.Provider>
       </MemoryRouter>,
     );
     expect(screen.getByText("A deep dive for one or more players")).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /sign in to dive/i })).toHaveAttribute("href", "/login");
+    expect(screen.getByRole("link", { name: "Create account" })).toHaveAttribute("href", "/register");
   });
 });

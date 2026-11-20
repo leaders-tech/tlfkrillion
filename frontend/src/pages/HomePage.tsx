@@ -144,6 +144,7 @@ export function HomePage({ onConnectionStatus }: { onConnectionStatus?: (status:
         <Link className="primary-button" to="/login">
           Sign in to dive <span aria-hidden="true">↓</span>
         </Link>
+        <Link className="primary-button" to="/register">Create account</Link>
       </SurfaceMenu>
     );
   }

@@ -1,4 +1,4 @@
-"""Handle login, refresh, logout, and current-user auth endpoints.
+"""Handle registration, login, refresh, logout, and current-user auth endpoints.
 
 Edit this file when auth endpoint behavior, cookies, or refresh-session rules change.
 Copy the route and helper pattern here when you add another small auth endpoint group.
@@ -10,10 +10,12 @@ import hmac
 from datetime import UTC, datetime, timedelta
 from typing import Any
 
+import aiosqlite
 from aiohttp import web
 
 from backend.app_keys import DB, SETTINGS
 from backend.auth.access import require_user
+from backend.auth.accounts import create_player
 from backend.auth.passwords import verify_password
 from backend.auth.tokens import build_access_token, create_refresh_token_pair, hash_refresh_token
 from backend.config import Settings
@@ -68,11 +70,28 @@ async def login(request: web.Request) -> web.Response:
         raise AppError(400, "bad_request", "Username and password are required.")
 
     db = request.app[DB]
-    settings = request.app[SETTINGS]
     user_row = await get_user_by_username(db, username)
     if user_row is None or not verify_password(user_row["password_hash"], password):
         raise AppError(401, "invalid_credentials", "Wrong username or password.")
+    return await _sign_in(request, user_row)
 
+
+async def register(request: web.Request) -> web.Response:
+    require_allowed_origin(request)
+    payload = await read_json(request)
+    username = payload.get("username")
+    password = payload.get("password")
+    if isinstance(password, str) and len(password) > 128:
+        raise AppError(400, "bad_request", "Password must be at most 128 characters.")
+    if isinstance(username, str):
+        username = username.strip()
+    user_row = await create_player(request.app[DB], username, password)
+    return await _sign_in(request, user_row, status=201)
+
+
+async def _sign_in(request: web.Request, user_row: aiosqlite.Row, *, status: int = 200) -> web.Response:
+    db = request.app[DB]
+    settings = request.app[SETTINGS]
     old_cookie = _parse_refresh_cookie(request.cookies.get(settings.refresh_cookie_name))
     if old_cookie is not None:
         await delete_session(db, old_cookie[0])
@@ -84,7 +103,7 @@ async def login(request: web.Request) -> web.Response:
     await create_session(db, session_id, user_row["id"], hash_refresh_token(settings, raw_token), expires_at)
 
     user = row_to_user(user_row)
-    response = ok({"user": user})
+    response = ok({"user": user}, status=status)
     _set_auth_cookies(response, settings, user, f"{session_id}.{raw_token}")
     return response
 
@@ -145,6 +164,7 @@ async def me(request: web.Request) -> web.Response:
 
 
 def setup_auth_routes(app: web.Application) -> None:
+    app.router.add_post("/api/auth/register", register)
     app.router.add_post("/api/auth/login", login)
     app.router.add_post("/api/auth/refresh", refresh)
     app.router.add_post("/api/auth/logout", logout)

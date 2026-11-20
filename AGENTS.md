@@ -16,7 +16,8 @@
 - Players can start a seven-prompt dive or an Endless solo dive. All results include an expandable rarity table for each prompt played.
 - The home menu lets players choose all categories or one category for solo, Endless, and hosted room dives.
 - Online play includes Casual group matchmaking, Ranked 1v1, persistent Elo, and achievement skins in the player profile.
-- Reused foundation: signed-in user/admin accounts, session cookies, aiohttp/React routing, deployment setup, and PWA shell.
+- Player accounts support public username-and-password registration with automatic sign-in. Admin accounts are provisioned separately.
+- Reused foundation: session cookies, aiohttp/React routing, deployment setup, and PWA shell.
 - Remaining starter material: the historical notes-table migration, which stays to preserve existing database migration history, and template-oriented development examples.
 
 ## Working defaults

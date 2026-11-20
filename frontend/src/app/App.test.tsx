@@ -28,7 +28,7 @@ const adminValue: User = { ...userValue, id: 1, username: "admin", is_admin: tru
 function renderApp(path: string, user: User | null, logout = vi.fn()) {
   return render(
     <MemoryRouter initialEntries={[path]}>
-      <AuthContext.Provider value={{ user, loading: false, login: vi.fn(), logout }}>
+      <AuthContext.Provider value={{ user, loading: false, login: vi.fn(), register: vi.fn(), logout }}>
         <App />
       </AuthContext.Provider>
     </MemoryRouter>,

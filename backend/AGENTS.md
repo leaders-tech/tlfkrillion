@@ -10,7 +10,8 @@
 - `game/rooms.py` runs classic and Endless dives. It sends the answer review only when a run finishes.
 - Room creation accepts an optional category, and only selects playable questions from it.
 - Online progression lives in `game/matchmaking.py`, `game/rewards.py`, and `db/progression.py`. Settlement is idempotent and commits Elo and skins together.
-- Reused foundation: signed-in player/admin accounts, auth routes, SQLite migration runner, and the WebSocket connection hub.
+- Public registration in `auth/routes.py` creates ordinary players and issues the same session cookies as login. Registration and admin provisioning share player credential rules in `auth/accounts.py`.
+- Reused foundation: session handling, SQLite migration runner, and the WebSocket connection hub.
 - Remaining starter material: the historical notes-table migration, retained so existing databases keep their migration history; its API, query code, and tests are removed.
 - When the transition is complete, remove template inventories and all template-specific wording and instructions here; retain only instructions for the user's backend.
 

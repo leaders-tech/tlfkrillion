@@ -1,5 +1,5 @@
 /*
-This file keeps the frontend auth state, login helpers, and session loading logic.
+This file keeps the frontend auth state, account helpers, and session loading logic.
 Edit this file when login, logout, refresh, or current-user browser behavior changes.
 Copy the provider and hook pattern here when you add another small shared frontend context.
 */
@@ -12,6 +12,7 @@ type AuthContextValue = {
   user: User | null;
   loading: boolean;
   login: (username: string, password: string) => Promise<void>;
+  register: (username: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
 };
 
@@ -104,19 +105,24 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, [user]);
 
   const value = useMemo<AuthContextValue>(
-    () => ({
-      user,
-      loading,
-      async login(username: string, password: string) {
-        const data = await postJson<{ user: User }>("/auth/login", { username, password });
+    () => {
+      async function signIn(path: string, username: string, password: string) {
+        const data = await postJson<{ user: User }>(path, { username, password });
         setError("");
         setUser(data.user);
-      },
-      async logout() {
-        await postJson<{ logged_out: boolean }>("/auth/logout");
-        setUser(null);
-      },
-    }),
+      }
+
+      return {
+        user,
+        loading,
+        login: (username, password) => signIn("/auth/login", username, password),
+        register: (username, password) => signIn("/auth/register", username, password),
+        async logout() {
+          await postJson<{ logged_out: boolean }>("/auth/logout");
+          setUser(null);
+        },
+      };
+    },
     [loading, user],
   );
 

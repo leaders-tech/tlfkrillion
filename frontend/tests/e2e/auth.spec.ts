@@ -5,6 +5,25 @@ Edit it when account, multiplayer, or question editor flows change; copy a scena
 
 import { expect, test, type Page } from "@playwright/test";
 
+test("a new player can register, reload, and start a dive", async ({ page }) => {
+  const errors: string[] = [];
+  page.on("pageerror", (error) => errors.push(error.message));
+  page.on("requestfailed", (request) => errors.push(request.url()));
+  await page.goto("/");
+  await page.getByRole("link", { name: "Create account" }).click();
+  await expect(page).toHaveURL("/register");
+  await page.getByLabel("Username").fill(`newdiver${Date.now()}`);
+  await page.getByLabel("Password").fill("new-player-password");
+  const registration = page.waitForResponse((response) => response.url().endsWith("/api/auth/register"));
+  await page.getByRole("button", { name: "Create account" }).click();
+  expect((await registration).status()).toBe(201);
+  await expect(page).toHaveURL("/");
+  await page.reload();
+  await page.getByRole("button", { name: "Play solo" }).click();
+  await expect(page.getByText("Prompt 1 of 7")).toBeVisible();
+  expect(errors).toEqual([]);
+});
+
 async function signIn(page: Page, username: string, password: string) {
   await page.goto("/login");
   await page.getByLabel("Username").fill(username);

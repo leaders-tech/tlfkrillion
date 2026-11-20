@@ -17,6 +17,7 @@ const anonymousValue = {
   user: null,
   loading: false,
   login: vi.fn().mockResolvedValue(undefined),
+  register: vi.fn(),
   logout: vi.fn(),
 };
 
@@ -29,6 +30,23 @@ const adminUser: User = {
 };
 
 describe("LoginPage", () => {
+  it("submits the registration form and shows a duplicate username error", async () => {
+    const register = vi.fn().mockRejectedValue(new Error("That username is already taken."));
+    render(
+      <MemoryRouter>
+        <AuthContext.Provider value={{ ...anonymousValue, register }}>
+          <LoginPage signup />
+        </AuthContext.Provider>
+      </MemoryRouter>,
+    );
+
+    await userEvent.type(screen.getByLabelText("Username"), "ocean-diver");
+    await userEvent.type(screen.getByLabelText("Password"), "new-password");
+    await userEvent.click(screen.getByRole("button", { name: "Create account" }));
+    expect(register).toHaveBeenCalledWith("ocean-diver", "new-password");
+    expect(await screen.findByRole("alert")).toHaveTextContent("That username is already taken.");
+  });
+
   it("starts with empty username and password fields", () => {
     render(
       <MemoryRouter>

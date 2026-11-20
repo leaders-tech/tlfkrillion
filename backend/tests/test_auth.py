@@ -42,6 +42,41 @@ async def test_login_success_and_me(client, create_user, auth_headers) -> None:
 
 
 @pytest.mark.asyncio
+async def test_register_creates_signed_in_player_and_rejects_duplicate(client, auth_headers) -> None:
+    credentials = {"username": "reef-diver", "password": "new-password", "is_admin": True}
+    response = await client.post("/api/auth/register", json=credentials, headers=auth_headers)
+    assert response.status == 201
+    user = (await response.json())["data"]["user"]
+    assert user["username"] == "reef-diver"
+    assert user["is_admin"] is False
+    assert "password_hash" not in user
+    assert (await client.post("/api/auth/me", json={})).status == 200
+    assert (await client.post("/api/auth/refresh", json={}, headers=auth_headers)).status == 200
+
+    duplicate = await client.post("/api/auth/register", json={**credentials, "password": "other-password"}, headers=auth_headers)
+    assert duplicate.status == 409
+    assert (await duplicate.json())["error"]["code"] == "already_exists"
+    await login(client, "reef-diver", "new-password", auth_headers)
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("username,password", [("x", "new-password"), ("good-name", "short"), ("good-name", "a" * 129), (12345, "new-password")])
+async def test_register_rejects_invalid_credentials(client, auth_headers, username, password) -> None:
+    response = await client.post("/api/auth/register", json={"username": username, "password": password}, headers=auth_headers)
+    assert response.status == 400
+
+
+@pytest.mark.asyncio
+async def test_register_rejects_foreign_origin(client) -> None:
+    response = await client.post(
+        "/api/auth/register",
+        json={"username": "reef-diver", "password": "new-password"},
+        headers={"Origin": "https://other.example"},
+    )
+    assert response.status == 403
+
+
+@pytest.mark.asyncio
 async def test_login_invalid_credentials(client, create_user, auth_headers) -> None:
     await create_user("user", "user")
     response = await client.post("/api/auth/login", json={"username": "user", "password": "wrong"}, headers=auth_headers)

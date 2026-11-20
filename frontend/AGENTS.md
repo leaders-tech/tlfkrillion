@@ -11,7 +11,8 @@
 - The home screen supports Casual and Ranked queues. Profile shows progression and achievement skins, and the profile and dive scene share a dedicated pixel sprite from `public/skins/<skin-id>.png` for each unlocked cosmetic. Keep skin IDs aligned with the backend reward catalog. Sprites use a 52×40 pixel canvas with a thin outline in each sprite's own dark color and no enclosed transparency. Show the name and artwork for locked secret skins. Keep their answer masked until unlock.
 - Sevenfold Prism rewards a single classic dive with all six scored rarities and one round that expires without a submission.
 - The admin role displays the Abyss Architect rank and grants the Aurora Regent sprite.
-- Reused foundation: login/auth provider with periodic cookie refresh in `src/app/auth.tsx` and shared WebSocket reconnect helper.
+- The home and login pages link to public registration at `/register`. `src/pages/LoginPage.tsx` renders both forms, and the auth provider signs in new players on success.
+- Reused foundation: periodic cookie refresh in `src/app/auth.tsx` and shared WebSocket reconnect helper.
 - Remaining starter material: none in active frontend code; the dashboard and notes demo have been removed.
 - When the transition is complete, remove template inventories and all template-specific wording and instructions here. Keep instructions that describe the user's frontend.
 
