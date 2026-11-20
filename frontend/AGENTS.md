@@ -15,7 +15,7 @@
 - Sevenfold Prism rewards a single classic dive with all six scored rarities and one round that expires without a submission.
 - `src/pages/SkinUnlockReveal.tsx` animates new rewards in the dive results and keeps their cards visible when a result is reopened.
 - The admin role displays the Abyss Architect rank and grants the Aurora Regent sprite.
-- All players display their rank under their username. The highest ranks have gradient and glow effects.
+- Usernames use their rank colours in the main menu and matches. The highest ranks have gradient and glow effects, and rank labels appear in profiles and dives.
 - The home and login pages link to public registration at `/register`. `src/pages/LoginPage.tsx` renders both forms, and the auth provider signs in new players on success.
 - Reused foundation: periodic cookie refresh in `src/app/auth.tsx` and shared WebSocket reconnect helper.
 - Remaining starter material: none in active frontend code; the dashboard and notes demo have been removed.

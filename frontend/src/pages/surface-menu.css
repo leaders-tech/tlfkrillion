@@ -86,9 +86,8 @@ Edit it for menu layout or scenery changes. Copy its layout for another scenic m
 }
 
 .surface-title h2 span { color: #ffbb84; }
-.surface-title h2 .admin-rank-text {
+.surface-title h2 .rank-name[data-rank] {
   text-shadow: none;
-  filter: drop-shadow(0 2px 2px #10263c99);
 }
 .surface-title p {
   margin: 13px 0 0;

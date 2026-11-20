@@ -18,7 +18,7 @@
 - Dive results reveal newly unlocked skins with their pixel sprites. The animation plays once per dive in a browser and honors reduced motion.
 - The home menu lets players choose all categories or one category for solo, Endless, and hosted room dives.
 - Online play includes Casual group matchmaking, Ranked 1v1, reconnect grace for queues, persistent Elo, and achievement skins. The admin screen can inspect each account's profile and stats.
-- Player rank appears under usernames in the lobby, profile, and dive, with visual effects for the highest ranks.
+- Usernames use rank colours or effects in the lobby and dives. Rank labels appear in profiles and dives.
 - The Ranked lobby at `/ranked` offers immediate any-Elo search, a rating history graph, and the server's rank boundaries. Ranked rating changes scale with the Elo gap and are capped at 256 points per match.
 - Player accounts support public username-and-password registration with automatic sign-in. Admin accounts are provisioned separately.
 - Reused foundation: session cookies, aiohttp/React routing, deployment setup, and PWA shell.

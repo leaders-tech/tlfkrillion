@@ -332,8 +332,7 @@ export function HomePage({ onConnectionStatus }: { onConnectionStatus?: (status:
       <SurfaceMenu
         title={
           <>
-            <h2>Ready to dive, {user.username}?</h2>
-            {rank && <small className="rank-badge" data-rank={rank.minimum} style={{ color: rank.color }}>{rank.name}</small>}
+            <h2>Ready to dive, <span className="rank-name" data-rank={rank?.minimum} style={{ color: rank?.color }}>{user.username}</span>?</h2>
           </>
         }
       >
@@ -445,7 +444,7 @@ function PlayerList({ players, hostId, compact = false }: { players: RoomMessage
         <div className="player-row" key={player.id}>
           <span className="player-avatar">{player.username.slice(0, 1).toUpperCase()}</span>
           <span className="player-name">
-            {player.username}
+            <span className="rank-name" data-rank={(player.rank || player.admin_rank)?.minimum} style={{ color: (player.rank || player.admin_rank)?.color }}>{player.username}</span>
             {(player.rank || player.admin_rank) && <small className="rank-badge" data-rank={(player.rank || player.admin_rank)!.minimum} style={{ color: (player.rank || player.admin_rank)!.color }}>{(player.rank || player.admin_rank)!.name}</small>}
             {player.id === hostId && <small>Host</small>}
             {player.checking && <small className="ready-tag">Checking</small>}
