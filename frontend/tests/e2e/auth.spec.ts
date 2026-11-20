@@ -175,6 +175,11 @@ test("players create a room, join by code, and see the same timed prompt", async
 test("admin can add and remove a prompt", async ({ page }) => {
   await signIn(page, "admin", "admin");
   await page.goto("/admin");
+  const search = page.getByRole("searchbox", { name: "Search questions" });
+  await search.fill("Jupietr moon");
+  await expect(page.getByRole("heading", { name: "Name a moon of Jupiter." })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Name a type of pasta." })).toHaveCount(0);
+  await search.clear();
   await page.getByLabel("Filter by category").selectOption("Space");
   await expect(page.getByRole("heading", { name: "Name a moon of Jupiter." })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Name a type of pasta." })).toHaveCount(0);
@@ -194,6 +199,13 @@ test("admin can add and remove a prompt", async ({ page }) => {
   await page.getByLabel("Temporary password").fill("deep-ocean-pass");
   await page.getByRole("button", { name: "Create player account" }).click();
   await expect(page.getByText(username, { exact: true })).toBeVisible();
+  await page.getByRole("button", { name: `${username} Player` }).click();
+  const profile = page.getByRole("region", { name: `${username}'s profile` });
+  await expect(profile.getByText("1,000 Elo")).toBeVisible();
+  await expect(profile.getByText(/0 completed dives/)).toBeVisible();
+  await expect(profile.getByRole("heading", { name: "Skins" })).toBeVisible();
+  await page.getByRole("button", { name: "admin Admin", exact: true }).click();
+  await expect(page.getByRole("region", { name: "admin's profile" }).getByText("50,000 Elo")).toBeVisible();
 });
 
 test("session refresh restores sign-in and regular users cannot open the question editor", async ({ page, context }) => {
@@ -276,8 +288,12 @@ test("online queues, Ranked reconnect and earned skins", async ({ page, browser 
     const [rankedWinner, rankedLoser] = divers;
     for (const player of [rankedWinner, rankedLoser]) {
       await player.getByRole("button", { name: "Back to lobby" }).click();
-      await player.getByRole("button", { name: "Ranked 1v1" }).click();
     }
+    await rankedWinner.getByRole("button", { name: "Ranked 1v1" }).click();
+    await expect(rankedWinner.getByText(/Searching for a Ranked match/)).toBeVisible();
+    await rankedWinner.reload();
+    await expect(rankedWinner.getByText(/Searching for a Ranked match/)).toBeVisible();
+    await rankedLoser.getByRole("button", { name: "Ranked 1v1" }).click();
     await expect(rankedWinner.locator(".diving-krill")).toHaveCount(2);
     const prompt = await rankedWinner.locator(".question-panel h2").innerText();
     await rankedWinner.reload();

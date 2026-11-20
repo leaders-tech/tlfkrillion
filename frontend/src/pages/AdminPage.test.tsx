@@ -17,6 +17,22 @@ describe("AdminPage", () => {
     postJson.mockReset().mockImplementation((path: string) => Promise.resolve(path === "/admin/users/list" ? { users: [] } : { questions: [] })),
   );
 
+  it("searches the full question bank using misspelled answers and aliases", async () => {
+    const questions = [
+      { id: 1, prompt: "Name a stringed instrument.", hint: "", category: "Music", use_model: true, answers: [{ answer: "Violin", aliases: ["Fiddle"], tier: "plankton" }] },
+      { id: 2, prompt: "Name a string theory.", hint: "", category: "Mathematics", use_model: false, answers: [] },
+    ];
+    postJson.mockImplementation((path: string) => Promise.resolve(path === "/admin/users/list" ? { users: [] } : { questions }));
+    const user = userEvent.setup();
+    render(<AdminPage />);
+    await screen.findByRole("heading", { name: questions[1].prompt });
+    const search = screen.getByRole("searchbox", { name: "Search questions" });
+    await user.type(search, "music fidlde violn");
+    expect(screen.getByRole("heading", { name: questions[0].prompt })).toBeVisible();
+    expect(screen.queryByRole("heading", { name: questions[1].prompt })).not.toBeInTheDocument();
+    expect(screen.getByRole("status")).toHaveTextContent("1 of 2 prompts");
+  });
+
   it("saves a prompt with rarity tiers and aliases", async () => {
     const user = userEvent.setup();
     render(<AdminPage />);

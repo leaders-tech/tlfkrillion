@@ -33,6 +33,8 @@ def test_casual_fill_and_ranked_search_window():
     queue.join({"id": 2}, "ranked", 2000)
     assert queue.match(first.joined + 59) is None
     assert queue.match(first.joined + 60)[0] == "ranked"
+    queue.disconnected[1] = first.joined + 59
+    assert queue.match(first.joined + 60) is None
 
 
 def test_elo_and_rank_boundaries():
@@ -157,6 +159,58 @@ async def pair(client, create_user, headers):
     room = await receive(first, lambda message: message.get("status") == "playing")
     await receive(second, lambda message: message.get("status") == "playing")
     return first, second, first_id, second_id, room["code"]
+
+
+@pytest.mark.asyncio
+async def test_ranked_queue_resumes_after_disconnect_and_ignores_old_room(client, create_user, auth_headers):
+    await create_user("diver1", "password")
+    await create_user("diver2", "password")
+    first, first_id = await connect(client, "diver1", auth_headers)
+    await first.send_json({"type": "game.create"})
+    old_code = (await receive(first, lambda message: message.get("status") == "lobby"))["code"]
+    await first.send_json({"type": "game.queue", "mode": "ranked"})
+    queued = await receive(first, lambda message: message.get("mode") == "ranked")
+    assert queued["open_after"] == 60
+    matchmaker = client.app[GAME_ROOMS].matchmaking
+    entry = matchmaker.entries[first_id]
+    await first.close()
+    async with asyncio.timeout(2):
+        while first_id not in matchmaker.disconnected:
+            await asyncio.sleep(.01)
+
+    second, _ = await connect(client, "diver2", auth_headers)
+    await second.send_json({"type": "game.queue", "mode": "ranked"})
+    await receive(second, lambda message: message.get("mode") == "ranked")
+    assert matchmaker.match(entry.joined + 60) is None
+
+    resumed, _ = await connect(client, "diver1", auth_headers)
+    await resumed.send_json({"type": "game.online_status", "code": old_code})
+    state = await resumed.receive_json(timeout=5)
+    assert state.get("mode") == "ranked" or state.get("online") == "ranked"
+    assert state.get("code") != old_code
+    if state.get("status") != "playing":
+        state = await receive(resumed, lambda message: message.get("status") == "playing")
+    assert state["code"] == (await receive(second, lambda message: message.get("status") == "playing"))["code"]
+    assert len(state["players"]) == 2
+
+
+@pytest.mark.asyncio
+async def test_admin_can_view_each_account_profile(client, create_user, auth_headers):
+    await create_user("staff", "password", is_admin=True)
+    await create_user("diver", "password")
+    await login(client, "staff", "password", auth_headers)
+    accounts = await client.post("/api/admin/users/list", json={})
+    account_ids = {user["username"]: user["id"] for user in (await accounts.json())["data"]["users"]}
+    endpoint = "/api/admin/users/profile"
+    for name, elo in (("staff", 50_000), ("diver", 1000)):
+        result = await client.post(endpoint, json={"id": account_ids[name]})
+        data = (await result.json())["data"]
+        assert result.status == 200 and data["elo"] == elo and data["dives"] == 0 and data["skins"]
+        assert "password_hash" not in data
+    assert (await client.post(endpoint, json={"id": True})).status == 400
+    assert (await client.post(endpoint, json={"id": max(account_ids.values()) + 1})).status == 404
+    await login(client, "diver", "password", auth_headers)
+    assert (await client.post(endpoint, json={"id": account_ids["staff"]})).status == 403
 
 
 @pytest.mark.asyncio

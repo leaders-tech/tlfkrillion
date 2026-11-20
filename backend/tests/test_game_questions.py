@@ -18,6 +18,7 @@ from backend.app_keys import GAME_ROOMS
 from backend.db.game_questions import get_random_questions, list_questions
 from backend.db.migrations import run_migrations
 from backend.db.question_pack import MIN_ANSWERS, PACK_V1, PACK_V2, read_pack
+from backend.game.answer_match import find_answer
 from backend.game.routes import validate_question
 from backend.tests.conftest import login
 
@@ -37,6 +38,41 @@ QUESTION = {
         ],
     ],
 }
+
+
+@pytest.mark.parametrize(("typed", "expected"), [
+    ("ganyemede", "Ganymede"),
+    ("calilsto", "Callisto"),
+    ("  io-moon  ", "Io"),
+    ("Iu", None),
+    ("Saturn", None),
+    ("Carme", "Carme"),
+    ("Carem", None),  # A transposition of Carme and one substitution away from Carès.
+    ("cares", "Carnegie"),
+])
+def test_answer_matching_accepts_only_clear_typos(typed, expected):
+    answers = [*QUESTION["answers"], {"answer": "Carnegie", "aliases": ["Carès"], "tier": "rare"}]
+    match = find_answer(typed.strip(), answers)
+    assert (match["answer"] if match else None) == expected
+
+
+@pytest.mark.asyncio
+async def test_typos_score_with_ai_disabled(client, create_user, auth_headers, monkeypatch):
+    bank = {**QUESTION, "use_model": False}
+    monkeypatch.setattr("backend.game.rooms.get_random_questions", AsyncMock(return_value=[bank] * 7))
+    checker = AsyncMock()
+    monkeypatch.setattr("backend.game.rooms.check_answer", checker)
+    await create_user("diver", "password")
+    await login(client, "diver", "password", auth_headers)
+    async with client.ws_connect("/ws") as ws:
+        await ws.receive_json()
+        await ws.send_json({"type": "game.create_solo"})
+        game = await ws.receive_json()
+        await ws.send_json({"type": "game.answer", "code": game["code"], "answer": "calilsto"})
+        result = await ws.receive_json()
+    assert result["players"][0]["last_answer"] == "Callisto"
+    assert result["players"][0]["score"] == 30
+    checker.assert_not_called()
 
 
 def test_built_in_bank_has_valid_prompts_across_categories() -> None:

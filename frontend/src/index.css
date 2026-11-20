@@ -471,12 +471,17 @@ textarea:focus {
   margin-bottom: 12px;
   color: #adc6d0;
 }
-.question-filter select {
+.question-filter select,
+.question-filter input {
   padding: 6px 10px;
   border: 1px solid var(--line);
   background: #0a2131;
   color: #e7f8fc;
   font: inherit;
+}
+.question-filter input {
+  flex: 1 1 12rem;
+  min-width: 0;
 }
 .question-card {
   display: flex;
@@ -571,16 +576,26 @@ textarea:focus {
 .account-row {
   display: flex;
   justify-content: space-between;
+  width: 100%;
   padding: 8px 0;
   border-top: 1px solid rgba(150, 209, 226, 0.1);
   color: #d4e9ef;
   font-size: 0.8rem;
+  text-align: left;
+  cursor: pointer;
 }
 .account-row small {
   color: #6d96a5;
   font-size: 0.56rem;
   font-weight: 900;
   letter-spacing: 0.1em;
+}
+.account-row:hover,
+.account-row[aria-expanded="true"] {
+  border-color: var(--cyan);
+}
+.admin-account-profile {
+  padding: 12px 0;
 }
 
 body:has(.question-editor),

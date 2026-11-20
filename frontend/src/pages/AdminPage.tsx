@@ -3,8 +3,11 @@ This admin page creates and edits game prompts and accepted rarity answers.
 Edit it when question bank fields or admin editing behavior changes; copy it for another small admin editor.
 */
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { postJson } from "../shared/api";
+import { matchesQuestionSearch, searchWords } from "../shared/questionSearch";
+import type { Profile } from "../shared/types";
+import { ProfileDetails } from "./ProfilePage";
 
 type Tier = "plankton" | "too_clever" | "schooler" | "rare" | "deep_cut" | "krillion";
 type Answer = { answer: string; aliases: string[]; tier: Tier };
@@ -28,6 +31,7 @@ export function AdminPage() {
   const [hint, setHint] = useState("");
   const [category, setCategory] = useState("General");
   const [categoryFilter, setCategoryFilter] = useState("");
+  const [search, setSearch] = useState("");
   const [useModel, setUseModel] = useState(true);
   const [answerLines, setAnswerLines] = useState("");
   const [error, setError] = useState("");
@@ -35,9 +39,20 @@ export function AdminPage() {
   const [playerName, setPlayerName] = useState("");
   const [playerPassword, setPlayerPassword] = useState("");
   const [playerMessage, setPlayerMessage] = useState("");
+  const [profileId, setProfileId] = useState<number | null>(null);
   const categories = [...new Set(["General", ...questions.map((question) => question.category)])].sort();
   const selectedCategory = categories.includes(categoryFilter) ? categoryFilter : "";
-  const visibleQuestions = questions.filter((question) => !selectedCategory || question.category === selectedCategory);
+  const questionIndex = useMemo(() => questions.map((question) => ({
+    question,
+    words: searchWords([
+      question.prompt, question.hint, question.category,
+      ...question.answers.flatMap(({ answer, aliases }) => [answer, ...aliases]),
+    ].join(" ")),
+  })), [questions]);
+  const query = searchWords(search);
+  const visibleQuestions = questionIndex
+    .filter(({ question, words }) => (!selectedCategory || question.category === selectedCategory) && matchesQuestionSearch(query, words))
+    .map(({ question }) => question);
 
   const loadQuestions = () => postJson<{ questions: Question[] }>("/game/questions/list").then((data) => setQuestions(data.questions));
   const loadPlayers = () => postJson<{ users: Player[] }>("/admin/users/list").then((data) => setPlayers(data.users));
@@ -190,13 +205,18 @@ export function AdminPage() {
           <div className="question-list">
             <p className="eyebrow">Saved prompts</p>
             <label className="question-filter">
+              Search questions
+              <input type="search" value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Prompt, hint, answer, or alias" />
+            </label>
+            <label className="question-filter">
               Filter by category
               <select value={selectedCategory} onChange={(event) => setCategoryFilter(event.target.value)}>
                 <option value="">All categories</option>
                 {categories.map((name) => <option key={name}>{name}</option>)}
               </select>
             </label>
-            {visibleQuestions.length === 0 && <p>No prompts in this category.</p>}
+            {(query.length > 0 || selectedCategory) && <p role="status">{visibleQuestions.length} of {questions.length} prompts</p>}
+            {visibleQuestions.length === 0 && <p>{query.length > 0 ? "No matching prompts." : "No prompts in this category."}</p>}
             {visibleQuestions.map((question) => (
               <article className="question-card" key={question.id}>
                 <div>
@@ -216,9 +236,9 @@ export function AdminPage() {
             ))}
           </div>
           <section className="player-admin">
-            <p className="eyebrow">Player accounts · {players.filter((player) => !player.is_admin).length}</p>
+            <p className="eyebrow">Accounts · {players.length}</p>
             <h3>Invite your crew</h3>
-            <p>Create a sign-in for each player so everyone can join a room.</p>
+            <p>Create a player account or open an existing profile.</p>
             <form onSubmit={(event) => void createPlayer(event)}>
               <label>
                 Username
@@ -249,14 +269,42 @@ export function AdminPage() {
             </form>
             {playerMessage && <p className="saved-message">{playerMessage}</p>}
             {players.map((player) => (
-              <div className="account-row" key={player.id}>
-                <span>{player.username}</span>
-                <small>{player.is_admin ? "Admin" : "Player"}</small>
+              <div key={player.id}>
+                <button
+                  className="account-row"
+                  type="button"
+                  aria-expanded={profileId === player.id}
+                  onClick={() => setProfileId(profileId === player.id ? null : player.id)}
+                >
+                  <span>{player.username}</span>
+                  <small>{player.is_admin ? "Admin" : "Player"}</small>
+                </button>
+                {profileId === player.id && <AccountProfile key={player.id} player={player} />}
               </div>
             ))}
           </section>
         </div>
       </div>
+    </section>
+  );
+}
+
+function AccountProfile({ player }: { player: Player }) {
+  const [profile, setProfile] = useState<Profile>();
+  const [error, setError] = useState("");
+  useEffect(() => {
+    let active = true;
+    postJson<Profile>("/admin/users/profile", { id: player.id }).then(
+      (result) => { if (active) setProfile(result); },
+      (failure: Error) => { if (active) setError(failure.message); },
+    );
+    return () => { active = false; };
+  }, [player.id]);
+
+  return (
+    <section className="admin-account-profile" aria-label={`${player.username}'s profile`}>
+      {error && <p role="alert">{error}</p>}
+      {profile ? <ProfileDetails profile={profile} /> : !error && <p role="status">Loading profile…</p>}
     </section>
   );
 }

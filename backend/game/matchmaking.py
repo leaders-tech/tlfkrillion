@@ -4,6 +4,7 @@ from dataclasses import dataclass
 
 CASUAL_FILL_SECONDS = 15
 RECONNECT_SECONDS = 30
+RANKED_OPEN_SECONDS = 60
 
 
 @dataclass
@@ -36,17 +37,21 @@ class Matchmaking:
         return entry
 
     def match(self, now):
-        casual = [entry for entry in self.entries.values() if entry.mode == "casual"]
+        connected = [entry for user_id, entry in self.entries.items() if user_id not in self.disconnected]
+        casual = [entry for entry in connected if entry.mode == "casual"]
         if len(casual) >= 2:
             if self.casual_ready is None:
                 self.casual_ready = now
             if len(casual) >= 4 or now - self.casual_ready >= CASUAL_FILL_SECONDS:
                 return "casual", casual[:4]
 
-        ranked = [entry for entry in self.entries.values() if entry.mode == "ranked"]
+        else:
+            self.casual_ready = None
+
+        ranked = [entry for entry in connected if entry.mode == "ranked"]
         for index, entry in enumerate(ranked):
             wait = now - entry.joined
-            radius = float("inf") if wait >= 60 else 100 * (1 + int(max(0, wait) // 15))
+            radius = float("inf") if wait >= RANKED_OPEN_SECONDS else 100 * (1 + int(max(0, wait) // 15))
             eligible = [other for other in ranked[index + 1:] if abs(other.elo - entry.elo) <= radius]
             if eligible:
                 return "ranked", [entry, min(eligible, key=lambda other: abs(other.elo - entry.elo))]

@@ -39,12 +39,29 @@ export type Skin = {
 };
 
 export type Rank = { name: string; color: string; minimum: number };
+export type Profile = {
+  elo: number;
+  rank: Rank;
+  skin: string;
+  dives: number;
+  best_depth: number;
+  wins: number;
+  losses: number;
+  draws: number;
+  streak: number;
+  skins: (Skin & {
+    requirement: string;
+    unlocked: boolean;
+    progress?: { label: string; value: number; target: number };
+  })[];
+};
+
 export type OnlineMode = "casual" | "ranked";
 
 export type WsMessage =
   | { type: "ws.ready"; user_id: number; connections: number }
   | { type: "pong" }
-  | { type: "game.queue"; mode: OnlineMode | null; elapsed: number }
+  | { type: "game.queue"; mode: OnlineMode | null; elapsed: number; open_after?: number | null }
   | { type: "game.categories"; categories: { name: string; count: number }[] }
   | {
       type: "game.room";

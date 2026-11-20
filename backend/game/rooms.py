@@ -20,7 +20,8 @@ import aiosqlite
 from backend.db.game_questions import add_verified_answer, get_random_questions, list_playable_categories
 from backend.db.progression import player_stats, save_void_result, saved_result, settle
 from backend.game.answer_checker import AnswerCheckError, check_answer
-from backend.game.matchmaking import RECONNECT_SECONDS, Matchmaking
+from backend.game.answer_match import find_answer
+from backend.game.matchmaking import RANKED_OPEN_SECONDS, RECONNECT_SECONDS, Matchmaking
 from backend.game.rewards import rank_for, skin_catalog
 from backend.ws.hub import WebSocketHub
 
@@ -160,13 +161,14 @@ class GameRooms:
         return None
 
     def connected(self, user_id):
-        self.matchmaking.disconnected.pop(user_id, None)
+        disconnected_at = self.matchmaking.disconnected.pop(user_id, None)
+        if disconnected_at is not None and time.monotonic() - disconnected_at >= RECONNECT_SECONDS:
+            self.matchmaking.cancel(user_id)
 
     def disconnected(self, user_id):
         if self.hub.count_for_user(user_id) == 0:
             self.pending_queue.pop(user_id, None)
-            self.matchmaking.cancel(user_id)
-            if self._active_online(user_id):
+            if user_id in self.matchmaking.entries or self._active_online(user_id):
                 self.matchmaking.disconnected[user_id] = time.monotonic()
 
     async def _queue_status(self, user_id):
@@ -174,11 +176,15 @@ class GameRooms:
         elapsed = max(0, time.monotonic() - entry.joined) if entry else 0
         await self.hub.send_to_user(user_id, {
             "type": "game.queue", "mode": entry.mode if entry else None, "elapsed": int(elapsed),
+            "open_after": RANKED_OPEN_SECONDS if entry and entry.mode == "ranked" else None,
         })
 
     async def resume(self, user, raw_code):
         user_id = user["id"]
         room = self._active_online(user_id)
+        if not room and user_id in self.matchmaking.entries:
+            await self._queue_status(user_id)
+            return
         if not room and isinstance(raw_code, str):
             room = self._find_room(raw_code)
         if not room and raw_code is None:
@@ -220,6 +226,7 @@ class GameRooms:
             for user_id, disconnected_at in list(self.matchmaking.disconnected.items()):
                 if now - disconnected_at >= RECONNECT_SECONDS and self.matchmaking.disconnected.get(user_id) == disconnected_at:
                     self.matchmaking.disconnected.pop(user_id, None)
+                    self.matchmaking.cancel(user_id)
                     room = self._active_online(user_id)
                     if room and room["status"] == "playing":
                         await self._forfeit(room, user_id)
@@ -319,15 +326,7 @@ class GameRooms:
             return
         player["submitted"] = True
         answer_text = raw_answer.strip()
-        normalized = answer_text.casefold()
-        accepted = next(
-            (
-                answer
-                for answer in question["answers"]
-                if normalized == answer["answer"].casefold() or any(normalized == alias.casefold() for alias in answer.get("aliases", []))
-            ),
-            None,
-        )
+        accepted = find_answer(answer_text, question["answers"])
         if accepted is None and not question.get("use_model", True):
             await self._error(user["id"], "answer_not_accepted", "That answer is not in this question's accepted answers.")
             return
@@ -678,7 +677,7 @@ class GameRooms:
         snapshot = self._snapshot(room)
         for player_id in room["players"] if recipient is None else (recipient,):
             active = self._active_online(player_id)
-            if active is None or active is room:
+            if active is room or (active is None and player_id not in self.matchmaking.entries):
                 await self.hub.send_to_user(player_id, snapshot)
 
     async def _error(self, user_id: int, code: str, message: str) -> None:

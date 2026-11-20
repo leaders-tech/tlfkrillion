@@ -26,7 +26,7 @@ export function HomePage({ onConnectionStatus }: { onConnectionStatus?: (status:
   const [seconds, setSeconds] = useState(25);
   const [answerCallout, setAnswerCallout] = useState<{ tier: string; answer: string } | null>(null);
   const [error, setError] = useState("");
-  const [queue, setQueue] = useState<{ mode: OnlineMode; since: number } | null>(null);
+  const [queue, setQueue] = useState<{ mode: OnlineMode; since: number; openAfter: number | null } | null>(null);
   const [waitSeconds, setWaitSeconds] = useState(0);
   const socketRef = useRef<ReturnType<typeof createUserSocket> | null>(null);
   const roomCodeRef = useRef("");
@@ -48,7 +48,13 @@ export function HomePage({ onConnectionStatus }: { onConnectionStatus?: (status:
         } else if (message.type === "game.categories") {
           setCategories(message.categories);
         } else if (message.type === "game.queue") {
-          setQueue(message.mode ? { mode: message.mode, since: Date.now() - message.elapsed * 1000 } : null);
+          setWaitSeconds(message.elapsed);
+          setQueue(message.mode ? {
+            mode: message.mode,
+            since: Date.now() - message.elapsed * 1000,
+            openAfter: message.open_after ?? null,
+          } : null);
+          if (message.mode) setRoom(null);
         } else if (message.type === "game.room") {
           setQueue(null);
           if (message.status === "playing" && (message.code !== roomCodeRef.current || message.round !== roundRef.current)) {
@@ -282,16 +288,19 @@ export function HomePage({ onConnectionStatus }: { onConnectionStatus?: (status:
       >
         {error && <p role="alert" className="game-alert">{error}</p>}
         <div className="online-options">
-          <button className="primary-button" disabled={!!queue} onClick={() => { setWaitSeconds(0); send({ type: "game.queue", mode: "casual" }); }}>
+          <button className="primary-button" disabled={!!queue || status !== "connected"} onClick={() => send({ type: "game.queue", mode: "casual" })}>
             Casual Online
           </button>
-          <button className="secondary-button" disabled={!!queue} onClick={() => { setWaitSeconds(0); send({ type: "game.queue", mode: "ranked" }); }}>
+          <button className="secondary-button" disabled={!!queue || status !== "connected"} onClick={() => send({ type: "game.queue", mode: "ranked" })}>
             Ranked 1v1
           </button>
         </div>
         {queue && (
           <div className="queue-status">
             <p role="status">Searching for a {queue.mode === "ranked" ? "Ranked" : "Casual"} match · {waitSeconds}s</p>
+            {status !== "connected" ? <p>Reconnecting to matchmaking…</p> : queue.openAfter !== null && (
+              <p>{waitSeconds < queue.openAfter ? `Any Elo after ${queue.openAfter - waitSeconds}s` : "Waiting for an opponent at any Elo"}</p>
+            )}
             <button className="text-button" onClick={() => send({ type: "game.queue_cancel" })}>Cancel queue</button>
           </div>
         )}
