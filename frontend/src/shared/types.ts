@@ -80,7 +80,7 @@ export type WsMessage =
       online?: OnlineMode | null;
       status: "lobby" | "playing" | "finished" | "settling";
       host_id: number;
-      players: { id: number; username: string; score: number; answered: boolean; checking: boolean; last_answer: string | null; last_tier: string | null; skin?: Skin | null; admin_rank?: Rank | null; forfeited?: boolean }[];
+      players: { id: number; username: string; score: number; answered: boolean; checking: boolean; last_answer: string | null; last_tier: string | null; skin?: Skin | null; rank?: Rank | null; admin_rank?: Rank | null; forfeited?: boolean }[];
       question?: { prompt: string; hint: string; category: string; use_model?: boolean };
       round?: number;
       round_count?: number | null;

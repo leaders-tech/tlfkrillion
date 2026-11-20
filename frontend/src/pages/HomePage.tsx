@@ -14,6 +14,8 @@ import { AnswerReview } from "./AnswerReview";
 import { SurfaceMenu } from "./SurfaceMenu";
 import { RankedMenu } from "./RankedMenu";
 import { SkinUnlockReveal } from "./SkinUnlockReveal";
+import { postJson } from "../shared/api";
+import type { Rank } from "../shared/types";
 
 type RoomMessage = Extract<WsMessage, { type: "game.room" }>;
 
@@ -31,6 +33,7 @@ export function HomePage({ onConnectionStatus }: { onConnectionStatus?: (status:
   const [error, setError] = useState("");
   const [queue, setQueue] = useState<{ mode: OnlineMode; since: number; openAfter: number | null } | null>(null);
   const [waitSeconds, setWaitSeconds] = useState(0);
+  const [rank, setRank] = useState<Rank | null>(null);
   const socketRef = useRef<ReturnType<typeof createUserSocket> | null>(null);
   const roomCodeRef = useRef("");
   const roundRef = useRef<number | undefined>(undefined);
@@ -38,6 +41,15 @@ export function HomePage({ onConnectionStatus }: { onConnectionStatus?: (status:
   const lastAnswer = me?.last_answer;
   const lastTier = me?.last_tier;
   const currentRound = room?.round;
+
+  useEffect(() => {
+    if (!user) return;
+    let active = true;
+    postJson<{ rank: Rank }>("/game/profile").then((profile) => {
+      if (active) setRank(profile.rank);
+    }).catch(() => { if (active) setRank(null); });
+    return () => { active = false; };
+  }, [user, room?.status]);
 
   useEffect(() => {
     if (!user) return;
@@ -131,7 +143,10 @@ export function HomePage({ onConnectionStatus }: { onConnectionStatus?: (status:
       }
       return;
     }
-    if (room) send({ type: "game.leave", code: room.code });
+    if (room && !socketRef.current?.send({ type: "game.leave", code: room.code })) {
+      setError("Connecting to the game server. Try again in a moment.");
+      return;
+    }
     roomCodeRef.current = "";
     clearSavedRoomCode();
     setRoom(null);
@@ -240,6 +255,7 @@ export function HomePage({ onConnectionStatus }: { onConnectionStatus?: (status:
           <>
             {error && <p role="alert" className="game-alert">{error}</p>}
             {room.online && !me?.forfeited && <button className="text-button online-quit" onClick={leaveRoom}>Leave match</button>}
+            {room.mode === "solo" && <button className="text-button online-quit" onClick={leaveRoom}>Stop dive</button>}
             <div className="answer-dock">
               <span
                 className="timer"
@@ -316,7 +332,8 @@ export function HomePage({ onConnectionStatus }: { onConnectionStatus?: (status:
       <SurfaceMenu
         title={
           <>
-            <h2>Ready to dive, {user.is_admin ? <span className="admin-rank-text">{user.username}</span> : user.username}?</h2>
+            <h2>Ready to dive, {user.username}?</h2>
+            {rank && <small className="rank-badge" data-rank={rank.minimum} style={{ color: rank.color }}>{rank.name}</small>}
           </>
         }
       >
@@ -429,7 +446,7 @@ function PlayerList({ players, hostId, compact = false }: { players: RoomMessage
           <span className="player-avatar">{player.username.slice(0, 1).toUpperCase()}</span>
           <span className="player-name">
             {player.username}
-            {player.admin_rank && <small className="rank-badge" data-rank={player.admin_rank.minimum}>{player.admin_rank.name}</small>}
+            {(player.rank || player.admin_rank) && <small className="rank-badge" data-rank={(player.rank || player.admin_rank)!.minimum} style={{ color: (player.rank || player.admin_rank)!.color }}>{(player.rank || player.admin_rank)!.name}</small>}
             {player.id === hostId && <small>Host</small>}
             {player.checking && <small className="ready-tag">Checking</small>}
             {player.answered && <small className="ready-tag">Ready</small>}

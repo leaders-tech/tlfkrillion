@@ -45,24 +45,26 @@ export function ProfilePage() {
   return (
     <section className="profile-page">
       <p className="eyebrow">Player profile</p>
-      <h2>{user.username}</h2>
+      <h2 className="profile-name" data-rank={profile?.rank.minimum}>{user.username}</h2>
+      {profile && <span className="rank-badge" data-rank={profile.rank.minimum} style={{ color: profile.rank.color }}>{profile.rank.name}</span>}
       {error && <p role="alert">{error}</p>}
-      {profile && <ProfileDetails profile={profile} onEquip={equip} equipping={equipping} />}
+      {profile && <ProfileDetails profile={profile} onEquip={equip} equipping={equipping} showRank={false} />}
     </section>
   );
 }
 
-export function ProfileDetails({ profile, onEquip, equipping = false }: {
+export function ProfileDetails({ profile, onEquip, equipping = false, showRank = true }: {
   profile: Profile;
   onEquip?: (skin: string) => Promise<void>;
   equipping?: boolean;
+  showRank?: boolean;
 }) {
   return (
     <>
       <div className="profile-sections">
         <article>
           <h3>Elo</h3>
-          <strong className="rank-badge" data-rank={profile.rank.minimum} style={{ color: profile.rank.color }}>{profile.rank.name}</strong>
+          {showRank && <strong className="rank-badge" data-rank={profile.rank.minimum} style={{ color: profile.rank.color }}>{profile.rank.name}</strong>}
           <p>{profile.elo.toLocaleString()} Elo</p>
         </article>
         <article>

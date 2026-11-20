@@ -120,6 +120,7 @@ class GameRooms:
         stats = await player_stats(self.db, player["id"])
         skin = self.skins.get(stats["skin"], self.skins["default"])
         player["skin"] = {"id": skin["id"], "name": skin["name"]}
+        player["rank"] = rank_for(stats["elo"], stats["is_admin"])
         player["admin_rank"] = rank_for(stats["elo"], True) if stats["is_admin"] else None
 
     def _new_room(self, users, mode, category="", online=None):
@@ -630,6 +631,7 @@ class GameRooms:
                     "last_tier": player["last_tier"],
                     "skin": player["skin"],
                     "admin_rank": player.get("admin_rank"),
+                    "rank": player.get("rank"),
                     "forfeited": player["forfeited"],
                 }
                 for player in room["players"].values()

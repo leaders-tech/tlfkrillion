@@ -14,9 +14,11 @@
 - User application: Krillion-style solo and multiplayer game, including popup navigation and a player profile in `frontend/src/app/App.tsx` and `frontend/src/pages/ProfilePage.tsx`, Cairopixel typography, the coastal menu and room-code lobby in `frontend/src/pages/SurfaceMenu.tsx`, animated scenery in `frontend/src/pages/PixelScenery.tsx`, the default pixel krill sprite in `frontend/public/krill.png`, dives and ocean results in `frontend/src/pages/DiveScene.tsx`, seven timed prompts, rarity scoring, question editing and AI verification, player accounts, room WebSockets, and cookie-based auth and room resume.
 - Question bank: packs in `backend/db/data` cover 11 categories including Mathematics. Playable prompts require at least 15 distinct accepted answers. The editor can search the full bank with typo tolerance and filter by category. During play, clear typos match accepted answers for the current prompt.
 - Players can start a seven-prompt dive or an Endless solo dive. All results include an expandable rarity table for each prompt played.
+- Players can stop a classic solo dive and return to the lobby. Endless dives can be finished early to see their results.
 - Dive results reveal newly unlocked skins with their pixel sprites. The animation plays once per dive in a browser and honors reduced motion.
 - The home menu lets players choose all categories or one category for solo, Endless, and hosted room dives.
 - Online play includes Casual group matchmaking, Ranked 1v1, reconnect grace for queues, persistent Elo, and achievement skins. The admin screen can inspect each account's profile and stats.
+- Player rank appears under usernames in the lobby, profile, and dive, with visual effects for the highest ranks.
 - The Ranked lobby at `/ranked` offers immediate any-Elo search, a rating history graph, and the server's rank boundaries. Ranked rating changes scale with the Elo gap and are capped at 256 points per match.
 - Player accounts support public username-and-password registration with automatic sign-in. Admin accounts are provisioned separately.
 - Reused foundation: session cookies, aiohttp/React routing, deployment setup, and PWA shell.

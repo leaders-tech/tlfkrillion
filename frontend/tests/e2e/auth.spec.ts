@@ -44,6 +44,10 @@ test("solo dive starts immediately and resumes after reload", async ({ page }) =
   await expect(page.getByText("Prompt 1 of 7")).toBeVisible();
   await expect(page.locator(".question-panel h2")).toHaveText(prompt);
   await expect(page.getByRole("textbox", { name: "Your answer" })).toBeVisible();
+  await page.getByRole("button", { name: "Stop dive" }).click();
+  await expect(page.getByRole("button", { name: /play solo/i })).toBeVisible();
+  await page.reload();
+  await expect(page.getByRole("button", { name: /play solo/i })).toBeVisible();
 });
 
 test("endless dive advances and shows color-coded answers after finishing", async ({ page }) => {

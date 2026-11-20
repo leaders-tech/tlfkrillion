@@ -10,6 +10,7 @@
 - `game/rooms.py` runs classic and Endless dives. It sends the answer review only when a run finishes.
 - Room creation accepts an optional category, and only selects playable questions from it.
 - Online progression lives in `game/matchmaking.py`, `game/rewards.py`, and `db/progression.py`. Settlement is idempotent and commits Elo and skins together.
+- Room player snapshots include each player's rank for nametags.
 - Live and recovered results share the same skin reward payload with sprite IDs and names.
 - Queues retain a player's position through brief disconnects and only pair connected accounts. The admin account profile route reuses the player profile reader.
 - Ranked matchmaking supports opening the Elo window immediately. `game/profile_routes.py` serves the player's Ranked history and rank boundaries, and `game/rewards.py` owns the rating formula.

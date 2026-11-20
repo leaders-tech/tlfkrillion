@@ -179,7 +179,7 @@ export function DiveScene({
               >
                 <span className="krill-name">
                   {player.username}
-                  {player.admin_rank && <small className="rank-badge" data-rank={player.admin_rank.minimum}>{player.admin_rank.name}</small>}
+                  {(player.rank || player.admin_rank) && <small className="rank-badge" data-rank={(player.rank || player.admin_rank)!.minimum} style={{ color: (player.rank || player.admin_rank)!.color }}>{(player.rank || player.admin_rank)!.name}</small>}
                 </span>
                 <KrillSkin skin={player.skin} />
               </div>

@@ -9,11 +9,13 @@
 - The admin question bank has editable categories, a category filter, and a 15-answer minimum. The active question shows its category during a dive. The home menu offers Endless solo play, and `src/pages/AnswerReview.tsx` shows the rarity table for each finished prompt.
 - The admin question bank searches prompts, categories, hints, accepted answers, and aliases with typo tolerance. Each account opens a read-only view of the player profile.
 - The home menu selects a category for solo, Endless, or a new multiplayer room.
+- Classic solo dives offer a Stop dive button. Endless dives have a Finish dive button that shows results.
 - The home screen supports Casual and Ranked queues. Profile shows progression and achievement skins, and the profile and dive scene share a dedicated pixel sprite from `public/skins/<skin-id>.png` for each unlocked cosmetic. Keep skin IDs aligned with the backend reward catalog. Sprites use a 52×40 pixel canvas with a thin outline in each sprite's own dark color and no enclosed transparency. Show the name and artwork for locked secret skins. Keep their answer masked until unlock.
 - `src/pages/RankedMenu.tsx` shows Ranked queue choices, an Elo chart with a match slider, and rank boundaries. It shares the lobby WebSocket with `HomePage.tsx`.
 - Sevenfold Prism rewards a single classic dive with all six scored rarities and one round that expires without a submission.
 - `src/pages/SkinUnlockReveal.tsx` animates new rewards in the dive results and keeps their cards visible when a result is reopened.
 - The admin role displays the Abyss Architect rank and grants the Aurora Regent sprite.
+- All players display their rank under their username. The highest ranks have gradient and glow effects.
 - The home and login pages link to public registration at `/register`. `src/pages/LoginPage.tsx` renders both forms, and the auth provider signs in new players on success.
 - Reused foundation: periodic cookie refresh in `src/app/auth.tsx` and shared WebSocket reconnect helper.
 - Remaining starter material: none in active frontend code; the dashboard and notes demo have been removed.
