@@ -37,11 +37,26 @@ def test_casual_fill_and_ranked_search_window():
     assert queue.match(first.joined + 60) is None
 
 
+@pytest.mark.parametrize("opted_in", [1, 2])
+def test_any_elo_matches_immediately_from_either_queue_position(opted_in):
+    queue = Matchmaking()
+    first = queue.join({"id": 1}, "ranked", 1000)
+    second = queue.join({"id": 2}, "ranked", 50_000)
+    assert queue.match(second.joined) is None
+    widened = queue.join({"id": opted_in}, "ranked", queue.entries[opted_in].elo, any_elo=True)
+    assert widened is (first if opted_in == 1 else second)
+    assert queue.match(second.joined) == ("ranked", [first, second])
+
+
 def test_elo_and_rank_boundaries():
     assert elo_change(1000, 1000, 1) == 16
     assert elo_change(1000, 1000, .5) == 0
     assert elo_change(1000, 1400, 1) == 29
     assert elo_change(1400, 1000, .5) == -13
+    assert elo_change(1000, 50_000, 1) == 256
+    assert elo_change(50_000, 1000, 0) == -256
+    assert elo_change(50_000, 1000, 1) == 0
+    assert elo_change(0, 50_000, 0) == 0
     assert rank_for(1000)["name"] == "Reef Runner"
     assert rank_for(1800)["name"] == "Leviathan Star"
     assert rank_for(50_000)["name"] == "Leviathan Star"
@@ -238,6 +253,36 @@ async def test_ranked_reconnect_and_forfeit(client, create_user, auth_headers, d
 
 
 @pytest.mark.asyncio
+async def test_any_elo_queue_settles_upset_and_records_ranked_history(client, create_user, auth_headers):
+    await create_user("diver", "password")
+    await create_user("staff", "password", is_admin=True)
+    diver, diver_id = await connect(client, "diver", auth_headers)
+    staff, staff_id = await connect(client, "staff", auth_headers)
+    await staff.send_json({"type": "game.queue", "mode": "ranked"})
+    await receive(staff, lambda message: message.get("open_after") == 60)
+    await diver.send_json({"type": "game.queue", "mode": "ranked", "any_elo": True})
+    assert (await receive(diver, lambda message: message.get("mode") == "ranked"))["open_after"] == 0
+    playing = await receive(diver, lambda message: message.get("status") == "playing")
+    await staff.send_json({"type": "game.leave", "code": playing["code"]})
+    finished = await receive(diver, lambda message: message.get("status") == "finished")
+    changes = {entry["id"]: entry["change"] for entry in finished["rewards"]}
+    assert changes == {diver_id: 256, staff_id: -256}
+
+    endpoint = "/api/game/ranked"
+    staff_overview = (await (await client.post(endpoint, json={})).json())["data"]
+    assert staff_overview["history"] == [{"before": 50_000, "elo": 49_744, "outcome": 0}]
+    await login(client, "diver", "password", auth_headers)
+    diver_overview = (await (await client.post(endpoint, json={})).json())["data"]
+    assert diver_overview["history"] == [{"before": 1000, "elo": 1256, "outcome": 1}]
+    assert diver_overview["elo"] == 1256
+    assert diver_overview["rank"]["name"] == "Lantern Fang"
+    assert diver_overview["ranks"][-1]["minimum"] == 1800
+    assert diver_overview["admin_rank"]["minimum"] == 50_000
+    await diver.close()
+    await staff.close()
+
+
+@pytest.mark.asyncio
 async def test_all_disconnected_ranked_match_is_void(client, create_user, auth_headers, db, monkeypatch):
     monkeypatch.setattr("backend.game.rooms.RECONNECT_SECONDS", .05)
     first, second, first_id, second_id, code = await pair(client, create_user, auth_headers)
@@ -366,5 +411,8 @@ async def test_ranked_normal_finish_checks_alias_and_pauses_both_clocks(client, 
     assert finished["rankings"][0]["id"] == first_id
     assert (await profile(db, first_id))["elo"] == 1016
     assert (await profile(db, second_id))["elo"] == 984
-    unlocked = next(result["unlocked"] for result in finished["rewards"] if result["id"] == first_id)
-    assert {"Arithmetic Ghost", "Ranked Ember"} <= set(unlocked)
+    reward = next(result for result in finished["rewards"] if result["id"] == first_id)
+    assert {"Arithmetic Ghost", "Ranked Ember"} <= set(reward["unlocked"])
+    assert {"id": "arakelov", "name": "Arithmetic Ghost"} in reward["unlocked_skins"]
+    assert all(set(skin) == {"id", "name"} for skin in reward["unlocked_skins"])
+    assert await saved_result(db, code, first_id) == finished

@@ -22,7 +22,7 @@ from backend.db.progression import player_stats, save_void_result, saved_result,
 from backend.game.answer_checker import AnswerCheckError, check_answer
 from backend.game.answer_match import find_answer
 from backend.game.matchmaking import RANKED_OPEN_SECONDS, RECONNECT_SECONDS, Matchmaking
-from backend.game.rewards import rank_for, skin_catalog
+from backend.game.rewards import public_match_rewards, rank_for, skin_catalog
 from backend.ws.hub import WebSocketHub
 
 LOGGER = logging.getLogger(__name__)
@@ -68,7 +68,7 @@ class GameRooms:
             await self.resume(user, payload.get("code"))
             return
         if action == "game.queue":
-            await self.join_queue(user, payload.get("mode"))
+            await self.join_queue(user, payload.get("mode"), any_elo=payload.get("any_elo") is True)
             return
         if action == "game.queue_cancel":
             self.pending_queue.pop(user["id"], None)
@@ -174,9 +174,10 @@ class GameRooms:
     async def _queue_status(self, user_id):
         entry = self.matchmaking.entries.get(user_id)
         elapsed = max(0, time.monotonic() - entry.joined) if entry else 0
+        open_after = (0 if entry.any_elo else RANKED_OPEN_SECONDS) if entry and entry.mode == "ranked" else None
         await self.hub.send_to_user(user_id, {
             "type": "game.queue", "mode": entry.mode if entry else None, "elapsed": int(elapsed),
-            "open_after": RANKED_OPEN_SECONDS if entry and entry.mode == "ranked" else None,
+            "open_after": open_after,
         })
 
     async def resume(self, user, raw_code):
@@ -198,7 +199,7 @@ class GameRooms:
                 await self._error(user_id, "room_not_found", "That dive is no longer available.")
             await self._queue_status(user_id)
 
-    async def join_queue(self, user, mode):
+    async def join_queue(self, user, mode, *, any_elo=False):
         user_id = user["id"]
         if mode not in ("casual", "ranked"):
             await self._error(user_id, "bad_queue", "Choose Casual or Ranked.")
@@ -214,7 +215,7 @@ class GameRooms:
         self.pending_queue.pop(user_id, None)
         if self._active_online(user_id) or not self.hub.count_for_user(user_id):
             return
-        self.matchmaking.join(user, mode, stats["elo"])
+        self.matchmaking.join(user, mode, stats["elo"], any_elo=any_elo and mode == "ranked")
         if not self.matchmaker or self.matchmaker.done():
             self.matchmaker = asyncio.create_task(self._run_matchmaker())
         await self._queue_status(user_id)
@@ -612,6 +613,7 @@ class GameRooms:
         snapshot: dict[str, Any] = {
             "type": "game.room",
             "code": room["code"],
+            "match_id": room["match_id"],
             "mode": room["mode"],
             "online": room["online"],
             "category": room["category"],
@@ -645,10 +647,7 @@ class GameRooms:
         if snapshot["status"] == "finished":
             snapshot["timed_out"] = room["timed_out"]
             snapshot["void"] = room["void"]
-            snapshot["rewards"] = [
-                {**result, "unlocked": [self.skins[key]["name"] for key in result["unlocked"]]}
-                for result in room["rewards"]
-            ]
+            snapshot["rewards"] = public_match_rewards(room["rewards"])
             snapshot["review"] = [
                 {
                     "prompt": question["prompt"],

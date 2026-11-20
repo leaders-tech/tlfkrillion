@@ -93,7 +93,7 @@ export function App() {
   return (
     <Layout status={status}>
       <Routes>
-        <Route path="/" element={<HomePage onConnectionStatus={setStatus} />} />
+        <Route path="/ranked?" element={<HomePage onConnectionStatus={setStatus} />} />
         <Route path="/login" element={<LoginPage key="login" />} />
         <Route path="/register" element={<LoginPage key="register" signup />} />
         <Route path="/profile" element={<ProfilePage />} />

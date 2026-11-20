@@ -7,7 +7,9 @@
 - With every database feature request, update the ownership inventory here and in the root and backend `AGENTS.md` files. Say which tables and modules are still examples and which now belong to the user's application.
 - User application: `game_questions` table and queries in `backend/db/game_questions.py`, storing prompts, categories, hints, accepted answers with rarity tiers, answers verified during play, and each question's AI-check setting. The `data/question_bank_v*.txt` files store versioned packs. The game draws from prompts with at least 15 distinct accepted answers.
 - Migrations 009 and 010 add `player_progression`, `player_unlocks`, and `match_settlements` for persistent Elo, cosmetics, and recoverable results.
+- Recovered settlements attach earned sprite IDs and names for the results reveal, including results saved before the reveal was added.
 - Migration 011 initializes existing admins at 50,000 Elo. Admin rank and access to the exclusive skin depend on the account role.
+- `progression.py` reads recent Elo history from Ranked settlements, using the room snapshot to identify older Ranked matches.
 - Reused foundation: `users` and `refresh_sessions` tables used by signed-in players and admins.
 - Remaining starter material: the historical `notes` migration only. Preserve it so existing databases keep their migration history.
 - When no template parts remain, remove all template inventories, wording, and template-only rules here. Keep only instructions for the application database.

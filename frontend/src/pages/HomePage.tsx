@@ -4,7 +4,7 @@ Edit it when lobby, live question, scoring, or results behavior changes; copy it
 */
 
 import { useEffect, useRef, useState, type CSSProperties } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useMatch } from "react-router-dom";
 import { useAuth } from "../app/auth";
 import { clearSavedRoomCode, getSavedRoomCode, saveRoomCode } from "../shared/gameSession";
 import { createUserSocket, type SocketStatus } from "../shared/socket";
@@ -12,11 +12,14 @@ import type { OnlineMode, WsMessage } from "../shared/types";
 import { DiveScene } from "./DiveScene";
 import { AnswerReview } from "./AnswerReview";
 import { SurfaceMenu } from "./SurfaceMenu";
+import { RankedMenu } from "./RankedMenu";
+import { SkinUnlockReveal } from "./SkinUnlockReveal";
 
 type RoomMessage = Extract<WsMessage, { type: "game.room" }>;
 
 export function HomePage({ onConnectionStatus }: { onConnectionStatus?: (status: SocketStatus) => void } = {}) {
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
+  const rankedMenu = useMatch("/ranked");
   const [status, setStatus] = useState<SocketStatus>("idle");
   const [room, setRoom] = useState<RoomMessage | null>(null);
   const [roomInput, setRoomInput] = useState("");
@@ -135,6 +138,7 @@ export function HomePage({ onConnectionStatus }: { onConnectionStatus?: (status:
   };
 
   if (!user) {
+    if (rankedMenu) return loading ? <p role="status">Loading session…</p> : <Navigate to="/login" replace />;
     return (
       <SurfaceMenu
         title={
@@ -155,8 +159,25 @@ export function HomePage({ onConnectionStatus }: { onConnectionStatus?: (status:
     );
   }
 
+  const joinRanked = (anyElo: boolean) => send({ type: "game.queue", mode: "ranked", any_elo: anyElo });
+  const queueStatus = queue && (
+    <div className="queue-status">
+      <p role="status">Searching for a {queue.mode === "ranked" ? "Ranked" : "Casual"} match · {waitSeconds}s</p>
+      {status !== "connected" ? <p>Reconnecting to matchmaking…</p> : queue.openAfter !== null && (
+        <p>{waitSeconds < queue.openAfter ? `Any Elo after ${queue.openAfter - waitSeconds}s` : "Waiting for an opponent at any Elo"}</p>
+      )}
+      <div className="queue-actions">
+        {queue.openAfter !== null && waitSeconds < queue.openAfter && (
+          <button className="text-button" disabled={status !== "connected"} onClick={() => joinRanked(true)}>Search any Elo now</button>
+        )}
+        <button className="text-button" disabled={status !== "connected"} onClick={() => send({ type: "game.queue_cancel" })}>Cancel queue</button>
+      </div>
+    </div>
+  );
+
   const answered = Boolean(me?.answered);
   const orderedPlayers = [...(room?.players ?? [])].sort((a, b) => b.score - a.score);
+  const myReward = room?.rewards?.find((reward) => reward.id === user.id);
 
   if (room?.status === "settling") return <p role="status">Saving dive results…</p>;
 
@@ -184,6 +205,11 @@ export function HomePage({ onConnectionStatus }: { onConnectionStatus?: (status:
           <article className="results-panel">
             <p className="eyebrow">Dive complete</p>
             <h2>{room.timed_out ? "Time’s up." : room.mode === "multiplayer" ? "The crew reached the deep." : "You reached the deep."}</h2>
+            {myReward?.unlocked_skins?.length ? (
+              <SkinUnlockReveal key={room.match_id ?? room.code} matchId={room.match_id ?? room.code} playerId={user.id} skins={myReward.unlocked_skins} />
+            ) : !!myReward?.unlocked.length && (
+              <p role="status">Skins unlocked · {myReward.unlocked.join(", ")}</p>
+            )}
             <div className="results-list">
               {(room.rankings ?? []).map((player, index) => (
                 <div className={`result-row ${index === 0 ? "winner" : ""}`} key={player.id}>
@@ -206,9 +232,6 @@ export function HomePage({ onConnectionStatus }: { onConnectionStatus?: (status:
                   </li>
                 ))}
               </ul>
-            )}
-            {!!room.rewards?.find((reward) => reward.id === user.id)?.unlocked.length && (
-              <p role="status">Skins unlocked: {room.rewards.find((reward) => reward.id === user.id)?.unlocked.join(", ")}</p>
             )}
             <button className="primary-button" onClick={leaveRoom}>Back to lobby</button>
           </article>
@@ -278,6 +301,17 @@ export function HomePage({ onConnectionStatus }: { onConnectionStatus?: (status:
   }
 
   if (!room) {
+    if (rankedMenu) {
+      return (
+        <RankedMenu
+          connected={status === "connected"}
+          queueing={Boolean(queue)}
+          join={joinRanked}
+          queueStatus={queueStatus}
+          error={error}
+        />
+      );
+    }
     return (
       <SurfaceMenu
         title={
@@ -291,19 +325,9 @@ export function HomePage({ onConnectionStatus }: { onConnectionStatus?: (status:
           <button className="primary-button" disabled={!!queue || status !== "connected"} onClick={() => send({ type: "game.queue", mode: "casual" })}>
             Casual Online
           </button>
-          <button className="secondary-button" disabled={!!queue || status !== "connected"} onClick={() => send({ type: "game.queue", mode: "ranked" })}>
-            Ranked 1v1
-          </button>
+          <Link className="secondary-button" to="/ranked">Ranked 1v1</Link>
         </div>
-        {queue && (
-          <div className="queue-status">
-            <p role="status">Searching for a {queue.mode === "ranked" ? "Ranked" : "Casual"} match · {waitSeconds}s</p>
-            {status !== "connected" ? <p>Reconnecting to matchmaking…</p> : queue.openAfter !== null && (
-              <p>{waitSeconds < queue.openAfter ? `Any Elo after ${queue.openAfter - waitSeconds}s` : "Waiting for an opponent at any Elo"}</p>
-            )}
-            <button className="text-button" onClick={() => send({ type: "game.queue_cancel" })}>Cancel queue</button>
-          </div>
-        )}
+        {queueStatus}
         <label className="surface-category">
           Dive category
           <select value={category} onChange={(event) => setCategory(event.target.value)}>

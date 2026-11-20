@@ -1,0 +1,90 @@
+/* Style the pixel-art skin reveal. Edit to change reward motion and layout. */
+
+.skin-unlocks {
+  margin: 0 0 16px;
+  padding: 12px;
+  border: 1px solid #8a7546;
+  background: linear-gradient(160deg, #243c46, #101f31 68%);
+  box-shadow: inset 0 2px #f4d38b26, 0 3px #091826;
+}
+.skin-unlocks h3 {
+  margin: 0 0 10px;
+  color: #ffe298;
+  font-size: 1.15rem;
+}
+.skin-unlock-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 140px), 1fr));
+  gap: 8px;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+}
+.skin-unlock-card {
+  display: grid;
+  justify-items: center;
+  gap: 3px;
+  padding: 5px 8px 9px;
+  border: 1px solid #587384;
+  background: #0a1c2c;
+  color: #fff4d6;
+}
+.skin-unlock-stage {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  place-items: center;
+  width: 140px;
+  max-width: 100%;
+  height: 80px;
+  overflow: hidden;
+  background: radial-gradient(ellipse, #32667980, transparent 69%);
+}
+.skin-unlock-stage .krill-skin img {
+  width: 104px;
+  height: auto;
+  filter: drop-shadow(0 3px 2px #071524) drop-shadow(0 0 5px #8cdeed66);
+}
+.skin-unlock-sparks {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: -1;
+  width: 4px;
+  height: 4px;
+  background: transparent;
+  box-shadow: -46px -16px #ffe291, 45px -18px #74e0f1, -52px 13px #74e0f1, 47px 15px #ffe291,
+    -29px 24px #c6a6ff, 29px -26px #c6a6ff, -35px -26px #a8f7fb, 38px 24px #a8f7fb;
+  opacity: .65;
+}
+.skin-unlocks[data-reveal="true"] .skin-unlock-card {
+  animation: skin-unlock-arrive 580ms ease-out var(--skin-delay) both;
+}
+.skin-unlocks[data-reveal="true"] .krill-skin {
+  animation: skin-unlock-sprite 720ms steps(9, end) var(--skin-delay) both;
+}
+.skin-unlocks[data-reveal="true"] .skin-unlock-sparks {
+  animation: skin-unlock-burst 860ms steps(8, end) var(--skin-delay) both;
+}
+
+@keyframes skin-unlock-arrive {
+  0% { transform: translateY(9px); opacity: 0; border-color: #ffe298; }
+  55% { transform: translateY(-2px); opacity: 1; }
+  100% { transform: translateY(0); }
+}
+@keyframes skin-unlock-sprite {
+  0% { transform: translateY(10px) scale(.55); opacity: 0; }
+  30% { filter: brightness(1.7); }
+  65% { transform: translateY(-4px) scale(1.08); opacity: 1; }
+  100% { transform: translateY(0) scale(1); }
+}
+@keyframes skin-unlock-burst {
+  0% { transform: scale(.45); opacity: 0; }
+  42% { transform: scale(1.22); opacity: 1; }
+  100% { transform: scale(1); opacity: .65; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skin-unlocks[data-reveal="true"] :is(.skin-unlock-card, .krill-skin, .skin-unlock-sparks) { animation: none; }
+}

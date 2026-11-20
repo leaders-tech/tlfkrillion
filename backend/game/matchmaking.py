@@ -13,6 +13,13 @@ class Entry:
     mode: str
     elo: int
     joined: float
+    any_elo: bool = False
+
+    def radius(self, now):
+        wait = max(0, now - self.joined)
+        if self.any_elo or wait >= RANKED_OPEN_SECONDS:
+            return float("inf")
+        return 100 * (1 + int(wait // 15))
 
 
 class Matchmaking:
@@ -26,13 +33,14 @@ class Matchmaking:
         if sum(entry.mode == "casual" for entry in self.entries.values()) < 2:
             self.casual_ready = None
 
-    def join(self, user, mode, elo):
+    def join(self, user, mode, elo, *, any_elo=False):
         user_id = user["id"]
         existing = self.entries.get(user_id)
         if existing and existing.mode == mode:
+            existing.any_elo = existing.any_elo or any_elo
             return existing
         self.cancel(user_id)
-        entry = Entry(user, mode, elo, time.monotonic())
+        entry = Entry(user, mode, elo, time.monotonic(), any_elo)
         self.entries[user_id] = entry
         return entry
 
@@ -50,9 +58,11 @@ class Matchmaking:
 
         ranked = [entry for entry in connected if entry.mode == "ranked"]
         for index, entry in enumerate(ranked):
-            wait = now - entry.joined
-            radius = float("inf") if wait >= RANKED_OPEN_SECONDS else 100 * (1 + int(max(0, wait) // 15))
-            eligible = [other for other in ranked[index + 1:] if abs(other.elo - entry.elo) <= radius]
+            radius = entry.radius(now)
+            eligible = [
+                other for other in ranked[index + 1:]
+                if abs(other.elo - entry.elo) <= max(radius, other.radius(now))
+            ]
             if eligible:
                 return "ranked", [entry, min(eligible, key=lambda other: abs(other.elo - entry.elo))]
         return None

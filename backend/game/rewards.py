@@ -12,6 +12,9 @@ RANKS = (
     (1350, "Midnight Ray", "#aab5ff"), (1500, "Abyssal Crown", "#dc9fff"),
     (1650, "Trench Sovereign", "#ff829f"), (1800, "Leviathan Star", "#ffe682"),
 )
+BASE_ELO_K = 32
+MAX_ELO_K = 256
+ELO_K_GAP = 400
 
 
 def rank_for(elo, is_admin=False):
@@ -23,8 +26,11 @@ def rank_for(elo, is_admin=False):
 
 def elo_change(first, second, outcome):
     """Return the first player's change for a win (1), draw (.5), or loss (0)."""
-    expected = 1 / (1 + 10 ** (max(-6400, min(6400, second - first)) / 400))
-    raw = 32 * (outcome - expected)
+    gap = second - first
+    expected = 1 / (1 + 10 ** (max(-6400, min(6400, gap)) / ELO_K_GAP))
+    # Larger mismatches make unexpected results more informative, up to a bounded swing.
+    factor = min(MAX_ELO_K, BASE_ELO_K * max(1, abs(gap) / ELO_K_GAP))
+    raw = factor * (outcome - expected)
     delta = floor(abs(raw) + .5) * (1 if raw >= 0 else -1)
     return max(-first, min(second, delta))
 
@@ -88,6 +94,16 @@ def skin_catalog():
         {"id": key, "name": name, "requirement": requirement}
         for key, name, requirement in SKINS
     ]
+
+
+def public_match_rewards(results):
+    """Include earned sprite IDs and display names in live and archived results."""
+    names = {key: name for key, name, _ in SKINS}
+    rewards = []
+    for result in results:
+        unlocked = [{"id": key, "name": names[key]} for key in result["unlocked"] if key in names]
+        rewards.append({**result, "unlocked": [skin["name"] for skin in unlocked], "unlocked_skins": unlocked})
+    return rewards
 
 
 SECRET_SKINS = frozenset(NICHE.values())

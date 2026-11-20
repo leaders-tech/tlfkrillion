@@ -39,6 +39,14 @@ export type Skin = {
 };
 
 export type Rank = { name: string; color: string; minimum: number };
+export type RankedOverview = {
+  elo: number;
+  rank: Rank;
+  ranks: Rank[];
+  admin_rank: Rank;
+  history: { before: number; elo: number; outcome: number }[];
+  max_swing: number;
+};
 export type Profile = {
   elo: number;
   rank: Rank;
@@ -66,6 +74,7 @@ export type WsMessage =
   | {
       type: "game.room";
       code: string;
+      match_id?: string;
       mode: "solo" | "multiplayer" | "endless";
       category: string;
       online?: OnlineMode | null;
@@ -80,7 +89,7 @@ export type WsMessage =
       remaining_seconds?: number;
       timed_out?: boolean;
       void?: boolean;
-      rewards?: { id: number; before: number; elo: number; change: number; rank: Rank; unlocked: string[]; outcome: number }[];
+      rewards?: { id: number; before: number; elo: number; change: number; rank: Rank; unlocked: string[]; unlocked_skins?: Skin[]; outcome: number }[];
       review?: ReviewQuestion[];
       rankings?: { id: number; username: string; score: number; depth: number; answer_time: number }[];
     }

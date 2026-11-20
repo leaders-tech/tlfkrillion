@@ -66,6 +66,19 @@ test("endless dive advances and shows color-coded answers after finishing", asyn
   await expect(page.getByText("Endless · Prompt 2")).toBeVisible();
   await expect(page.getByText("Review accepted answers")).toHaveCount(0);
   await page.getByRole("button", { name: "Finish dive" }).click();
+  const skinRewards = page.getByRole("region", { name: "Skin rewards" });
+  const card = skinRewards.locator(".skin-unlock-card");
+  await expect(skinRewards).toHaveAttribute("data-reveal", "true");
+  await expect(card).toContainText("Sunbleached");
+  await expect(card.locator("img")).toHaveAttribute("src", "/skins/first.png");
+  await expect(card).toHaveCSS("animation-name", "skin-unlock-arrive");
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await expect(card).toHaveCSS("animation-name", "none");
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  await page.reload();
+  await expect(skinRewards).toHaveAttribute("data-reveal", "false");
+  await expect(card).toContainText("Sunbleached");
+  await expect(card).toHaveCSS("animation-name", "none");
   await page.getByText("Review accepted answers").click();
   await page.getByText(`1. ${prompt}`, { exact: true }).click();
   const table = page.getByRole("table", { name: "Accepted answers for prompt 1" });
@@ -288,12 +301,17 @@ test("online queues, Ranked reconnect and earned skins", async ({ page, browser 
     const [rankedWinner, rankedLoser] = divers;
     for (const player of [rankedWinner, rankedLoser]) {
       await player.getByRole("button", { name: "Back to lobby" }).click();
+      await player.getByRole("link", { name: "Ranked 1v1" }).click();
     }
-    await rankedWinner.getByRole("button", { name: "Ranked 1v1" }).click();
+    await expect(rankedWinner.getByRole("heading", { name: "Rank boundaries" })).toBeVisible();
+    await expect(rankedWinner.getByRole("row", { name: /Leviathan Star/ })).toContainText("1,800");
+    await rankedWinner.getByRole("button", { name: "Find a Ranked match" }).click();
     await expect(rankedWinner.getByText(/Searching for a Ranked match/)).toBeVisible();
+    await rankedWinner.getByRole("button", { name: "Search any Elo now" }).click();
+    await expect(rankedWinner.getByText("Waiting for an opponent at any Elo")).toBeVisible();
     await rankedWinner.reload();
-    await expect(rankedWinner.getByText(/Searching for a Ranked match/)).toBeVisible();
-    await rankedLoser.getByRole("button", { name: "Ranked 1v1" }).click();
+    await expect(rankedWinner.getByText("Waiting for an opponent at any Elo")).toBeVisible();
+    await rankedLoser.getByRole("button", { name: "Queue at any Elo" }).click();
     await expect(rankedWinner.locator(".diving-krill")).toHaveCount(2);
     const prompt = await rankedWinner.locator(".question-panel h2").innerText();
     await rankedWinner.reload();
@@ -303,6 +321,11 @@ test("online queues, Ranked reconnect and earned skins", async ({ page, browser 
     const elo = rankedWinner.getByRole("list", { name: "Ranked Elo changes" });
     await expect(elo).toContainText("1000 → 1016 Elo (+16)");
     await expect(elo).toContainText("1000 → 984 Elo (-16)");
+    await rankedWinner.getByRole("button", { name: "Back to lobby" }).click();
+    const history = rankedWinner.getByRole("region", { name: "Elo history" });
+    await expect(history.getByText("Match 1 · Win · 1,016 Elo (+16)")).toBeVisible();
+    await history.getByRole("slider", { name: "Inspect match history" }).press("Home");
+    await expect(history.getByText("Before first shown match · 1,000 Elo")).toBeVisible();
     await rankedWinner.goto("/profile");
     await expect(rankedWinner.getByText("1,016 Elo")).toBeVisible();
   } finally {

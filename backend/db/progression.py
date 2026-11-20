@@ -3,9 +3,10 @@ import json
 from contextlib import asynccontextmanager
 
 from backend.db.connection import open_db
-from backend.game.rewards import ADMIN_SKIN_ID, ADMIN_STARTING_ELO, earned_skins, elo_change, profile_skins, rank_for, skin_catalog
+from backend.game.rewards import ADMIN_SKIN_ID, ADMIN_STARTING_ELO, earned_skins, elo_change, profile_skins, public_match_rewards, rank_for, skin_catalog
 
 DEFAULT_STATS = {"elo": 1000, "skin": "default", "dives": 0, "best_depth": 0, "wins": 0, "losses": 0, "draws": 0, "streak": 0}
+ELO_HISTORY_LIMIT = 100
 
 
 @asynccontextmanager
@@ -59,6 +60,23 @@ async def profile(db, user_id):
     }
 
 
+async def ranked_history(db, user_id):
+    # Older games recorded their mode in the room snapshot.
+    async with db.execute(
+        """SELECT json_extract(reward.value, '$.before') AS before,
+                  json_extract(reward.value, '$.elo') AS elo,
+                  json_extract(reward.value, '$.outcome') AS outcome
+           FROM match_settlements AS match
+           JOIN json_each(match.results_json, '$.rewards') AS reward
+           WHERE COALESCE(json_extract(match.results_json, '$.online'),
+                          json_extract(match.results_json, '$.snapshot.online')) = 'ranked'
+             AND json_extract(reward.value, '$.id') = ?
+           ORDER BY match.rowid DESC LIMIT ?""",
+        (user_id, ELO_HISTORY_LIMIT),
+    ) as cursor:
+        return [dict(row) for row in reversed(await cursor.fetchall())]
+
+
 async def equip(path, user_id, skin):
     async with _write(path) as db:
         stats = await player_stats(db, user_id)
@@ -77,7 +95,7 @@ async def equip(path, user_id, skin):
 
 async def saved_result(db, code, user_id):
     async with db.execute(
-        """SELECT results_json FROM match_settlements WHERE room_code = ?
+        """SELECT match_id, results_json FROM match_settlements WHERE room_code = ?
            AND EXISTS (SELECT 1 FROM json_each(results_json, '$.snapshot.players') AS player
                        WHERE json_extract(player.value, '$.id') = ?)
            ORDER BY rowid DESC LIMIT 1""", (code, user_id),
@@ -85,7 +103,11 @@ async def saved_result(db, code, user_id):
         row = await cursor.fetchone()
     if not row:
         return None
-    snapshot = json.loads(row["results_json"])["snapshot"]
+    saved = json.loads(row["results_json"])
+    snapshot = saved["snapshot"]
+    snapshot["match_id"] = row["match_id"]
+    # Recovery can return dives saved before the sprite data was added to room snapshots.
+    snapshot["rewards"] = public_match_rewards(saved["rewards"])
     # Older archived snapshots included the profile description with equipped art.
     for player in snapshot["players"]:
         if player.get("skin"):
@@ -151,12 +173,9 @@ async def settle(path, match_id, players, mode, online, outcomes, forfeit, snaps
                 "rank": rank_for(stats["elo"], stats["is_admin"]), "unlocked": unlocked, "outcome": outcome,
             })
         if snapshot:
-            names = {skin["id"]: skin["name"] for skin in skin_catalog()}
-            snapshot["rewards"] = [
-                {**result, "unlocked": [names[key] for key in result["unlocked"]]} for result in results
-            ]
+            snapshot["rewards"] = public_match_rewards(results)
         await db.execute(
             "INSERT INTO match_settlements (match_id, room_code, results_json) VALUES (?, ?, ?)",
-            (match_id, snapshot["code"] if snapshot else None, json.dumps({"snapshot": snapshot, "rewards": results})),
+            (match_id, snapshot["code"] if snapshot else None, json.dumps({"snapshot": snapshot, "rewards": results, "online": online})),
         )
     return results

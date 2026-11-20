@@ -1,0 +1,42 @@
+/* Style the Ranked lobby, history chart and rank table. Edit to change Ranked layout. */
+
+.ranked-menu {
+  max-width: 940px;
+  margin: 0 auto;
+  padding: clamp(18px, 4vw, 38px);
+  border: 2px solid #355a70;
+  background: linear-gradient(165deg, #102e43, #081927 65%);
+  box-shadow: 5px 5px 0 #041420;
+  color: var(--ink);
+}
+.ranked-back { display: inline-block; margin-bottom: 18px; }
+.ranked-header, .ranked-current, .queue-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+.ranked-header { justify-content: space-between; }
+.ranked-header h2 { margin: 0; font-size: clamp(1.65rem, 5vw, 2.6rem); }
+.ranked-header p, .ranked-note, .elo-graph figcaption, .elo-axis { color: #b0c8d8; }
+.ranked-current > span, .elo-reading { color: #8beaf5; }
+.ranked-queue { margin: 20px 0 26px; }
+.ranked-queue .queue-status { margin-top: 12px; }
+.ranked-panels { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: 16px; }
+.ranked-panel { padding: 16px; border: 1px solid #355a70; background: #0a1c2b; }
+.ranked-panel h3 { margin: 0 0 10px; font-size: 1.15rem; }
+.rank-boundaries { width: 100%; border-collapse: collapse; font-size: .9rem; }
+.rank-boundaries th, .rank-boundaries td { padding: 7px 0; text-align: left; border-bottom: 1px solid #244355; }
+.rank-boundaries tr > :last-child { text-align: right; }
+.ranked-note { margin: 12px 0 0; font-size: .85rem; }
+.elo-graph { margin: 0; }
+.elo-plot { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 8px; margin: 10px 0; }
+.elo-axis { display: flex; flex-direction: column; justify-content: space-between; font-size: .72rem; text-align: right; }
+.elo-plot canvas { width: 100%; height: 150px; display: block; }
+.elo-scrubber { display: grid; gap: 4px; font-size: .85rem; }
+.elo-scrubber input { width: 100%; accent-color: #67e8f9; }
+.elo-reading { display: block; margin-top: 8px; }
+
+@media (max-width: 680px) {
+  .ranked-panels { grid-template-columns: 1fr; }
+}
